@@ -73,7 +73,7 @@ function createUefaProvider(config: UefaProviderConfig): CompetitionProvider {
 export const uefaUclProvider = createUefaProvider({
   id: 'uefa-ucl',
   name: 'UEFA Champions League',
-  logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Logo_UEFA_Champions_League.png',
+  logoUrl: '/logos/ucl.png',
   competitionId: '1',
   externalUrlPath: 'uefachampionsleague',
   firstSeason: 1956,
@@ -82,8 +82,7 @@ export const uefaUclProvider = createUefaProvider({
 export const uefaUelProvider = createUefaProvider({
   id: 'uefa-uel',
   name: 'UEFA Europa League',
-  logoUrl:
-    'https://upload.wikimedia.org/wikipedia/commons/1/1b/UEFA_Europa_League_logo_%282024_version%29.svg',
+  logoUrl: '/logos/uel.svg',
   competitionId: '14',
   externalUrlPath: 'uefaeuropaleague',
   firstSeason: 1972,
@@ -92,8 +91,7 @@ export const uefaUelProvider = createUefaProvider({
 export const uefaUeclProvider = createUefaProvider({
   id: 'uefa-uecl',
   name: 'UEFA Conference League',
-  logoUrl:
-    'https://upload.wikimedia.org/wikipedia/commons/4/4b/UEFA_Conference_League_full_logo_%282024_version%29.svg',
+  logoUrl: '/logos/uecl.svg',
   competitionId: '2019',
   externalUrlPath: 'uefaeuropaconferenceleague',
   firstSeason: 2022,
