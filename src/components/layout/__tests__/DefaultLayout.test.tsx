@@ -4,27 +4,6 @@ import { MemoryRouter } from 'react-router-dom'
 import { LayoutProvider } from '@/contexts/LayoutContext'
 import { DefaultLayout } from '../DefaultLayout'
 
-function renderLayout(props?: { showSeason?: boolean; showDisplay?: boolean }) {
-  function Inner() {
-    const { useLayout } = require('@/contexts/LayoutContext')
-    const ctx = useLayout()
-    if (props?.showSeason) ctx.setShowSeasonSelect(true)
-    if (props?.showDisplay) ctx.setShowDisplaySelect(true)
-    return null
-  }
-
-  return render(
-    <MemoryRouter>
-      <LayoutProvider>
-        <DefaultLayout>
-          <div data-testid="child-content">Page content</div>
-          <Inner />
-        </DefaultLayout>
-      </LayoutProvider>
-    </MemoryRouter>,
-  )
-}
-
 function renderLayoutSimple() {
   return render(
     <MemoryRouter>

@@ -8,7 +8,7 @@ import type { ReactNode } from 'react'
 import { LayoutProvider } from '@/contexts/LayoutContext'
 import { HomePage } from '../HomePage'
 import { server } from '@/test/msw/server'
-import { matchListFixture, matchFixture, matchFixture2, SEASON_YEAR } from '@/test/msw/fixtures'
+import { matchFixture, matchFixture2, SEASON_YEAR } from '@/test/msw/fixtures'
 
 // ---------------------------------------------------------------------------
 // Wrapper
