@@ -118,7 +118,12 @@ export function MatchListPage() {
   return (
     <div className="mx-auto max-w-lg py-4 px-0">
       <div className="flex items-center gap-3 mb-6">
-        <p className="text-muted-foreground shrink-0">{provider.name}</p>
+        <img
+          src={provider.logoUrl}
+          alt={provider.name}
+          className="h-12 w-12 shrink-0 object-contain"
+        />
+        <p className="text-sm font-semibold text-foreground shrink-0">{provider.name}</p>
         <input
           type="text"
           placeholder="Filter by team..."

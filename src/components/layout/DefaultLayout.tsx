@@ -5,7 +5,7 @@ import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headless
 import { useLayout } from '@/contexts/LayoutContext'
 import { cn } from '@/lib/utils'
 import type { DisplayMode } from '@/types/common'
-import { getProvider, getAllProviders } from '@/providers/registry'
+import { getProvider } from '@/providers/registry'
 
 const displayOptions: { label: string; value: DisplayMode }[] = [
   { label: 'Flag', value: 'countryCode' },
@@ -29,22 +29,14 @@ export function DefaultLayout({ children }: DefaultLayoutProps) {
     setSelectedSeason,
     showSeasonSelect,
     selectedProvider,
-    setSelectedProvider,
   } = useLayout()
 
   const provider = getProvider(selectedProvider)
-  const allProviders = getAllProviders()
   const seasons = provider.getSeasons()
 
   function handleLogoClick(e: React.MouseEvent) {
     e.preventDefault()
     void navigate('/')
-  }
-
-  function handleProviderChange(id: string) {
-    setSelectedProvider(id)
-    const newProvider = getProvider(id)
-    setSelectedSeason(String(newProvider.getDefaultSeason()))
   }
 
   const selectedDisplayOption =
@@ -66,49 +58,6 @@ export function DefaultLayout({ children }: DefaultLayoutProps) {
           </Link>
 
           <div className="flex items-center gap-2">
-            {allProviders.length > 1 && showSeasonSelect && (
-              <Listbox value={selectedProvider} onChange={handleProviderChange}>
-                <div className="relative">
-                  <ListboxButton
-                    className={cn(
-                      'flex w-44 items-center justify-between rounded-md border border-input bg-background px-3 py-1.5',
-                      'text-sm font-semibold text-foreground shadow-xs',
-                      'hover:bg-accent hover:text-accent-foreground',
-                      'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1',
-                      'transition-colors',
-                    )}
-                  >
-                    <span className="truncate">{provider.name}</span>
-                    <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" aria-hidden="true" />
-                  </ListboxButton>
-                  <ListboxOptions
-                    className={cn(
-                      'absolute right-0 z-50 mt-1 max-h-60 w-56 overflow-auto rounded-md',
-                      'border border-border bg-popover py-1 shadow-md',
-                      'focus:outline-none',
-                    )}
-                  >
-                    {allProviders.map((p) => (
-                      <ListboxOption
-                        key={p.id}
-                        value={p.id}
-                        className={({ focus, selected }) =>
-                          cn(
-                            'relative cursor-pointer select-none px-3 py-1.5 text-sm',
-                            focus && 'bg-accent text-accent-foreground',
-                            selected && !focus && 'bg-accent/50',
-                            !focus && !selected && 'text-popover-foreground',
-                          )
-                        }
-                      >
-                        {p.name}
-                      </ListboxOption>
-                    ))}
-                  </ListboxOptions>
-                </div>
-              </Listbox>
-            )}
-
             {showSeasonSelect && (
               <Listbox value={selectedSeasonYear} onChange={(y) => setSelectedSeason(String(y))}>
                 <div className="relative">
