@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Trophy, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { useLayout } from '@/contexts/LayoutContext'
 import { cn } from '@/lib/utils'
@@ -53,7 +53,7 @@ export function DefaultLayout({ children }: DefaultLayoutProps) {
             onClick={handleLogoClick}
             className="flex items-center gap-2.5 font-semibold tracking-tight text-foreground hover:text-foreground/80 transition-colors shrink-0"
           >
-            <Trophy className="h-5 w-5 text-primary" />
+            <img src="/favicon.svg" alt="Lineups" className="h-5 w-5" />
             <span>Lineups</span>
           </Link>
 
