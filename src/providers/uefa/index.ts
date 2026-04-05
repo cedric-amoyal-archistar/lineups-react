@@ -12,50 +12,80 @@ function computeCurrentSeason(): number {
   return now.getMonth() >= 6 ? now.getFullYear() + 1 : now.getFullYear()
 }
 
-export const uefaProvider: CompetitionProvider = {
+interface UefaProviderConfig {
+  id: string
+  name: string
+  competitionId: string
+  externalUrlPath: string
+  firstSeason: number
+}
+
+function createUefaProvider(config: UefaProviderConfig): CompetitionProvider {
+  return {
+    id: config.id,
+    name: config.name,
+    proxyPath: '/uefa-api',
+
+    async fetchMatches(seasonYear, offset, limit, signal) {
+      const params = new URLSearchParams({
+        competitionId: config.competitionId,
+        seasonYear: String(seasonYear),
+        offset: String(offset),
+        limit: String(limit),
+        order: 'DESC',
+      })
+      return fetchJson<Match[]>(`/uefa-api/v5/matches?${params.toString()}`, signal)
+    },
+
+    async fetchMatch(matchId, signal) {
+      return fetchJson<Match>(`/uefa-api/v5/matches/${matchId}`, signal)
+    },
+
+    async fetchMatchLineups(matchId, signal) {
+      return fetchJson<MatchLineups>(`/uefa-api/v5/matches/${matchId}/lineups`, signal)
+    },
+
+    getExternalUrl(match) {
+      const slug = (name: string) => name.toLowerCase().replace(/\s+/g, '-')
+      const home = slug(match.homeTeam.internationalName)
+      const away = slug(match.awayTeam.internationalName)
+      return `https://www.uefa.com/${config.externalUrlPath}/match/${match.id}--${home}-vs-${away}/`
+    },
+
+    getSeasons() {
+      const current = computeCurrentSeason()
+      return Array.from(
+        { length: current + 1 - config.firstSeason },
+        (_, i) => current + 1 - i,
+      )
+    },
+
+    getDefaultSeason() {
+      return computeCurrentSeason()
+    },
+
+    seasonLabel(year) {
+      if (year >= 2008) return `${year - 1}/${String(year).slice(2)}`
+      return `${year}/${String(year + 1).slice(2)}`
+    },
+  }
+}
+
+export const uefaUclProvider = createUefaProvider({
   id: 'uefa-ucl',
   name: 'UEFA Champions League',
-  proxyPath: '/uefa-api',
+  competitionId: '1',
+  externalUrlPath: 'uefachampionsleague',
+  firstSeason: 1956,
+})
 
-  async fetchMatches(seasonYear, offset, limit, signal) {
-    const params = new URLSearchParams({
-      competitionId: '1',
-      seasonYear: String(seasonYear),
-      offset: String(offset),
-      limit: String(limit),
-      order: 'DESC',
-    })
-    return fetchJson<Match[]>(`/uefa-api/v5/matches?${params.toString()}`, signal)
-  },
+export const uefaUelProvider = createUefaProvider({
+  id: 'uefa-uel',
+  name: 'UEFA Europa League',
+  competitionId: '14',
+  externalUrlPath: 'uefaeuropaleague',
+  firstSeason: 1972,
+})
 
-  async fetchMatch(matchId, signal) {
-    return fetchJson<Match>(`/uefa-api/v5/matches/${matchId}`, signal)
-  },
-
-  async fetchMatchLineups(matchId, signal) {
-    return fetchJson<MatchLineups>(`/uefa-api/v5/matches/${matchId}/lineups`, signal)
-  },
-
-  getExternalUrl(match) {
-    const slug = (name: string) => name.toLowerCase().replace(/\s+/g, '-')
-    const home = slug(match.homeTeam.internationalName)
-    const away = slug(match.awayTeam.internationalName)
-    return `https://www.uefa.com/uefachampionsleague/match/${match.id}--${home}-vs-${away}/`
-  },
-
-  getSeasons() {
-    const current = computeCurrentSeason()
-    return Array.from({ length: current - 1955 }, (_, i) => current + 1 - i).filter(
-      (y) => y !== 2007,
-    )
-  },
-
-  getDefaultSeason() {
-    return computeCurrentSeason()
-  },
-
-  seasonLabel(year) {
-    if (year >= 2008) return `${year - 1}/${String(year).slice(2)}`
-    return `${year}/${String(year + 1).slice(2)}`
-  },
-}
+/** @deprecated Use uefaUclProvider instead */
+export const uefaProvider = uefaUclProvider
