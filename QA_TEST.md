@@ -1,0 +1,99 @@
+# QA & Test Documentation
+
+## Test Stack
+
+| Library | Version | Purpose |
+|---------|---------|---------|
+| Vitest | 4.1.2 | Test runner and assertion framework |
+| @testing-library/react | 16.3.2 | Component rendering and DOM queries |
+| @testing-library/jest-dom | 6.9.1 | DOM matchers (`toBeInTheDocument`, etc.) |
+| @testing-library/user-event | 14.6.1 | User interaction simulation |
+| MSW | 2.12.14 | HTTP request interception and mocking |
+| jsdom | 29.0.1 | DOM environment for Node.js |
+
+## Configuration
+
+- **Config file**: `vitest.config.ts`
+- **Environment**: jsdom
+- **Setup file**: `src/test/setup.ts` (starts MSW server, resets handlers between tests)
+- **Test pattern**: `src/**/*.{test,spec}.{ts,tsx}`
+- **Coverage**: v8 provider, reporters: text + lcov
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run test` | Single run (CI mode) |
+| `npm run test:watch` | Watch mode for development |
+| `npm run test:coverage` | Run with coverage report |
+
+## When Tests Trigger
+
+**GitHub Actions CI** (`.github/workflows/ci.yml`):
+- On push to `main` or `develop`
+- On pull request to `main` or `develop`
+- Pipeline: install → type-check → lint → format:check → **test** → build
+
+No pre-commit hooks are configured.
+
+## Test Inventory
+
+### Unit Tests — Utilities & Libraries
+
+| File | What it tests |
+|------|---------------|
+| `src/lib/utils.test.ts` | `cn()` utility — class name merging with Tailwind conflict resolution |
+| `src/lib/formatters.test.ts` | Formatting utilities (dates, scores, etc.) |
+| `src/lib/lineupCoordinates.test.ts` | `fixInvalidCoordinates()` — role-based pitch positioning when coordinates are missing; verifies GK < DEF < MID < FWD ordering |
+
+### Unit Tests — Hooks
+
+| File | What it tests |
+|------|---------------|
+| `src/hooks/useCountryFlag.test.ts` | Country flag URL resolution |
+| `src/hooks/useUefaApi.test.tsx` | `useMatches()`, `useMatch()`, `useMatchLineups()` — query params, error/loading states, 404 handling, retry behavior |
+
+### Component Tests — Match
+
+| File | What it tests |
+|------|---------------|
+| `src/components/match/__tests__/MatchCard.test.tsx` | Team names/logos, scores, penalty scores, round info, routing links |
+| `src/components/match/__tests__/MatchEvents.test.tsx` | Match event rendering (goals, cards) |
+| `src/components/match/__tests__/PenaltyShootout.test.tsx` | Penalty shootout display |
+
+### Component Tests — Lineup
+
+| File | What it tests |
+|------|---------------|
+| `src/components/lineup/__tests__/PitchView.test.tsx` | Pitch visualization, player positioning, coach display |
+| `src/components/lineup/__tests__/PlayerNode.test.tsx` | Individual player node rendering (jersey, name, colors) |
+| `src/components/lineup/__tests__/BenchList.test.tsx` | Bench player list display |
+| `src/components/lineup/__tests__/TeamHalf.test.tsx` | Team half positioning, coordinate inversion for away team, shirt colors |
+
+### Component Tests — Layout
+
+| File | What it tests |
+|------|---------------|
+| `src/components/layout/__tests__/DefaultLayout.test.tsx` | Layout wrapper rendering |
+
+### Page Tests
+
+| File | What it tests |
+|------|---------------|
+| `src/pages/__tests__/HomePage.test.tsx` | Loading states, match list rendering, team filtering (name/code/case-insensitive), date grouping, error/empty states, load-more pagination |
+| `src/pages/__tests__/MatchDetailPage.test.tsx` | Match detail page rendering with lineup data |
+
+### Infrastructure Tests
+
+| File | What it tests |
+|------|---------------|
+| `src/test/infrastructure.test.ts` | Smoke tests verifying MSW, jsdom, and jest-dom are working |
+
+## Test Helpers
+
+| File | Purpose |
+|------|---------|
+| `src/test/setup.ts` | Global setup — starts MSW, resets handlers between tests, closes server after suite |
+| `src/test/msw/server.ts` | MSW server instance with all handlers |
+| `src/test/msw/handlers.ts` | HTTP GET handlers for UEFA API proxy routes (`/uefa-api/v5/matches`, etc.) |
+| `src/test/msw/fixtures.ts` | Test data — Real Madrid vs Barcelona match, Bayern vs PSG match, lineup data with field coordinates |

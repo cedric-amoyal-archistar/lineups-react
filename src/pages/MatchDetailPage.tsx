@@ -54,7 +54,7 @@ export function MatchDetailPage() {
     ? {
         ...lineupsRaw,
         homeTeam: { ...lineupsRaw.homeTeam, field: fixInvalidCoordinates(lineupsRaw.homeTeam.field) },
-        awayTeam: { ...lineupsRaw.awayTeam, field: fixInvalidCoordinates(lineupsRaw.awayTeam.field, true) },
+        awayTeam: { ...lineupsRaw.awayTeam, field: fixInvalidCoordinates(lineupsRaw.awayTeam.field) },
       }
     : null
 

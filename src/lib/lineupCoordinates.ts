@@ -1,10 +1,10 @@
 import type { LineupPlayer } from '@/types/match'
 
 const POSITION_Y: Record<string, number> = {
-  GOALKEEPER: 900,
-  DEFENDER: 700,
-  MIDFIELDER: 450,
-  FORWARD: 200,
+  GOALKEEPER: 100,
+  DEFENDER: 300,
+  MIDFIELDER: 550,
+  FORWARD: 800,
 }
 
 function isInvalidCoordinate(coord: { x: number; y: number }): boolean {
@@ -23,7 +23,7 @@ function getPosition(player: LineupPlayer): string | undefined {
  * reasonable coordinates based on the player's fieldPosition.
  * Players are grouped by position row and spread evenly on X.
  */
-export function fixInvalidCoordinates(field: LineupPlayer[], inverted = false): LineupPlayer[] {
+export function fixInvalidCoordinates(field: LineupPlayer[]): LineupPlayer[] {
   const needsFix = field.some((p) => isInvalidCoordinate(p.fieldCoordinate))
   if (!needsFix) return field
 
@@ -54,7 +54,7 @@ export function fixInvalidCoordinates(field: LineupPlayer[], inverted = false): 
   const coordMap = new Map<string, { x: number; y: number }>()
 
   for (const [pos, players] of groups) {
-    const y = inverted ? 1000 - POSITION_Y[pos] : POSITION_Y[pos]
+    const y = POSITION_Y[pos]
     const count = players.length
     for (let i = 0; i < count; i++) {
       const x = Math.round(((i + 1) / (count + 1)) * 1000)
