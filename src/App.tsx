@@ -33,7 +33,11 @@ export default function App() {
                 <Route
                   path="/competition/:providerId/match/:id"
                   element={
-                    <Suspense fallback={<div className="py-12 text-center text-muted-foreground">Loading…</div>}>
+                    <Suspense
+                      fallback={
+                        <div className="py-12 text-center text-muted-foreground">Loading…</div>
+                      }
+                    >
                       <MatchDetailPage />
                     </Suspense>
                   }

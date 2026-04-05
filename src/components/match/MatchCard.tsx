@@ -96,9 +96,7 @@ export const MatchCard = memo(function MatchCard({ match }: MatchCardProps) {
             alt={match.awayTeam.internationalName}
             className="h-8 w-8 shrink-0"
           />
-          <span className="truncate text-sm font-medium">
-            {match.awayTeam.internationalName}
-          </span>
+          <span className="truncate text-sm font-medium">{match.awayTeam.internationalName}</span>
         </div>
       </div>
 

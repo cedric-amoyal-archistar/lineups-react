@@ -6,7 +6,8 @@
       "Bash(find:*)",
       "WebSearch",
       "WebFetch(domain:github.com)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "WebFetch(domain:img.uefa.com)"
     ]
   }
 }

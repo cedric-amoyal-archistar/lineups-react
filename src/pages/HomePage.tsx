@@ -35,7 +35,13 @@ function groupByDate(matches: Match[]): [string, Match[]][] {
 export function MatchListPage() {
   const { providerId } = useParams<{ providerId: string }>()
   const provider = getProvider(providerId!)
-  const { selectedSeason, setSelectedSeason, setShowSeasonSelect, selectedProvider, setSelectedProvider } = useLayout()
+  const {
+    selectedSeason,
+    setSelectedSeason,
+    setShowSeasonSelect,
+    selectedProvider,
+    setSelectedProvider,
+  } = useLayout()
   const [teamFilter, setTeamFilter] = useState('')
   const [matches, setMatches] = useState<Match[]>([])
   const [loading, setLoading] = useState(true)

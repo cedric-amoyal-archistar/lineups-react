@@ -96,7 +96,12 @@ describe('MatchCard — teams', () => {
 
 describe('MatchCard — score and status', () => {
   it('renders score for a finished match', () => {
-    renderCard(makeMatch({ status: 'FINISHED', score: { total: { home: 3, away: 0 }, regular: { home: 3, away: 0 } } }))
+    renderCard(
+      makeMatch({
+        status: 'FINISHED',
+        score: { total: { home: 3, away: 0 }, regular: { home: 3, away: 0 } },
+      }),
+    )
     expect(screen.getByText('3')).toBeInTheDocument()
     expect(screen.getByText('0')).toBeInTheDocument()
   })
@@ -107,21 +112,33 @@ describe('MatchCard — score and status', () => {
   })
 
   it('shows Live label for live match', () => {
-    renderCard(makeMatch({ status: 'LIVE', score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 } } }))
+    renderCard(
+      makeMatch({
+        status: 'LIVE',
+        score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 } },
+      }),
+    )
     expect(screen.getByText('Live')).toBeInTheDocument()
   })
 
   it('does not show FT for live match', () => {
-    renderCard(makeMatch({ status: 'LIVE', score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 } } }))
+    renderCard(
+      makeMatch({
+        status: 'LIVE',
+        score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 } },
+      }),
+    )
     expect(screen.queryByText('FT')).not.toBeInTheDocument()
   })
 
   it('renders kickoff time for upcoming match', () => {
-    renderCard(makeMatch({
-      status: 'UPCOMING',
-      score: undefined,
-      kickOffTime: { date: '2025-04-01', dateTime: '2025-04-01T19:00:00', utcOffsetInHours: 0 },
-    }))
+    renderCard(
+      makeMatch({
+        status: 'UPCOMING',
+        score: undefined,
+        kickOffTime: { date: '2025-04-01', dateTime: '2025-04-01T19:00:00', utcOffsetInHours: 0 },
+      }),
+    )
     // Should show time string, not score
     expect(screen.queryByText('FT')).not.toBeInTheDocument()
     expect(screen.queryByText('Live')).not.toBeInTheDocument()
@@ -143,14 +160,16 @@ describe('MatchCard — score and status', () => {
 
 describe('MatchCard — penalties', () => {
   it('shows penalty score when present', () => {
-    renderCard(makeMatch({
-      status: 'FINISHED',
-      score: {
-        total: { home: 1, away: 1 },
-        regular: { home: 1, away: 1 },
-        penalty: { home: 4, away: 3 },
-      },
-    }))
+    renderCard(
+      makeMatch({
+        status: 'FINISHED',
+        score: {
+          total: { home: 1, away: 1 },
+          regular: { home: 1, away: 1 },
+          penalty: { home: 4, away: 3 },
+        },
+      }),
+    )
     expect(screen.getByText('(4-3 pen)')).toBeInTheDocument()
   })
 
@@ -181,10 +200,16 @@ describe('MatchCard — round and extra info', () => {
   })
 
   it('shows aggregate for SECOND_LEG', () => {
-    renderCard(makeMatch({
-      type: 'SECOND_LEG',
-      score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 }, aggregate: { home: 3, away: 1 } },
-    }))
+    renderCard(
+      makeMatch({
+        type: 'SECOND_LEG',
+        score: {
+          total: { home: 1, away: 0 },
+          regular: { home: 1, away: 0 },
+          aggregate: { home: 3, away: 1 },
+        },
+      }),
+    )
     expect(screen.getByText(/Agg: 3-1/)).toBeInTheDocument()
   })
 

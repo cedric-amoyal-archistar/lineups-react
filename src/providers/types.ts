@@ -5,6 +5,8 @@ export interface CompetitionProvider {
   id: string
   /** Display name for the UI */
   name: string
+  /** Competition logo URL */
+  logoUrl: string
   /** Base path for the Vite dev proxy (e.g. '/uefa-api') */
   proxyPath: string
 

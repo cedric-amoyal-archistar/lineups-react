@@ -150,9 +150,7 @@ describe('MatchDetailPage — lineup section', () => {
       ),
     )
     renderPage()
-    await waitFor(() =>
-      expect(screen.getByText(/lineups not available yet/i)).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText(/lineups not available yet/i)).toBeInTheDocument())
   })
 
   it('renders pitch view when lineups have field players', async () => {
@@ -182,9 +180,7 @@ describe('MatchDetailPage — error state', () => {
       ),
     )
     renderPage()
-    await waitFor(() =>
-      expect(document.querySelector('.animate-spin')).not.toBeInTheDocument(),
-    )
+    await waitFor(() => expect(document.querySelector('.animate-spin')).not.toBeInTheDocument())
     // Error text from the hook: "UEFA API error: 404 ..."
     expect(screen.getByText(/UEFA API error/i)).toBeInTheDocument()
   })
@@ -198,9 +194,7 @@ describe('MatchDetailPage — unknown id', () => {
   it('shows an error message for an id that returns 404', async () => {
     // id=99999 is not in the MSW handler -> returns 404 -> hook sets error
     renderPage('99999')
-    await waitFor(() =>
-      expect(document.querySelector('.animate-spin')).not.toBeInTheDocument(),
-    )
+    await waitFor(() => expect(document.querySelector('.animate-spin')).not.toBeInTheDocument())
     // Error state renders the error message text
     expect(screen.getByText(/UEFA API error/i)).toBeInTheDocument()
   })

@@ -18,7 +18,10 @@ function makePenalty(overrides: Partial<PenaltyEvent>): PenaltyEvent {
   }
 }
 
-function makeMatch(penaltyScorers: PenaltyEvent[], penaltyScore?: { home: number; away: number }): Match {
+function makeMatch(
+  penaltyScorers: PenaltyEvent[],
+  penaltyScore?: { home: number; away: number },
+): Match {
   return {
     id: 1,
     homeTeam: {
@@ -154,7 +157,12 @@ describe('PenaltyShootout — asymmetric round counts', () => {
 describe('PenaltyShootout — scored/missed styling', () => {
   it('applies line-through to missed penalties', () => {
     const match = makeMatch([
-      makePenalty({ id: 'p1', teamId: 'h1', penaltyType: 'MISSED', player: { clubShirtName: 'Vinicius Jr' } }),
+      makePenalty({
+        id: 'p1',
+        teamId: 'h1',
+        penaltyType: 'MISSED',
+        player: { clubShirtName: 'Vinicius Jr' },
+      }),
     ])
     const { container } = render(<PenaltyShootout match={match} />)
     const missedSpan = container.querySelector('.line-through')
@@ -164,7 +172,12 @@ describe('PenaltyShootout — scored/missed styling', () => {
 
   it('does not apply line-through to scored penalties', () => {
     const match = makeMatch([
-      makePenalty({ id: 'p1', teamId: 'h1', penaltyType: 'SCORED', player: { clubShirtName: 'Bellingham' } }),
+      makePenalty({
+        id: 'p1',
+        teamId: 'h1',
+        penaltyType: 'SCORED',
+        player: { clubShirtName: 'Bellingham' },
+      }),
     ])
     const { container } = render(<PenaltyShootout match={match} />)
     // The player name text should exist but NOT have line-through

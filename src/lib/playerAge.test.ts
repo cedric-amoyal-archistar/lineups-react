@@ -74,18 +74,14 @@ describe('computeMatchDayAge', () => {
       // Player is 20 today, match was 10 years ago → ~10, clamped to 15
       const tenYearsAgo = new Date()
       tenYearsAgo.setFullYear(tenYearsAgo.getFullYear() - 10)
-      expect(
-        computeMatchDayAge({ currentAge: 20, matchDate: tenYearsAgo.toISOString() }),
-      ).toBe(15)
+      expect(computeMatchDayAge({ currentAge: 20, matchDate: tenYearsAgo.toISOString() })).toBe(15)
     })
 
     it('clamps to 60 when approximate calculation yields above 60', () => {
       // Player is 90 today, match was 5 years ago → ~85, clamped to 60
       const fiveYearsAgo = new Date()
       fiveYearsAgo.setFullYear(fiveYearsAgo.getFullYear() - 5)
-      expect(
-        computeMatchDayAge({ currentAge: 90, matchDate: fiveYearsAgo.toISOString() }),
-      ).toBe(60)
+      expect(computeMatchDayAge({ currentAge: 90, matchDate: fiveYearsAgo.toISOString() })).toBe(60)
     })
   })
 })

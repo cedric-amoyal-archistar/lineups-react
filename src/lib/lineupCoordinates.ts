@@ -12,10 +12,7 @@ function isInvalidCoordinate(coord: { x: number; y: number }): boolean {
 }
 
 function getPosition(player: LineupPlayer): string | undefined {
-  return (
-    player.player.fieldPosition ||
-    player.player.nationalFieldPosition
-  )
+  return player.player.fieldPosition || player.player.nationalFieldPosition
 }
 
 /**

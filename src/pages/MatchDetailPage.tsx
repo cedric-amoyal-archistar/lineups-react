@@ -48,8 +48,14 @@ export function MatchDetailPage() {
   const lineups = lineupsRaw?.homeTeam?.field?.length
     ? {
         ...lineupsRaw,
-        homeTeam: { ...lineupsRaw.homeTeam, field: fixInvalidCoordinates(lineupsRaw.homeTeam.field) },
-        awayTeam: { ...lineupsRaw.awayTeam, field: fixInvalidCoordinates(lineupsRaw.awayTeam.field) },
+        homeTeam: {
+          ...lineupsRaw.homeTeam,
+          field: fixInvalidCoordinates(lineupsRaw.homeTeam.field),
+        },
+        awayTeam: {
+          ...lineupsRaw.awayTeam,
+          field: fixInvalidCoordinates(lineupsRaw.awayTeam.field),
+        },
       }
     : null
 
@@ -105,7 +111,9 @@ export function MatchDetailPage() {
                 alt={match.homeTeam.internationalName}
                 className="h-10 w-10"
               />
-              <span className="text-xs font-semibold tracking-tight">{match.homeTeam.teamCode}</span>
+              <span className="text-xs font-semibold tracking-tight">
+                {match.homeTeam.teamCode}
+              </span>
             </div>
 
             {/* Score */}
@@ -137,7 +145,9 @@ export function MatchDetailPage() {
                 alt={match.awayTeam.internationalName}
                 className="h-10 w-10"
               />
-              <span className="text-xs font-semibold tracking-tight">{match.awayTeam.teamCode}</span>
+              <span className="text-xs font-semibold tracking-tight">
+                {match.awayTeam.teamCode}
+              </span>
             </div>
           </div>
 
@@ -155,11 +165,23 @@ export function MatchDetailPage() {
           {lineups ? (
             <>
               <div className="mt-4">
-                <PitchView lineups={lineups} displayMode={displayMode} matchDate={match.kickOffTime.dateTime} />
+                <PitchView
+                  lineups={lineups}
+                  displayMode={displayMode}
+                  matchDate={match.kickOffTime.dateTime}
+                />
               </div>
               <div className="mt-5 space-y-3">
-                <BenchList lineup={lineups.homeTeam} displayMode={displayMode} matchDate={match.kickOffTime.dateTime} />
-                <BenchList lineup={lineups.awayTeam} displayMode={displayMode} matchDate={match.kickOffTime.dateTime} />
+                <BenchList
+                  lineup={lineups.homeTeam}
+                  displayMode={displayMode}
+                  matchDate={match.kickOffTime.dateTime}
+                />
+                <BenchList
+                  lineup={lineups.awayTeam}
+                  displayMode={displayMode}
+                  matchDate={match.kickOffTime.dateTime}
+                />
               </div>
             </>
           ) : (

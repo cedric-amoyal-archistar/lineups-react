@@ -158,7 +158,11 @@ describe('matchInfo', () => {
   it('includes aggregate score in 2nd leg', () => {
     const match = makeMatch({
       type: 'SECOND_LEG',
-      score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 }, aggregate: { home: 3, away: 1 } },
+      score: {
+        total: { home: 1, away: 0 },
+        regular: { home: 1, away: 0 },
+        aggregate: { home: 3, away: 1 },
+      },
     })
     expect(matchInfo(match)).toContain('Agg: 3-1')
   })
@@ -187,7 +191,11 @@ describe('extraInfo', () => {
   it('includes aggregate for SECOND_LEG', () => {
     const match = makeMatch({
       type: 'SECOND_LEG',
-      score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 }, aggregate: { home: 2, away: 1 } },
+      score: {
+        total: { home: 1, away: 0 },
+        regular: { home: 1, away: 0 },
+        aggregate: { home: 2, away: 1 },
+      },
     })
     const result = extraInfo(match)
     expect(result).toContain('2nd leg')
@@ -248,7 +256,9 @@ describe('getUefaUrl', () => {
 
 describe('getPlayerName', () => {
   it('prefers clubShirtName when set', () => {
-    expect(getPlayerName({ clubShirtName: 'Vini Jr', internationalName: 'V. Junior' })).toBe('Vini Jr')
+    expect(getPlayerName({ clubShirtName: 'Vini Jr', internationalName: 'V. Junior' })).toBe(
+      'Vini Jr',
+    )
   })
 
   it('falls back to internationalName when clubShirtName is empty', () => {
@@ -299,7 +309,10 @@ describe('goalLabel', () => {
   })
 
   it('includes injury time in penalty label', () => {
-    const event = makeEvent({ time: { minute: 45, second: 0, injuryMinute: 2 }, goalType: 'PENALTY' })
+    const event = makeEvent({
+      time: { minute: 45, second: 0, injuryMinute: 2 },
+      goalType: 'PENALTY',
+    })
     expect(goalLabel(event)).toBe("45'+2 (P)")
   })
 })
@@ -333,12 +346,16 @@ describe('seasonLabel', () => {
 
 describe('formatRound', () => {
   it('returns the round metaData name', () => {
-    const match = makeMatch({ round: { metaData: { name: 'Semi-finals', type: 'KNOCKOUT' }, phase: 'KNOCKOUT' } })
+    const match = makeMatch({
+      round: { metaData: { name: 'Semi-finals', type: 'KNOCKOUT' }, phase: 'KNOCKOUT' },
+    })
     expect(formatRound(match)).toBe('Semi-finals')
   })
 
   it('returns group stage round name', () => {
-    const match = makeMatch({ round: { metaData: { name: 'League Phase', type: 'GROUP' }, phase: 'GROUP' } })
+    const match = makeMatch({
+      round: { metaData: { name: 'League Phase', type: 'GROUP' }, phase: 'GROUP' },
+    })
     expect(formatRound(match)).toBe('League Phase')
   })
 })

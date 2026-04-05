@@ -67,7 +67,10 @@ export function getUefaUrl(match: Match): string {
   return `https://www.uefa.com/uefachampionsleague/match/${match.id}--${home}-vs-${away}/`
 }
 
-export function getPlayerName(player: { clubShirtName: string; internationalName: string }): string {
+export function getPlayerName(player: {
+  clubShirtName: string
+  internationalName: string
+}): string {
   return player.clubShirtName || player.internationalName
 }
 

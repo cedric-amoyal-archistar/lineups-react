@@ -1,11 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import {
-  MATCH_ID,
-  MATCH_ID_STR,
-  matchListFixture,
-  matchFixture,
-  lineupsFixture,
-} from './fixtures'
+import { MATCH_ID, MATCH_ID_STR, matchListFixture, matchFixture, lineupsFixture } from './fixtures'
 
 /**
  * MSW request handlers for the UEFA Match API proxy.

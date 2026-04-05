@@ -53,9 +53,7 @@ describe('HomePage — loading state', () => {
 describe('HomePage — match list', () => {
   it('renders match cards after data loads', async () => {
     renderPage()
-    await waitFor(() =>
-      expect(screen.getByText('Real Madrid')).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText('Real Madrid')).toBeInTheDocument())
   })
 
   it('renders both home and away team names', async () => {
@@ -131,9 +129,7 @@ describe('HomePage — team filter', () => {
     const input = screen.getByPlaceholderText('Filter by team...')
     await user.type(input, 'zzznomatch')
 
-    await waitFor(() =>
-      expect(screen.getByText('No matches found.')).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText('No matches found.')).toBeInTheDocument())
   })
 
   it('restores all matches when filter is cleared', async () => {
@@ -165,12 +161,20 @@ describe('HomePage — date grouping', () => {
           {
             ...matchFixture,
             id: 1,
-            kickOffTime: { date: '2025-04-10', dateTime: '2025-04-10T19:00:00Z', utcOffsetInHours: 0 },
+            kickOffTime: {
+              date: '2025-04-10',
+              dateTime: '2025-04-10T19:00:00Z',
+              utcOffsetInHours: 0,
+            },
           },
           {
             ...matchFixture2,
             id: 2,
-            kickOffTime: { date: '2025-04-08', dateTime: '2025-04-08T19:00:00Z', utcOffsetInHours: 0 },
+            kickOffTime: {
+              date: '2025-04-08',
+              dateTime: '2025-04-08T19:00:00Z',
+              utcOffsetInHours: 0,
+            },
           },
         ]),
       ),
@@ -191,12 +195,20 @@ describe('HomePage — date grouping', () => {
           {
             ...matchFixture,
             id: 1,
-            kickOffTime: { date: '2025-04-10', dateTime: '2025-04-10T19:00:00Z', utcOffsetInHours: 0 },
+            kickOffTime: {
+              date: '2025-04-10',
+              dateTime: '2025-04-10T19:00:00Z',
+              utcOffsetInHours: 0,
+            },
           },
           {
             ...matchFixture2,
             id: 2,
-            kickOffTime: { date: '2025-04-10', dateTime: '2025-04-10T21:00:00Z', utcOffsetInHours: 0 },
+            kickOffTime: {
+              date: '2025-04-10',
+              dateTime: '2025-04-10T21:00:00Z',
+              utcOffsetInHours: 0,
+            },
           },
         ]),
       ),
@@ -217,13 +229,9 @@ describe('HomePage — date grouping', () => {
 
 describe('HomePage — error state', () => {
   it('shows error message when fetch fails', async () => {
-    server.use(
-      http.get('/uefa-api/v5/matches', () => HttpResponse.error()),
-    )
+    server.use(http.get('/uefa-api/v5/matches', () => HttpResponse.error()))
     renderPage()
-    await waitFor(() =>
-      expect(screen.queryByRole('heading', { level: 2 })).not.toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.queryByRole('heading', { level: 2 })).not.toBeInTheDocument())
     // Error div should appear (text varies, but spinner gone)
     expect(document.querySelector('.animate-spin')).not.toBeInTheDocument()
   })
@@ -235,13 +243,9 @@ describe('HomePage — error state', () => {
 
 describe('HomePage — empty state', () => {
   it('shows "No matches found." when API returns empty array', async () => {
-    server.use(
-      http.get('/uefa-api/v5/matches', () => HttpResponse.json([])),
-    )
+    server.use(http.get('/uefa-api/v5/matches', () => HttpResponse.json([])))
     renderPage()
-    await waitFor(() =>
-      expect(screen.getByText('No matches found.')).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText('No matches found.')).toBeInTheDocument())
   })
 })
 
@@ -263,9 +267,7 @@ describe('HomePage — load more', () => {
       ...matchFixture,
       id: i + 1,
     }))
-    server.use(
-      http.get('/uefa-api/v5/matches', () => HttpResponse.json(hundred)),
-    )
+    server.use(http.get('/uefa-api/v5/matches', () => HttpResponse.json(hundred)))
     renderPage()
     await waitFor(() =>
       expect(screen.getByRole('button', { name: /load more/i })).toBeInTheDocument(),
