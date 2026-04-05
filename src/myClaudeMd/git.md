@@ -1,0 +1,1 @@
+For /Users/cedricamoyal/dev/cedric/lineups-vite-react-tailwind-healess-ui let's setup git, save the project to github and deploy it with vercel the same way we did it for /Users/cedricamoyal/dev/cedric/lineups
