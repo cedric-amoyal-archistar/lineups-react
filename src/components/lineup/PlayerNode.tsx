@@ -25,7 +25,7 @@ interface PlayerNodeProps {
   height?: string | number
   imageUrl?: string
   shirtColor?: string
-  displayMode?: DisplayMode | string
+  displayMode?: DisplayMode
 }
 
 export const PlayerNode = memo(function PlayerNode({

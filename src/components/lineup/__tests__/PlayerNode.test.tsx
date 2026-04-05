@@ -43,6 +43,7 @@ describe('PlayerNode — search link', () => {
     const link = screen.getByRole('link')
     // The href must not contain raw non-ASCII chars
     const href = link.getAttribute('href') ?? ''
+    // eslint-disable-next-line no-control-regex
     expect(href).not.toMatch(/[^\x00-\x7F]/)
   })
 
@@ -104,7 +105,13 @@ describe('PlayerNode — display modes', () => {
   })
 
   it('renders player photo for imageUrl mode when imageUrl is set', () => {
-    render(<PlayerNode {...defaultProps} displayMode="imageUrl" imageUrl="https://img.uefa.com/vini.jpg" />)
+    render(
+      <PlayerNode
+        {...defaultProps}
+        displayMode="imageUrl"
+        imageUrl="https://img.uefa.com/vini.jpg"
+      />,
+    )
     const photoImg = screen.getByAltText('Vinicius Junior')
     expect(photoImg).toBeInTheDocument()
     expect(photoImg).toHaveAttribute('src', 'https://img.uefa.com/vini.jpg')
@@ -141,7 +148,9 @@ describe('PlayerNode — background color', () => {
   })
 
   it('uses shirt color for clubJerseyNumber mode', () => {
-    const { container } = render(<PlayerNode {...defaultProps} displayMode="clubJerseyNumber" shirtColor="#003399" />)
+    const { container } = render(
+      <PlayerNode {...defaultProps} displayMode="clubJerseyNumber" shirtColor="#003399" />,
+    )
     const circle = getCircle(container)
     expect(circle).toBeInTheDocument()
     expect(circle.style.backgroundColor).toBe('rgb(0, 51, 153)') // #003399

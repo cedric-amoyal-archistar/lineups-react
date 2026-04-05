@@ -8,7 +8,7 @@ function getPlayerName(player: { clubShirtName: string; internationalName: strin
 
 interface TeamHalfProps {
   lineup: TeamLineup
-  displayMode: DisplayMode | string
+  displayMode: DisplayMode
   inverted?: boolean
   matchDate?: string
 }

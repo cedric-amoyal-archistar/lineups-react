@@ -68,14 +68,17 @@ src/
 
 ## CI/CD
 
-GitHub Actions (`.github/workflows/ci.yml`) triggers on push/PR to `main` and `develop`:
+**Pre-commit hook** (Husky + lint-staged): runs ESLint and Prettier on staged `.ts`/`.tsx` files before every commit. Blocks the commit if there are lint errors or formatting issues.
+
+**GitHub Actions CI** (`.github/workflows/ci.yml`) triggers on push/PR to `main` and `develop`:
+
 1. **CI job** (Node 22): install → type-check → lint → format:check → test
 2. **Build job**: runs only after CI passes
 
 ## Rules
 
 - When adding or modifying tests, update `QA_TEST.md` at the project root to reflect the change (add new entries, update descriptions, or remove deleted tests).
-- Run `npm run type-check` and `npm run test` before considering work complete.
+- Run `npm run format`, `npm run lint`, `npm run type-check`, and `npm run test` before considering work complete.
 - Prefer editing existing files over creating new ones.
 - Use path alias `@/` for imports from `src/`.
 - New components go in `src/components/<domain>/` with co-located `__tests__/` directory.

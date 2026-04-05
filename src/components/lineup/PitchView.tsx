@@ -4,7 +4,7 @@ import { TeamHalf } from './TeamHalf'
 
 interface PitchViewProps {
   lineups: MatchLineups
-  displayMode: DisplayMode | string
+  displayMode: DisplayMode
   matchDate?: string
 }
 
@@ -42,7 +42,12 @@ export function PitchView({ lineups, displayMode, matchDate }: PitchViewProps) {
         </div>
 
         <TeamHalf lineup={lineups.homeTeam} displayMode={displayMode} matchDate={matchDate} />
-        <TeamHalf lineup={lineups.awayTeam} displayMode={displayMode} inverted matchDate={matchDate} />
+        <TeamHalf
+          lineup={lineups.awayTeam}
+          displayMode={displayMode}
+          inverted
+          matchDate={matchDate}
+        />
       </div>
 
       {/* Away team header */}

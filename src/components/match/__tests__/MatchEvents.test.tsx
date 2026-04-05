@@ -66,9 +66,7 @@ describe('MatchEvents — empty state', () => {
   })
 
   it('renders nothing when playerEvents is absent', () => {
-    const match = makeMatch()
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    delete (match as any).playerEvents
+    const match = { ...makeMatch(), playerEvents: undefined }
     const { container } = render(<MatchEvents match={match} />)
     expect(container.firstChild).toBeNull()
   })
@@ -80,21 +78,48 @@ describe('MatchEvents — empty state', () => {
 
 describe('MatchEvents — goal rendering', () => {
   it('renders home goal scorer name', () => {
-    const match = makeMatch([makeEvent({ teamId: 'h1', player: { clubShirtName: 'Vinicius Jr', internationalName: 'V. Junior', countryCode: 'BRA' } })])
+    const match = makeMatch([
+      makeEvent({
+        teamId: 'h1',
+        player: {
+          clubShirtName: 'Vinicius Jr',
+          internationalName: 'V. Junior',
+          countryCode: 'BRA',
+        },
+      }),
+    ])
     render(<MatchEvents match={match} />)
     expect(screen.getByText('Vinicius Jr')).toBeInTheDocument()
   })
 
   it('renders away goal scorer name', () => {
-    const match = makeMatch([makeEvent({ id: 'evt-away', teamId: 'a1', player: { clubShirtName: 'Yamal', internationalName: 'L. Yamal', countryCode: 'ESP' } })])
+    const match = makeMatch([
+      makeEvent({
+        id: 'evt-away',
+        teamId: 'a1',
+        player: { clubShirtName: 'Yamal', internationalName: 'L. Yamal', countryCode: 'ESP' },
+      }),
+    ])
     render(<MatchEvents match={match} />)
     expect(screen.getByText('Yamal')).toBeInTheDocument()
   })
 
   it('renders multiple goals', () => {
     const match = makeMatch([
-      makeEvent({ id: 'e1', teamId: 'h1', player: { clubShirtName: 'Bellingham', internationalName: 'J. Bellingham', countryCode: 'ENG' } }),
-      makeEvent({ id: 'e2', teamId: 'a1', player: { clubShirtName: 'Yamal', internationalName: 'L. Yamal', countryCode: 'ESP' } }),
+      makeEvent({
+        id: 'e1',
+        teamId: 'h1',
+        player: {
+          clubShirtName: 'Bellingham',
+          internationalName: 'J. Bellingham',
+          countryCode: 'ENG',
+        },
+      }),
+      makeEvent({
+        id: 'e2',
+        teamId: 'a1',
+        player: { clubShirtName: 'Yamal', internationalName: 'L. Yamal', countryCode: 'ESP' },
+      }),
     ])
     render(<MatchEvents match={match} />)
     expect(screen.getByText('Bellingham')).toBeInTheDocument()
@@ -102,7 +127,11 @@ describe('MatchEvents — goal rendering', () => {
   })
 
   it('falls back to internationalName when clubShirtName is empty', () => {
-    const match = makeMatch([makeEvent({ player: { clubShirtName: '', internationalName: 'V. Junior', countryCode: 'BRA' } })])
+    const match = makeMatch([
+      makeEvent({
+        player: { clubShirtName: '', internationalName: 'V. Junior', countryCode: 'BRA' },
+      }),
+    ])
     render(<MatchEvents match={match} />)
     expect(screen.getByText('V. Junior')).toBeInTheDocument()
   })
@@ -120,7 +149,9 @@ describe('MatchEvents — goal labels', () => {
   })
 
   it('renders injury time correctly', () => {
-    const match = makeMatch([makeEvent({ time: { minute: 90, second: 0, injuryMinute: 3 }, goalType: 'NORMAL' })])
+    const match = makeMatch([
+      makeEvent({ time: { minute: 90, second: 0, injuryMinute: 3 }, goalType: 'NORMAL' }),
+    ])
     render(<MatchEvents match={match} />)
     expect(screen.getByText("90'+3")).toBeInTheDocument()
   })
@@ -146,7 +177,17 @@ describe('MatchEvents — red cards', () => {
   it('renders red card player name', () => {
     const match = makeMatch(
       [],
-      [makeEvent({ id: 'rc-1', teamId: 'h1', player: { clubShirtName: 'Carvajal', internationalName: 'D. Carvajal', countryCode: 'ESP' } })],
+      [
+        makeEvent({
+          id: 'rc-1',
+          teamId: 'h1',
+          player: {
+            clubShirtName: 'Carvajal',
+            internationalName: 'D. Carvajal',
+            countryCode: 'ESP',
+          },
+        }),
+      ],
     )
     render(<MatchEvents match={match} />)
     expect(screen.getByText('Carvajal')).toBeInTheDocument()
@@ -162,10 +203,7 @@ describe('MatchEvents — red cards', () => {
   })
 
   it('renders red card visual indicator (red square)', () => {
-    const match = makeMatch(
-      [],
-      [makeEvent({ id: 'rc-1', teamId: 'h1' })],
-    )
+    const match = makeMatch([], [makeEvent({ id: 'rc-1', teamId: 'h1' })])
     const { container } = render(<MatchEvents match={match} />)
     // The red card indicator is a span with bg-red-500
     const redIndicator = container.querySelector('.bg-red-500')
@@ -173,10 +211,7 @@ describe('MatchEvents — red cards', () => {
   })
 
   it('renders component when only red cards exist (no goals)', () => {
-    const match = makeMatch(
-      [],
-      [makeEvent({ id: 'rc-1', teamId: 'h1' })],
-    )
+    const match = makeMatch([], [makeEvent({ id: 'rc-1', teamId: 'h1' })])
     const { container } = render(<MatchEvents match={match} />)
     expect(container.firstChild).not.toBeNull()
   })
