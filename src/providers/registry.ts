@@ -1,9 +1,10 @@
 import type { CompetitionProvider } from './types'
-import { uefaUclProvider, uefaUelProvider } from './uefa'
+import { uefaUclProvider, uefaUelProvider, uefaUeclProvider } from './uefa'
 
 const providers: Record<string, CompetitionProvider> = {
   [uefaUclProvider.id]: uefaUclProvider,
   [uefaUelProvider.id]: uefaUelProvider,
+  [uefaUeclProvider.id]: uefaUeclProvider,
 }
 
 export function getProvider(id: string): CompetitionProvider {

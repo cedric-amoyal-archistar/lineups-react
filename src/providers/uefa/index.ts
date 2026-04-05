@@ -87,5 +87,13 @@ export const uefaUelProvider = createUefaProvider({
   firstSeason: 1972,
 })
 
+export const uefaUeclProvider = createUefaProvider({
+  id: 'uefa-uecl',
+  name: 'UEFA Conference League',
+  competitionId: '2019',
+  externalUrlPath: 'uefaeuropaconferenceleague',
+  firstSeason: 2022,
+})
+
 /** @deprecated Use uefaUclProvider instead */
 export const uefaProvider = uefaUclProvider
