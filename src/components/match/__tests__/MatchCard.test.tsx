@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { MatchCard } from '../MatchCard'
 import type { Match } from '@/types/match'
 
@@ -54,8 +54,10 @@ function makeMatch(overrides: Partial<Match> = {}): Match {
 
 function renderCard(match: Match) {
   render(
-    <MemoryRouter>
-      <MatchCard match={match} />
+    <MemoryRouter initialEntries={['/competition/uefa-ucl']}>
+      <Routes>
+        <Route path="/competition/:providerId" element={<MatchCard match={match} />} />
+      </Routes>
     </MemoryRouter>,
   )
 }
@@ -202,6 +204,6 @@ describe('MatchCard — link', () => {
   it('links to the correct match detail route', () => {
     renderCard(makeMatch({ id: 42 }))
     const link = screen.getByRole('link')
-    expect(link).toHaveAttribute('href', '/match/42')
+    expect(link).toHaveAttribute('href', '/competition/uefa-ucl/match/42')
   })
 })

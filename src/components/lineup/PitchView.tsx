@@ -5,9 +5,10 @@ import { TeamHalf } from './TeamHalf'
 interface PitchViewProps {
   lineups: MatchLineups
   displayMode: DisplayMode | string
+  matchDate?: string
 }
 
-export function PitchView({ lineups, displayMode }: PitchViewProps) {
+export function PitchView({ lineups, displayMode, matchDate }: PitchViewProps) {
   return (
     <div
       className="relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl px-5 py-3 shadow-sm"
@@ -40,8 +41,8 @@ export function PitchView({ lineups, displayMode }: PitchViewProps) {
           <div className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-700/20" />
         </div>
 
-        <TeamHalf lineup={lineups.homeTeam} displayMode={displayMode} />
-        <TeamHalf lineup={lineups.awayTeam} displayMode={displayMode} inverted />
+        <TeamHalf lineup={lineups.homeTeam} displayMode={displayMode} matchDate={matchDate} />
+        <TeamHalf lineup={lineups.awayTeam} displayMode={displayMode} inverted matchDate={matchDate} />
       </div>
 
       {/* Away team header */}

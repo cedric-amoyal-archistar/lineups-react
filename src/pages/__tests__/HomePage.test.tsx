@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { http, HttpResponse } from 'msw'
 import type { ReactNode } from 'react'
 import { LayoutProvider } from '@/contexts/LayoutContext'
-import { HomePage } from '../HomePage'
+import { MatchListPage } from '../HomePage'
 import { server } from '@/test/msw/server'
 import { matchFixture, matchFixture2, SEASON_YEAR } from '@/test/msw/fixtures'
 
@@ -14,19 +14,24 @@ import { matchFixture, matchFixture2, SEASON_YEAR } from '@/test/msw/fixtures'
 // Wrapper
 // ---------------------------------------------------------------------------
 
-function Wrapper({ children }: { children: ReactNode }) {
-  const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
-  return (
-    <QueryClientProvider client={qc}>
-      <MemoryRouter>
-        <LayoutProvider>{children}</LayoutProvider>
-      </MemoryRouter>
-    </QueryClientProvider>
-  )
-}
-
 function renderPage() {
-  render(<HomePage />, { wrapper: Wrapper })
+  const qc = new QueryClient({ defaultOptions: { queries: { retry: false, gcTime: 0 } } })
+
+  function Wrapper({ children }: { children: ReactNode }) {
+    return (
+      <QueryClientProvider client={qc}>
+        <MemoryRouter initialEntries={['/competition/uefa-ucl']}>
+          <LayoutProvider>
+            <Routes>
+              <Route path="/competition/:providerId" element={children} />
+            </Routes>
+          </LayoutProvider>
+        </MemoryRouter>
+      </QueryClientProvider>
+    )
+  }
+
+  render(<MatchListPage />, { wrapper: Wrapper })
 }
 
 // ---------------------------------------------------------------------------

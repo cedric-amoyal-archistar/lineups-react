@@ -153,6 +153,7 @@ export interface PlayerInfo {
   detailedFieldPosition: string
   imageUrl: string
   age?: string | number
+  birthDate?: string
   height?: string | number
   translations: {
     shortName: Record<string, string>

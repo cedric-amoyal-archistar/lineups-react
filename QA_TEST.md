@@ -45,13 +45,14 @@ No pre-commit hooks are configured.
 | `src/lib/utils.test.ts` | `cn()` utility — class name merging with Tailwind conflict resolution |
 | `src/lib/formatters.test.ts` | Formatting utilities (dates, scores, etc.) |
 | `src/lib/lineupCoordinates.test.ts` | `fixInvalidCoordinates()` — role-based pitch positioning when coordinates are missing; verifies GK < DEF < MID < FWD ordering |
+| `src/lib/playerAge.test.ts` | `computeMatchDayAge()` — exact age from birthDate, approximate from currentAge, fallback, and 15–60 clamping |
 
 ### Unit Tests — Hooks
 
 | File | What it tests |
 |------|---------------|
 | `src/hooks/useCountryFlag.test.ts` | Country flag URL resolution |
-| `src/hooks/useUefaApi.test.tsx` | `useMatches()`, `useMatch()`, `useMatchLineups()` — query params, error/loading states, 404 handling, retry behavior |
+| `src/hooks/useApi.test.tsx` | `useMatches()`, `useMatch()`, `useMatchLineups()` via provider-agnostic hooks — query params, error/loading states, 404 handling, retry behavior |
 
 ### Component Tests — Match
 

@@ -10,9 +10,10 @@ interface TeamHalfProps {
   lineup: TeamLineup
   displayMode: DisplayMode | string
   inverted?: boolean
+  matchDate?: string
 }
 
-export function TeamHalf({ lineup, displayMode, inverted = false }: TeamHalfProps) {
+export function TeamHalf({ lineup, displayMode, inverted = false, matchDate }: TeamHalfProps) {
   return (
     <div className="relative w-full" style={{ height: '280px' }}>
       {lineup.field.map((player) => (
@@ -32,6 +33,8 @@ export function TeamHalf({ lineup, displayMode, inverted = false }: TeamHalfProp
             fullName={player.player.internationalName}
             countryCode={player.player.countryCode}
             age={player.player.age}
+            birthDate={player.player.birthDate}
+            matchDate={matchDate}
             height={player.player.height}
             imageUrl={player.player.imageUrl}
             shirtColor={lineup.shirtColor}

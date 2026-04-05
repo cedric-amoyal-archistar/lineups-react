@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { ExternalLink, Loader2 } from 'lucide-react'
 import { useLayout } from '@/contexts/LayoutContext'
-import { useMatch, useMatchLineups } from '@/hooks/useUefaApi'
+import { useMatch, useMatchLineups } from '@/hooks/useApi'
+import { getProvider } from '@/providers/registry'
 import { MatchEvents } from '@/components/match/MatchEvents'
 import { PenaltyShootout } from '@/components/match/PenaltyShootout'
 import { PitchView } from '@/components/lineup/PitchView'
@@ -32,18 +33,12 @@ function matchInfo(match: Match): string {
   return parts.join('  ·  ')
 }
 
-function getUefaUrl(match: Match): string {
-  const slug = (name: string) => name.toLowerCase().replace(/\s+/g, '-')
-  const home = slug(match.homeTeam.internationalName)
-  const away = slug(match.awayTeam.internationalName)
-  return `https://www.uefa.com/uefachampionsleague/match/${match.id}--${home}-vs-${away}/`
-}
-
 export function MatchDetailPage() {
-  const { id } = useParams<{ id: string }>()
+  const { id, providerId } = useParams<{ id: string; providerId: string }>()
   const matchId = Number(id)
+  const provider = getProvider(providerId!)
 
-  const { displayMode, setShowDisplaySelect } = useLayout()
+  const { displayMode, setShowDisplaySelect, selectedProvider, setSelectedProvider } = useLayout()
 
   const matchQuery = useMatch(matchId)
   const lineupsQuery = useMatchLineups(matchId)
@@ -60,6 +55,12 @@ export function MatchDetailPage() {
 
   const loading = matchQuery.isLoading
   const error = matchQuery.error
+
+  useEffect(() => {
+    if (providerId && providerId !== selectedProvider) {
+      setSelectedProvider(providerId)
+    }
+  }, [providerId, selectedProvider, setSelectedProvider])
 
   useEffect(() => {
     setShowDisplaySelect(true)
@@ -154,11 +155,11 @@ export function MatchDetailPage() {
           {lineups ? (
             <>
               <div className="mt-4">
-                <PitchView lineups={lineups} displayMode={displayMode} />
+                <PitchView lineups={lineups} displayMode={displayMode} matchDate={match.kickOffTime.dateTime} />
               </div>
               <div className="mt-5 space-y-3">
-                <BenchList lineup={lineups.homeTeam} displayMode={displayMode} />
-                <BenchList lineup={lineups.awayTeam} displayMode={displayMode} />
+                <BenchList lineup={lineups.homeTeam} displayMode={displayMode} matchDate={match.kickOffTime.dateTime} />
+                <BenchList lineup={lineups.awayTeam} displayMode={displayMode} matchDate={match.kickOffTime.dateTime} />
               </div>
             </>
           ) : (
@@ -170,12 +171,12 @@ export function MatchDetailPage() {
           {/* UEFA link */}
           <div className="mt-5 mb-8 mx-auto max-w-sm">
             <a
-              href={getUefaUrl(match)}
+              href={provider.getExternalUrl(match)}
               target="_blank"
               rel="noopener noreferrer"
               className="flex w-full items-center justify-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground shadow-xs hover:bg-accent hover:text-accent-foreground transition-colors"
             >
-              View on UEFA.com
+              View match details
               <ExternalLink className="h-3.5 w-3.5" />
             </a>
           </div>

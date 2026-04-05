@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from 'react'
 import type { DisplayMode } from '@/types/common'
+import { defaultProviderId, getProvider } from '@/providers/registry'
 
 interface LayoutContextValue {
   displayMode: DisplayMode
@@ -10,20 +11,18 @@ interface LayoutContextValue {
   setSelectedSeason: (season: string) => void
   showSeasonSelect: boolean
   setShowSeasonSelect: (show: boolean) => void
+  selectedProvider: string
+  setSelectedProvider: (id: string) => void
 }
 
 const LayoutContext = createContext<LayoutContextValue | null>(null)
 
-function computeCurrentSeason(): number {
-  const now = new Date()
-  return now.getMonth() >= 6 ? now.getFullYear() + 1 : now.getFullYear()
-}
-
 export function LayoutProvider({ children }: { children: ReactNode }) {
   const [displayMode, setDisplayMode] = useState<DisplayMode>('countryCode')
   const [showDisplaySelect, setShowDisplaySelect] = useState(false)
+  const [selectedProvider, setSelectedProvider] = useState(defaultProviderId)
   const [selectedSeason, setSelectedSeason] = useState(() =>
-    String(computeCurrentSeason()),
+    String(getProvider(defaultProviderId).getDefaultSeason()),
   )
   const [showSeasonSelect, setShowSeasonSelect] = useState(false)
 
@@ -38,6 +37,8 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
         setSelectedSeason,
         showSeasonSelect,
         setShowSeasonSelect,
+        selectedProvider,
+        setSelectedProvider,
       }}
     >
       {children}

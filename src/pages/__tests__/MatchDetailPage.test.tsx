@@ -21,10 +21,10 @@ function renderPage(matchId: string | number = MATCH_ID_STR) {
   function Wrapper({ children }: { children: ReactNode }) {
     return (
       <QueryClientProvider client={qc}>
-        <MemoryRouter initialEntries={[`/match/${matchId}`]}>
+        <MemoryRouter initialEntries={[`/competition/uefa-ucl/match/${matchId}`]}>
           <LayoutProvider>
             <Routes>
-              <Route path="/match/:id" element={children} />
+              <Route path="/competition/:providerId/match/:id" element={children} />
             </Routes>
           </LayoutProvider>
         </MemoryRouter>
@@ -109,27 +109,27 @@ describe('MatchDetailPage — scoreboard', () => {
 // UEFA link
 // ---------------------------------------------------------------------------
 
-describe('MatchDetailPage — UEFA link', () => {
-  it('renders "View on UEFA.com" link', async () => {
+describe('MatchDetailPage — external link', () => {
+  it('renders "View match details" link', async () => {
     renderPage()
-    await waitFor(() => screen.getByText('View on UEFA.com'))
-    const link = screen.getByRole('link', { name: /view on uefa\.com/i })
+    await waitFor(() => screen.getByText('View match details'))
+    const link = screen.getByRole('link', { name: /view match details/i })
     expect(link).toBeInTheDocument()
   })
 
-  it('UEFA link points to the correct URL with slugified team names', async () => {
+  it('external link points to the correct URL with slugified team names', async () => {
     renderPage()
-    await waitFor(() => screen.getByText('View on UEFA.com'))
-    const link = screen.getByRole('link', { name: /view on uefa\.com/i })
+    await waitFor(() => screen.getByText('View match details'))
+    const link = screen.getByRole('link', { name: /view match details/i })
     const href = link.getAttribute('href') ?? ''
     expect(href).toContain(`/match/${MATCH_ID}--real-madrid-vs-fc-barcelona/`)
     expect(href).toContain('https://www.uefa.com/uefachampionsleague/')
   })
 
-  it('UEFA link opens in new tab with noopener noreferrer', async () => {
+  it('external link opens in new tab with noopener noreferrer', async () => {
     renderPage()
-    await waitFor(() => screen.getByText('View on UEFA.com'))
-    const link = screen.getByRole('link', { name: /view on uefa\.com/i })
+    await waitFor(() => screen.getByText('View match details'))
+    const link = screen.getByRole('link', { name: /view match details/i })
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noopener noreferrer')
   })

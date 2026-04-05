@@ -9,9 +9,10 @@ function getPlayerName(player: { clubShirtName: string; internationalName: strin
 interface BenchListProps {
   lineup: TeamLineup
   displayMode: DisplayMode | string
+  matchDate?: string
 }
 
-export function BenchList({ lineup, displayMode }: BenchListProps) {
+export function BenchList({ lineup, displayMode, matchDate }: BenchListProps) {
   return (
     <div className="mx-auto w-full max-w-sm rounded-2xl bg-white p-4 shadow-sm">
       <div className="flex items-center gap-2.5 mb-3">
@@ -34,6 +35,8 @@ export function BenchList({ lineup, displayMode }: BenchListProps) {
             fullName={player.player.internationalName}
             countryCode={player.player.countryCode}
             age={player.player.age}
+            birthDate={player.player.birthDate}
+            matchDate={matchDate}
             height={player.player.height}
             imageUrl={player.player.imageUrl}
             shirtColor={lineup.shirtColor}

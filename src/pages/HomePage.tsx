@@ -1,28 +1,12 @@
 import { useState, useEffect, useCallback } from 'react'
+import { useParams } from 'react-router-dom'
 import { Loader2 } from 'lucide-react'
 import { useLayout } from '@/contexts/LayoutContext'
 import { MatchCard } from '@/components/match/MatchCard'
+import { getProvider } from '@/providers/registry'
 import type { Match } from '@/types/match'
 
 const PAGE_SIZE = 100
-
-async function fetchMatches(
-  seasonYear: number,
-  offset: number,
-  limit: number,
-  signal?: AbortSignal,
-): Promise<Match[]> {
-  const params = new URLSearchParams({
-    competitionId: '1',
-    seasonYear: String(seasonYear),
-    offset: String(offset),
-    limit: String(limit),
-    order: 'DESC',
-  })
-  const res = await fetch(`/uefa-api/v5/matches?${params.toString()}`, { signal })
-  if (!res.ok) throw new Error(`UEFA API error: ${res.status} ${res.statusText}`)
-  return res.json() as Promise<Match[]>
-}
 
 function localDate(dateTime: string): string {
   const d = new Date(dateTime)
@@ -48,8 +32,10 @@ function groupByDate(matches: Match[]): [string, Match[]][] {
   return Object.entries(groups).sort(([a], [b]) => b.localeCompare(a))
 }
 
-export function HomePage() {
-  const { selectedSeason, setShowSeasonSelect } = useLayout()
+export function MatchListPage() {
+  const { providerId } = useParams<{ providerId: string }>()
+  const provider = getProvider(providerId!)
+  const { selectedSeason, setSelectedSeason, setShowSeasonSelect, selectedProvider, setSelectedProvider } = useLayout()
   const [teamFilter, setTeamFilter] = useState('')
   const [matches, setMatches] = useState<Match[]>([])
   const [loading, setLoading] = useState(true)
@@ -59,22 +45,32 @@ export function HomePage() {
 
   const seasonYear = Number(selectedSeason)
 
-  const fetchSeason = useCallback(async (year: number, signal?: AbortSignal) => {
-    setLoading(true)
-    setError(null)
-    setMatches([])
-    setHasMore(true)
-    try {
-      const data = await fetchMatches(year, 0, PAGE_SIZE, signal)
-      setMatches(data)
-      setHasMore(data.length >= PAGE_SIZE)
-    } catch (e) {
-      if (e instanceof Error && e.name === 'AbortError') return
-      setError(e instanceof Error ? e.message : 'Failed to load matches')
-    } finally {
-      setLoading(false)
+  const fetchSeason = useCallback(
+    async (year: number, signal?: AbortSignal) => {
+      setLoading(true)
+      setError(null)
+      setMatches([])
+      setHasMore(true)
+      try {
+        const data = await provider.fetchMatches(year, 0, PAGE_SIZE, signal)
+        setMatches(data)
+        setHasMore(data.length >= PAGE_SIZE)
+      } catch (e) {
+        if (e instanceof Error && e.name === 'AbortError') return
+        setError(e instanceof Error ? e.message : 'Failed to load matches')
+      } finally {
+        setLoading(false)
+      }
+    },
+    [provider],
+  )
+
+  useEffect(() => {
+    if (providerId && providerId !== selectedProvider) {
+      setSelectedProvider(providerId)
+      setSelectedSeason(String(provider.getDefaultSeason()))
     }
-  }, [])
+  }, [providerId, selectedProvider, setSelectedProvider, setSelectedSeason, provider])
 
   useEffect(() => {
     setShowSeasonSelect(true)
@@ -90,7 +86,7 @@ export function HomePage() {
   async function loadMore() {
     setLoadingMore(true)
     try {
-      const data = await fetchMatches(seasonYear, matches.length, PAGE_SIZE)
+      const data = await provider.fetchMatches(seasonYear, matches.length, PAGE_SIZE)
       setMatches((prev) => [...prev, ...data])
       setHasMore(data.length >= PAGE_SIZE)
     } catch (e) {
@@ -116,7 +112,7 @@ export function HomePage() {
   return (
     <div className="mx-auto max-w-lg py-4 px-0">
       <div className="flex items-center gap-3 mb-6">
-        <p className="text-muted-foreground shrink-0">UEFA Champions League</p>
+        <p className="text-muted-foreground shrink-0">{provider.name}</p>
         <input
           type="text"
           placeholder="Filter by team..."

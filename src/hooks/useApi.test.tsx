@@ -3,7 +3,8 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { http, HttpResponse } from 'msw'
 import type { ReactNode } from 'react'
-import { useMatches, useMatch, useMatchLineups } from './useUefaApi'
+import { LayoutProvider } from '@/contexts/LayoutContext'
+import { useMatches, useMatch, useMatchLineups } from './useApi'
 import { server } from '@/test/msw/server'
 import {
   MATCH_ID,
@@ -14,20 +15,24 @@ import {
 } from '@/test/msw/fixtures'
 
 // ---------------------------------------------------------------------------
-// Test wrapper — fresh QueryClient per test to avoid cache bleed
+// Test wrapper — fresh QueryClient per test + LayoutProvider for useApi hooks
 // ---------------------------------------------------------------------------
 
 function makeWrapper() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        retry: false,  // fail fast in tests, no retry noise
+        retry: false,
         gcTime: 0,
       },
     },
   })
   return function Wrapper({ children }: { children: ReactNode }) {
-    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    return (
+      <QueryClientProvider client={queryClient}>
+        <LayoutProvider>{children}</LayoutProvider>
+      </QueryClientProvider>
+    )
   }
 }
 
@@ -48,10 +53,7 @@ describe('useMatches', () => {
   })
 
   it('returns empty array for unknown season', async () => {
-    // Override to return empty for this specific test
-    server.use(
-      http.get('/uefa-api/v5/matches', () => HttpResponse.json([])),
-    )
+    server.use(http.get('/uefa-api/v5/matches', () => HttpResponse.json([])))
 
     const { result } = renderHook(() => useMatches(1900), {
       wrapper: makeWrapper(),
@@ -88,9 +90,7 @@ describe('useMatches', () => {
   })
 
   it('exposes error state on network failure', async () => {
-    server.use(
-      http.get('/uefa-api/v5/matches', () => HttpResponse.error()),
-    )
+    server.use(http.get('/uefa-api/v5/matches', () => HttpResponse.error()))
 
     const { result } = renderHook(() => useMatches(2024), {
       wrapper: makeWrapper(),
@@ -106,7 +106,6 @@ describe('useMatches', () => {
       wrapper: makeWrapper(),
     })
 
-    // Before the request resolves the hook should be pending/loading
     expect(result.current.isPending).toBe(true)
   })
 })
@@ -143,7 +142,6 @@ describe('useMatch', () => {
       wrapper: makeWrapper(),
     })
 
-    // enabled: false -> query stays pending without fetching
     expect(result.current.isPending).toBe(true)
     expect(result.current.isFetching).toBe(false)
   })
@@ -208,7 +206,6 @@ describe('useMatchLineups', () => {
 
     await waitFor(() => expect(result.current.isError).toBe(true))
 
-    // retry: false means exactly 1 attempt
     expect(callCount).toBe(1)
   })
 })

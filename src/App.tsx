@@ -4,7 +4,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { LayoutProvider } from '@/contexts/LayoutContext'
 import { DefaultLayout } from '@/components/layout/DefaultLayout'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
-import { HomePage } from '@/pages/HomePage'
+import { CompetitionPage } from '@/pages/CompetitionPage'
+import { MatchListPage } from '@/pages/HomePage'
 
 const MatchDetailPage = lazy(() =>
   import('@/pages/MatchDetailPage').then((m) => ({ default: m.MatchDetailPage })),
@@ -27,9 +28,10 @@ export default function App() {
           <DefaultLayout>
             <ErrorBoundary>
               <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<CompetitionPage />} />
+                <Route path="/competition/:providerId" element={<MatchListPage />} />
                 <Route
-                  path="/match/:id"
+                  path="/competition/:providerId/match/:id"
                   element={
                     <Suspense fallback={<div className="py-12 text-center text-muted-foreground">Loading…</div>}>
                       <MatchDetailPage />
