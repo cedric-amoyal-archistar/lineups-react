@@ -1,5 +1,5 @@
 export interface Match {
-  id: number
+  id: number | string
   homeTeam: TeamInMatch
   awayTeam: TeamInMatch
   kickOffTime: {
@@ -106,7 +106,7 @@ export interface TeamInMatch {
 }
 
 export interface MatchLineups {
-  matchId: number
+  matchId: number | string
   lineupStatus: string
   homeTeam: TeamLineup
   awayTeam: TeamLineup

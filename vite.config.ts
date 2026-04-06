@@ -18,6 +18,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/uefa-api/, ''),
       },
+      '/ligue1-api': {
+        target: 'https://ma-api.ligue1.fr',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ligue1-api/, ''),
+      },
     },
   },
 })

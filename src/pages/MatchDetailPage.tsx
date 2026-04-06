@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { ExternalLink, Loader2 } from 'lucide-react'
+import { useParams, useSearchParams, Link } from 'react-router-dom'
+import { ArrowLeft, ExternalLink, Loader2 } from 'lucide-react'
 import { useLayout } from '@/contexts/LayoutContext'
 import { useMatch, useMatchLineups } from '@/hooks/useApi'
 import { getProvider } from '@/providers/registry'
@@ -35,8 +35,11 @@ function matchInfo(match: Match): string {
 
 export function MatchDetailPage() {
   const { id, providerId } = useParams<{ id: string; providerId: string }>()
-  const matchId = Number(id)
+  const [searchParams] = useSearchParams()
   const provider = getProvider(providerId!)
+  const qs = searchParams.toString()
+  const backUrl = `/competition/${providerId}${qs ? `?${qs}` : ''}`
+  const matchId = provider.paginationMode === 'gameweek' ? id! : Number(id)
 
   const { displayMode, setShowDisplaySelect, selectedProvider, setSelectedProvider } = useLayout()
 
@@ -75,6 +78,13 @@ export function MatchDetailPage() {
 
   return (
     <div className="mx-auto max-w-lg px-0 py-6">
+      <Link
+        to={backUrl}
+        className="mb-4 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <ArrowLeft className="h-3.5 w-3.5" />
+        Back to matches
+      </Link>
       {loading ? (
         <div className="flex justify-center py-24">
           <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />

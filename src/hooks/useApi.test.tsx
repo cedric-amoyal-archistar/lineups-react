@@ -146,8 +146,8 @@ describe('useMatch', () => {
     expect(result.current.isFetching).toBe(false)
   })
 
-  it('is disabled for negative matchId', () => {
-    const { result } = renderHook(() => useMatch(-1), {
+  it('is disabled for empty string matchId', () => {
+    const { result } = renderHook(() => useMatch(''), {
       wrapper: makeWrapper(),
     })
 

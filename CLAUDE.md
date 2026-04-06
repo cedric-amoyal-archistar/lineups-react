@@ -75,10 +75,43 @@ src/
 1. **CI job** (Node 22): install → type-check → lint → format:check → test
 2. **Build job**: runs only after CI passes
 
+## Workflow
+
+Every task in this repo **must** follow this workflow — no exceptions:
+
+### 1. Team of Agents (mandatory)
+
+Always use the SDLC agent team (`TeamCreate` with name `sdlc`). Spawn the **Distinguished Architect** first, then all relevant Principal agents for the task. Even small tasks need the Architect + relevant domain agents.
+
+### 2. Plan First (mandatory)
+
+Before any code is written or modified, the team must collaboratively produce a plan:
+
+- The Architect leads the planning, all spawned agents contribute from their domain expertise.
+- Present the complete plan to the user and **wait for explicit approval** before executing anything.
+- If the user requests changes to the plan, revise and re-present until approved.
+
+### 3. Execute the Plan
+
+Once the user approves, the team executes. Follow the plan — mid-course changes go through the Architect.
+
+### 4. Run All Checks (mandatory — every task)
+
+After execution is complete, **always** run the full check suite:
+
+```bash
+npm run format && npm run lint && npm run type-check && npm run test
+```
+
+- If any **tests fail**, report to the user:
+  - Which test(s) failed (file path + test name)
+  - The failure reason (assertion error, type error, runtime error, etc.)
+  - A recommendation: whether the **test logic should be updated** (e.g. the test expectations are outdated after the change) or the **code should be fixed** (e.g. the implementation has a bug)
+- Do **not** silently skip or ignore failing tests. The task is not complete until all checks pass or the user has reviewed and approved the failing tests.
+
 ## Rules
 
 - When adding or modifying tests, update `QA_TEST.md` at the project root to reflect the change (add new entries, update descriptions, or remove deleted tests).
-- Run `npm run format`, `npm run lint`, `npm run type-check`, and `npm run test` before considering work complete.
 - Prefer editing existing files over creating new ones.
 - Use path alias `@/` for imports from `src/`.
 - New components go in `src/components/<domain>/` with co-located `__tests__/` directory.
@@ -88,16 +121,46 @@ src/
 
 ## Adding a New Competition
 
+There are two provider patterns depending on how the competition API paginates matches:
+
+- **Offset-based** (`paginationMode: 'offset'`) — for tournaments like UEFA Champions League where you fetch pages of matches. Reference: `src/providers/uefa/index.ts`
+- **Gameweek-based** (`paginationMode: 'gameweek'`) — for national leagues (Ligue 1, Premier League, etc.) where matches are organized by matchday. Reference: `src/providers/ligue1/index.ts`
+
+### Steps common to both patterns
+
 1. **Create the provider folder**: `src/providers/<name>/`
 2. **Define raw API types** (if the API shape differs from canonical types): `src/providers/<name>/types.ts`
 3. **Implement the provider**: `src/providers/<name>/index.ts`
-   - Export a `CompetitionProvider` object (see `src/providers/uefa/index.ts` as reference)
-   - `fetchMatches`, `fetchMatch`, `fetchMatchLineups` — fetch from the API and map the response to canonical `Match` / `MatchLineups` types from `src/types/match.ts`
-   - Normalize coordinates to the 0–1000 scale inside `fetchMatchLineups`
-   - Map all player name variants (`name`, `fullName`, `full_name`, etc.) to the canonical `internationalName` / `clubShirtName` fields
+   - Export a `CompetitionProvider` object implementing the interface from `src/providers/types.ts`
+   - Set `paginationMode` to `'offset'` or `'gameweek'`
+   - `fetchMatches`, `fetchMatch`, `fetchMatchLineups` — fetch from the API and map to canonical `Match` / `MatchLineups` types from `src/types/match.ts`
+   - Normalize lineup coordinates to the 0–1000 scale inside `fetchMatchLineups`
+   - Map all player name variants to the canonical `internationalName` / `clubShirtName` fields
    - `getExternalUrl` — return a link to the match on the competition's website
    - `getSeasons` — return available season years (newest first)
+   - `getDefaultSeason` — return the current active season
    - `seasonLabel` — format a season year for display (e.g. `"2024/25"`)
 4. **Register the provider**: import it in `src/providers/registry.ts` and add one entry to the `providers` object
 5. **Add a dev proxy**: add an entry in `vite.config.ts` under `server.proxy` for the new API base URL
-6. **No changes needed** to hooks, pages, or components — they are provider-agnostic
+6. **No changes needed** to hooks, pages, or components — they are provider-agnostic. The HomePage automatically renders a "Load more" button (offset) or a gameweek selector (gameweek) based on `paginationMode`.
+
+### Additional steps for gameweek-based providers
+
+Gameweek providers must also implement three optional methods:
+
+- `fetchMatchesByGameweek(seasonYear, gameweek, signal)` — fetch all matches for a specific matchday
+- `getTotalGameweeks(seasonYear, signal)` — return the total number of matchdays in the season. Derive from the API (e.g. standings endpoint: `(numTeams - 1) * 2` for round-robin leagues). Do **not** hardcode this value — it varies by league, season, and format changes.
+- `getDefaultGameweek(seasonYear, signal)` — return the current or latest played matchday. Use a lightweight endpoint (e.g. standings) rather than scanning gameweeks one-by-one.
+
+The base `fetchMatches` method can simply delegate to `fetchMatchesByGameweek` with gameweek 1.
+
+### Additional steps for providers without coordinates
+
+If the API doesn't provide pitch coordinates but gives a formation string (e.g. `"433"`) and a position index per player (e.g. `formationPlace` 1-11):
+
+- Create a `src/providers/<name>/formations.ts` file that maps `(formation, positionIndex)` → `{ x, y }` on the 0–1000 scale. See `src/providers/ligue1/formations.ts` as reference — it handles 18+ formations with a dynamic fallback for unknown ones.
+- Positions are numbered sequentially: 1 = GK, then defenders L→R, midfielders L→R, forwards L→R.
+
+### Match ID types
+
+Match IDs can be `number` (UEFA) or `string` (Ligue 1). The canonical `Match.id` and `MatchLineups.matchId` types are `number | string`. All hooks, pages, and components handle both.

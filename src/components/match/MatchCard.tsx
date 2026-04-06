@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import type { Match } from '@/types/match'
 
 function formatTime(dateTime: string): string {
@@ -42,13 +42,16 @@ interface MatchCardProps {
 
 export const MatchCard = memo(function MatchCard({ match }: MatchCardProps) {
   const { providerId } = useParams<{ providerId: string }>()
+  const [searchParams] = useSearchParams()
   const isFinished = match.status === 'FINISHED'
   const isLive = match.status === 'LIVE'
   const info = extraInfo(match)
   const penalty = match.score?.penalty
+  const qs = searchParams.toString()
+  const matchUrl = `/competition/${providerId}/match/${match.id}${qs ? `?${qs}` : ''}`
 
   return (
-    <Link to={`/competition/${providerId}/match/${match.id}`} className="block group">
+    <Link to={matchUrl} className="block group">
       <div className="flex items-center gap-3 rounded-xl border bg-card p-4 shadow-sm transition-all group-hover:shadow-md group-hover:border-border/80 group-active:scale-[0.99]">
         {/* Home team */}
         <div className="flex flex-1 items-center justify-end gap-2.5 min-w-0">

@@ -7,7 +7,14 @@
       "WebSearch",
       "WebFetch(domain:github.com)",
       "Bash(npm run:*)",
-      "WebFetch(domain:img.uefa.com)"
+      "WebFetch(domain:img.uefa.com)",
+      "WebFetch(domain:ma-api.ligue1.fr)",
+      "Bash(curl -s \"https://ma-api.ligue1.fr/championship-matches/championship/1/game-week/28?season=2025\")",
+      "Bash(curl -s \"https://ma-api.ligue1.fr/championship-match/l1_championship_match_73367\")",
+      "Bash(curl -sL \"https://s3.eu-west-1.amazonaws.com/image.mpg/assets/championships/logo/2023_1_128x128_5f39b0a7ac5e6e2eef0c4316b74a1e9c.png\" -o /Users/cedricamoyal/dev/cedric/lineups-vite-react-tailwind-healess-ui/public/logos/ligue1.png)",
+      "Bash(curl -sL \"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ligue1.svg/200px-Ligue1.svg.png\" -o /tmp/ligue1_test.png)",
+      "Read(//tmp/**)",
+      "Bash(curl -sL \"https://upload.wikimedia.org/wikipedia/commons/a/a0/Ligue_1_2024_Logo.png\" -o /Users/cedricamoyal/dev/cedric/lineups-vite-react-tailwind-healess-ui/public/logos/ligue1.png)"
     ]
   }
 }

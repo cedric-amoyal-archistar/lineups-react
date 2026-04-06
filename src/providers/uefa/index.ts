@@ -27,6 +27,7 @@ function createUefaProvider(config: UefaProviderConfig): CompetitionProvider {
     name: config.name,
     logoUrl: config.logoUrl,
     proxyPath: '/uefa-api',
+    paginationMode: 'offset',
 
     async fetchMatches(seasonYear, offset, limit, signal) {
       const params = new URLSearchParams({

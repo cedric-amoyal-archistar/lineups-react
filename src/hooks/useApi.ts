@@ -17,21 +17,40 @@ export function useMatches(seasonYear: number, offset = 0, limit = 50) {
   })
 }
 
-export function useMatch(matchId: number) {
+export function useMatchesByGameweek(seasonYear: number, gameweek: number) {
+  const provider = useProvider()
+  return useQuery<Match[], Error>({
+    queryKey: ['matches', provider.id, seasonYear, 'gw', gameweek],
+    queryFn: ({ signal }) => provider.fetchMatchesByGameweek!(seasonYear, gameweek, signal),
+    enabled: provider.paginationMode === 'gameweek' && gameweek > 0,
+  })
+}
+
+export function useDefaultGameweek(seasonYear: number) {
+  const provider = useProvider()
+  return useQuery<number, Error>({
+    queryKey: ['defaultGameweek', provider.id, seasonYear],
+    queryFn: ({ signal }) => provider.getDefaultGameweek!(seasonYear, signal),
+    enabled: provider.paginationMode === 'gameweek' && !!provider.getDefaultGameweek,
+    staleTime: 5 * 60 * 1000,
+  })
+}
+
+export function useMatch(matchId: number | string) {
   const provider = useProvider()
   return useQuery<Match, Error>({
     queryKey: ['match', provider.id, matchId],
     queryFn: ({ signal }) => provider.fetchMatch(matchId, signal),
-    enabled: matchId > 0,
+    enabled: !!matchId,
   })
 }
 
-export function useMatchLineups(matchId: number) {
+export function useMatchLineups(matchId: number | string) {
   const provider = useProvider()
   return useQuery<MatchLineups, Error>({
     queryKey: ['matchLineups', provider.id, matchId],
     queryFn: ({ signal }) => provider.fetchMatchLineups(matchId, signal),
-    enabled: matchId > 0,
+    enabled: !!matchId,
     retry: false,
   })
 }

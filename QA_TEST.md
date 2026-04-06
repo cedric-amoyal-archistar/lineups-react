@@ -54,10 +54,10 @@
 
 ### Unit Tests — Hooks
 
-| File                               | What it tests                                                                                                                                    |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `src/hooks/useCountryFlag.test.ts` | Country flag URL resolution                                                                                                                      |
-| `src/hooks/useApi.test.tsx`        | `useMatches()`, `useMatch()`, `useMatchLineups()` via provider-agnostic hooks — query params, error/loading states, 404 handling, retry behavior |
+| File                               | What it tests                                                                                                                                                                                                                               |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/hooks/useCountryFlag.test.ts` | Country flag URL resolution                                                                                                                                                                                                                 |
+| `src/hooks/useApi.test.tsx`        | `useMatches()`, `useMatch()`, `useMatchLineups()`, `useMatchesByGameweek()`, `useDefaultGameweek()` via provider-agnostic hooks — query params, error/loading states, disabled states for falsy match IDs (0, empty string), retry behavior |
 
 ### Component Tests — Match
 

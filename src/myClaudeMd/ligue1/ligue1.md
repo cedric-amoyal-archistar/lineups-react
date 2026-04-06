@@ -1,6 +1,7 @@
+Create Ligue 1 Competition (Top French League)
 Use the team of agents to plan, show me plan and then execute.
 
-Let's bring the Ligue 1 competition.
+Let's bring the Ligue 1 competition.ne
 Official website "https://ligue1.com/en"
 
 For the current season you get a gameWeek with this type of url:
@@ -31,4 +32,4 @@ Look at the lineup images they do it horizontally on large screen and vertically
 I feel like they are using "formationPlace" do decide where the player should be on the pitch but you will have to carefully read and understand all the data to confirm and take the best decision.
 The data format as well as the lineup logic is very different from the one from the UEFA website so you will have to take your time and plan properly.
 
-For the competion like ligue 1 that have a gameWeek logic (so the usual National Leagues (different for champions league that is a tournament)), you will have to add a gameWeek selector (be aware that the number of game weeks varies with seasons and leagues). The defaukt value should be the in progress one or the last one completed.
+For the competion like ligue 1 that have a gameWeek logic (so the usual National Leagues (different for champions league that is a tournament)), you will have to add a gameWeek selector (be aware that the number of game weeks varies with seasons and leagues). The default value should be the in progress one or the next one.
