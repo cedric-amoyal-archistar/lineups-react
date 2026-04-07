@@ -6,7 +6,7 @@ const PROXY_MAP: Record<string, string> = {
 const originalFetch = globalThis.fetch
 
 globalThis.fetch = function patchedFetch(
-  input: RequestInfo | URL,
+  input: string | URL | Request,
   init?: RequestInit,
 ): Promise<Response> {
   if (typeof input === 'string') {

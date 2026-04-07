@@ -8,9 +8,6 @@ export default defineConfig({
     testTimeout: 60_000,
     hookTimeout: 120_000,
     pool: 'forks',
-    poolOptions: {
-      forks: { singleFork: true },
-    },
     setupFiles: ['./src/test/integration/setup.ts'],
   },
   resolve: {
