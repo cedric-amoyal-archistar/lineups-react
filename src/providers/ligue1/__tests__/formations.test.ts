@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { getFormationCoordinates } from '../formations'
+import { getFormationCoordinates } from '../../shared/formations'
 
 describe('getFormationCoordinates', () => {
   it('returns 11 positions for a 4-3-3 formation', () => {

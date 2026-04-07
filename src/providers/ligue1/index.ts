@@ -16,7 +16,8 @@ import type {
   Ligue1ClubIdentity,
   Ligue1Goal,
 } from './types'
-import { getFormationCoordinates } from './formations'
+import { findActiveGameweek } from '../shared/findActiveGameweek'
+import { getFormationCoordinates } from '../shared/formations'
 
 const PROXY = '/ligue1-api'
 
@@ -368,8 +369,15 @@ export const ligue1Provider: CompetitionProvider = {
   },
 
   async getDefaultGameweek(seasonYear, signal) {
-    const { currentGameweek } = await fetchStandings(seasonYear, signal)
-    return currentGameweek || 1
+    const { currentGameweek, totalGameweeks } = await fetchStandings(seasonYear, signal)
+    if (!currentGameweek) return 1
+    return findActiveGameweek(
+      (sy, gw, sig) => this.fetchMatchesByGameweek!(sy, gw, sig),
+      seasonYear,
+      currentGameweek,
+      totalGameweeks,
+      signal,
+    )
   },
 
   async getTotalGameweeks(seasonYear, signal) {

@@ -107,12 +107,18 @@ function GameweekMatchList({ seasonYear, teamFilter }: { seasonYear: number; tea
   return (
     <>
       <div className="mb-4">
-        <GameweekSelector
-          gameweek={gameweek || 1}
-          totalGameweeks={totalGameweeks ?? 34}
-          onChange={handleGameweekChange}
-          loading={loading}
-        />
+        {gameweek > 0 ? (
+          <GameweekSelector
+            gameweek={gameweek}
+            totalGameweeks={totalGameweeks ?? 34}
+            onChange={handleGameweekChange}
+            loading={isLoading}
+          />
+        ) : (
+          <div className="flex items-center justify-center h-10">
+            <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+          </div>
+        )}
       </div>
 
       {loading ? (
@@ -153,7 +159,9 @@ function OffsetMatchList({ seasonYear, teamFilter }: { seasonYear: number; teamF
         if (e instanceof Error && e.name === 'AbortError') return
         setError(e instanceof Error ? e.message : 'Failed to load matches')
       } finally {
-        setLoading(false)
+        if (!signal?.aborted) {
+          setLoading(false)
+        }
       }
     },
     [provider],

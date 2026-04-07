@@ -61,10 +61,11 @@
 
 ### Unit Tests — Providers
 
-| File                                                | What it tests                                                                                                                                                                                                                                                   |
-| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src/providers/ligue1/__tests__/formations.test.ts` | Formation-to-coordinate mapping: known formations (433, 3421, 4231), GK/forward y positions, even X distribution, 0-1000 range, cache behavior, unknown formation fallback                                                                                      |
-| `src/providers/ligue1/__tests__/index.test.ts`      | Ligue 1 provider: match list/detail/lineup mapping via MSW, status mapping, string IDs, goal types, scorer sorting, stadium, red cards, field/bench split, coordinates, bookings, coach, gameweek helpers (default GW from standings, total GW from team count) |
+| File                                                        | What it tests                                                                                                                                                                                                                                                   |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/providers/shared/__tests__/findActiveGameweek.test.ts` | `findActiveGameweek` unit tests: LIVE/FINISHED/UPCOMING branches, postponement skip (partial GW + next started), genuinely active partial GW, last-GW partial, multi-GW advance, season-over cap, out-of-bounds start                                           |
+| `src/providers/ligue1/__tests__/formations.test.ts`         | Formation-to-coordinate mapping: known formations (433, 3421, 4231), GK/forward y positions, even X distribution, 0-1000 range, cache behavior, unknown formation fallback                                                                                      |
+| `src/providers/ligue1/__tests__/index.test.ts`              | Ligue 1 provider: match list/detail/lineup mapping via MSW, status mapping, string IDs, goal types, scorer sorting, stadium, red cards, field/bench split, coordinates, bookings, coach, gameweek helpers (default GW from standings, total GW from team count) |
 
 ### Component Tests — Match
 

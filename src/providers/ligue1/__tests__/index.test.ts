@@ -210,9 +210,12 @@ describe('ligue1Provider', () => {
   // ---------------------------------------------------------------------------
 
   describe('getDefaultGameweek', () => {
-    it('returns the max played value from standings', async () => {
+    it('advances past gameweeks where all matches are finished and returns the last gameweek when fixture always returns mixed results', async () => {
+      // Fixture returns 1 FINISHED + 1 UPCOMING for every gameweek.
+      // findActiveGameweek starts at GW 28 (max played from standings), sees partial,
+      // peeks at GW 29 which also has a FINISHED match → skips. Repeats until totalGameweeks (34).
       const gw = await ligue1Provider.getDefaultGameweek!(2025)
-      expect(gw).toBe(28) // 10 teams with 28, 8 with 27
+      expect(gw).toBe(34)
     })
   })
 
