@@ -7,6 +7,23 @@ const POSITION_Y: Record<string, number> = {
   FORWARD: 800,
 }
 
+// 4-4-2 formation coordinates using the same row heights as POSITION_Y
+// so that players from fixInvalidCoordinates and applyJerseyNumberFallback
+// end up on the same horizontal lines.
+const JERSEY_442_MAP: Record<number, { x: number; y: number }> = {
+  1: { x: 500, y: 100 }, // GK
+  2: { x: 200, y: 300 }, // DEF L
+  3: { x: 400, y: 300 }, // DEF CL
+  4: { x: 600, y: 300 }, // DEF CR
+  5: { x: 800, y: 300 }, // DEF R
+  6: { x: 200, y: 550 }, // MID L
+  7: { x: 400, y: 550 }, // MID CL
+  8: { x: 600, y: 550 }, // MID CR
+  9: { x: 800, y: 550 }, // MID R
+  10: { x: 333, y: 800 }, // FWD L
+  11: { x: 667, y: 800 }, // FWD R
+}
+
 function isInvalidCoordinate(coord: { x: number; y: number }): boolean {
   return coord.x < 0 || coord.y < 0
 }
@@ -40,13 +57,6 @@ export function fixInvalidCoordinates(field: LineupPlayer[]): LineupPlayer[] {
     }
   }
 
-  // Spread unknown players into the MIDFIELDER row
-  if (unknown.length > 0) {
-    const midList = groups.get('MIDFIELDER') ?? []
-    midList.push(...unknown)
-    groups.set('MIDFIELDER', midList)
-  }
-
   // Build a lookup: player id -> generated coordinate
   const coordMap = new Map<string, { x: number; y: number }>()
 
@@ -64,5 +74,38 @@ export function fixInvalidCoordinates(field: LineupPlayer[]): LineupPlayer[] {
     const coord = coordMap.get(p.player.id)
     if (!coord) return p
     return { ...p, fieldCoordinate: coord }
+  })
+}
+
+/**
+ * For players still with invalid coordinates, use their jersey number to
+ * estimate a position assuming a 4-4-2 formation.
+ * Jersey numbers > 11 wrap around (e.g. 12 → 1, 13 → 2, ...).
+ * Jersey numbers that don't map to a known position are left unchanged.
+ */
+export function applyJerseyNumberFallback(field: LineupPlayer[]): LineupPlayer[] {
+  const needsFix = field.some((p) => isInvalidCoordinate(p.fieldCoordinate))
+  if (!needsFix) return field
+
+  return field.map((p) => {
+    if (!isInvalidCoordinate(p.fieldCoordinate)) return p
+    const place = ((p.jerseyNumber - 1) % 11) + 1
+    const coord = JERSEY_442_MAP[place]
+    if (!coord) return p
+    return { ...p, fieldCoordinate: coord }
+  })
+}
+
+/**
+ * Last-resort fallback: place any remaining player with invalid coordinates
+ * at the center midfield position.
+ */
+export function defaultToMidfielder(field: LineupPlayer[]): LineupPlayer[] {
+  const needsFix = field.some((p) => isInvalidCoordinate(p.fieldCoordinate))
+  if (!needsFix) return field
+
+  return field.map((p) => {
+    if (!isInvalidCoordinate(p.fieldCoordinate)) return p
+    return { ...p, fieldCoordinate: { x: 500, y: 550 } }
   })
 }

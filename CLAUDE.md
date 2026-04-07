@@ -88,12 +88,23 @@ Always use the SDLC agent team (`TeamCreate` with name `sdlc`). Spawn the **Dist
 Before any code is written or modified, the team must collaboratively produce a plan:
 
 - The Architect leads the planning, all spawned agents contribute from their domain expertise.
-- Present the complete plan to the user and **wait for explicit approval** before executing anything.
-- If the user requests changes to the plan, revise and re-present until approved.
+- Present the complete plan to the user in a structured format (numbered steps, files to change, rationale).
+- **End the plan with a clear approval prompt**, exactly like this:
+
+  > **Plan ready for review.** Please reply with:
+  >
+  > - **"go"** or **"approved"** to start execution
+  > - Or any comments/changes you'd like before we proceed
+
+- Do **not** start any code changes until the user explicitly approves.
+- If the user requests changes to the plan, revise and re-present with the same approval prompt.
 
 ### 3. Execute the Plan
 
 Once the user approves, the team executes. Follow the plan — mid-course changes go through the Architect.
+
+- **All execution agents must be spawned with `mode: "acceptEdits"`** so that file edits (Write, Edit) are applied without prompting the user for each change. The user already approved the plan — individual file-level confirmations are unnecessary friction.
+- Non-edit actions that are destructive or affect shared systems (git push, deleting files, etc.) still require user confirmation as usual.
 
 ### 4. Run All Checks (mandatory — every task)
 

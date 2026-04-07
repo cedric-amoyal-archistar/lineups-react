@@ -7,9 +7,23 @@ import { getProvider } from '@/providers/registry'
 import { MatchEvents } from '@/components/match/MatchEvents'
 import { PenaltyShootout } from '@/components/match/PenaltyShootout'
 import { PitchView } from '@/components/lineup/PitchView'
-import { fixInvalidCoordinates } from '@/lib/lineupCoordinates'
+import {
+  fixInvalidCoordinates,
+  applyJerseyNumberFallback,
+  defaultToMidfielder,
+} from '@/lib/lineupCoordinates'
 import { BenchList } from '@/components/lineup/BenchList'
-import type { Match } from '@/types/match'
+import type { Match, LineupPlayer } from '@/types/match'
+
+function applyCoordinatePipeline(field: LineupPlayer[]): LineupPlayer[] {
+  // Step 1: Fix invalid coordinates using field position (UEFA legacy)
+  const step1 = fixInvalidCoordinates(field)
+  // Step 2: Use jersey number to infer position (assumes 4-4-2)
+  const step2 = applyJerseyNumberFallback(step1)
+  // Step 3: Default any remaining unknowns to midfielder
+  const step3 = defaultToMidfielder(step2)
+  return step3
+}
 
 function formatTime(dateTime: string): string {
   const d = new Date(dateTime)
@@ -53,11 +67,11 @@ export function MatchDetailPage() {
         ...lineupsRaw,
         homeTeam: {
           ...lineupsRaw.homeTeam,
-          field: fixInvalidCoordinates(lineupsRaw.homeTeam.field),
+          field: applyCoordinatePipeline(lineupsRaw.homeTeam.field),
         },
         awayTeam: {
           ...lineupsRaw.awayTeam,
-          field: fixInvalidCoordinates(lineupsRaw.awayTeam.field),
+          field: applyCoordinatePipeline(lineupsRaw.awayTeam.field),
         },
       }
     : null
