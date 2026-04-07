@@ -1,8 +1,9 @@
 /**
- * UEFA API response fixtures shaped to match the TypeScript interfaces in src/types/match.ts.
+ * API response fixtures shaped to match the TypeScript interfaces in src/types/match.ts.
  * Used by MSW handlers and imported directly in unit tests.
  */
 import type { Match, MatchLineups } from '@/types/match'
+import type { Ligue1MatchesResponse, Ligue1MatchDetail } from '@/providers/ligue1/types'
 
 export const MATCH_ID = 2035839
 export const MATCH_ID_STR = String(MATCH_ID)
@@ -225,4 +226,213 @@ export const lineupsFixture: MatchLineups = {
     bench: [],
     shirtColor: '#A50044',
   },
+}
+
+// ---------------------------------------------------------------------------
+// Ligue 1 API fixtures
+// ---------------------------------------------------------------------------
+
+export const LIGUE1_MATCH_ID = 'l1_championship_match_99001'
+export const LIGUE1_SEASON = 2025
+
+const l1ClubIdentity = (name: string, trigram: string, color: string) => ({
+  id: `l1_club_${trigram}`,
+  name,
+  trigram,
+  primaryColor: color,
+  assets: {
+    logo: {
+      small: `https://img.ligue1.fr/${trigram}-s.png`,
+      medium: `https://img.ligue1.fr/${trigram}-m.png`,
+      large: `https://img.ligue1.fr/${trigram}-l.png`,
+    },
+  },
+})
+
+const l1Player = (
+  id: string,
+  firstName: string,
+  lastName: string,
+  shirtNumber: number,
+  position: number,
+  formationPlace: number,
+  startedMatch: boolean,
+) => ({
+  id,
+  formationPlace,
+  startedMatch,
+  sub: startedMatch ? 0 : 1,
+  position,
+  playerIdentity: {
+    firstName,
+    lastName,
+    jerseyNumber: shirtNumber,
+    countryName: 'France',
+    countryShortCode: 'FRA',
+    birthDate: '1998-01-15',
+    assets: {
+      facePictures: {
+        small: `https://img.ligue1.fr/${id}-s.png`,
+        medium: `https://img.ligue1.fr/${id}-m.png`,
+        large: `https://img.ligue1.fr/${id}-l.png`,
+      },
+    },
+  },
+  goals: 0,
+  ownGoals: 0,
+  shirtNumber,
+})
+
+export const ligue1MatchListFixture: Ligue1MatchesResponse = {
+  matches: [
+    {
+      matchId: LIGUE1_MATCH_ID,
+      championshipId: 1,
+      gameWeekNumber: 28,
+      date: '2026-04-03T18:45:00.000Z',
+      period: 'fullTime',
+      matchTime: "90' +4",
+      isLive: false,
+      home: {
+        clubId: 'club_psg',
+        score: 3,
+        clubIdentity: l1ClubIdentity('Paris Saint-Germain', 'PSG', '#004070'),
+      },
+      away: {
+        clubId: 'club_tou',
+        score: 1,
+        clubIdentity: l1ClubIdentity('Toulouse FC', 'TOU', '#3E2B57'),
+      },
+    },
+    {
+      matchId: 'l1_championship_match_99002',
+      championshipId: 1,
+      gameWeekNumber: 28,
+      date: '2026-04-10T18:00:00.000Z',
+      period: 'preMatch',
+      matchTime: '',
+      isLive: false,
+      home: {
+        clubId: 'club_lil',
+        score: 0,
+        clubIdentity: l1ClubIdentity('LOSC Lille', 'LIL', '#E41B13'),
+      },
+      away: {
+        clubId: 'club_len',
+        score: 0,
+        clubIdentity: l1ClubIdentity('RC Lens', 'LEN', '#C51315'),
+      },
+    },
+  ],
+}
+
+const makeL1Side = (
+  clubId: string,
+  name: string,
+  trigram: string,
+  color: string,
+  score: number,
+  formation: string,
+  managerFirst: string,
+  managerLast: string,
+) => ({
+  clubId,
+  score,
+  clubIdentity: l1ClubIdentity(name, trigram, color),
+  formation,
+  manager: { firstName: managerFirst, lastName: managerLast },
+  goals: [] as Ligue1MatchDetail['home']['goals'],
+  substitutions: [] as Ligue1MatchDetail['home']['substitutions'],
+  bookings: [] as Ligue1MatchDetail['home']['bookings'],
+  penaltyShots: [] as Ligue1MatchDetail['home']['penaltyShots'],
+  players: {} as Record<string, ReturnType<typeof l1Player>>,
+})
+
+export const ligue1MatchDetailFixture: Ligue1MatchDetail = (() => {
+  const home = makeL1Side(
+    'club_psg',
+    'Paris Saint-Germain',
+    'PSG',
+    '#004070',
+    3,
+    '433',
+    'Luis Enrique',
+    'Martinez',
+  )
+  // Add starter players (formationPlace 1-11)
+  home.players = {
+    p1: l1Player('p1', 'Gianluigi', 'Donnarumma', 1, 1, 1, true),
+    p2: l1Player('p2', 'Achraf', 'Hakimi', 2, 2, 2, true),
+    p3: l1Player('p3', 'Marquinhos', 'Correia', 5, 2, 3, true),
+    p4: l1Player('p4', 'Lucas', 'Hernandez', 21, 2, 4, true),
+    p5: l1Player('p5', 'Nuno', 'Mendes', 25, 2, 5, true),
+    p6: l1Player('p6', 'Warren', 'Zaire-Emery', 33, 3, 6, true),
+    p7: l1Player('p7', 'Vitinha', 'Ferreira', 17, 3, 7, true),
+    p8: l1Player('p8', 'Fabian', 'Ruiz', 8, 3, 8, true),
+    p9: l1Player('p9', 'Ousmane', 'Dembele', 10, 4, 9, true),
+    p10: l1Player('p10', 'Randal', 'Kolo Muani', 23, 4, 10, true),
+    p11: l1Player('p11', 'Bradley', 'Barcola', 29, 4, 11, true),
+    p12: l1Player('p12', 'Keylor', 'Navas', 30, 1, 0, false), // bench
+  }
+  home.goals = [
+    { scorerId: 'p9', time: "23'", timestamp: 1000001, type: 'goal', side: 'home' },
+    { scorerId: 'p10', time: "55'", timestamp: 1000002, type: 'penalty', side: 'home' },
+  ]
+  home.bookings = [
+    { playerId: 'p6', type: 'yellow', time: "37'", timestamp: 1000003, side: 'home' },
+    { playerId: 'p12', type: 'red', time: "80'", timestamp: 1000004, side: 'home' },
+  ]
+
+  const away = makeL1Side(
+    'club_tou',
+    'Toulouse FC',
+    'TOU',
+    '#3E2B57',
+    1,
+    '3421',
+    'Carles',
+    'Martinez',
+  )
+  away.players = {
+    a1: l1Player('a1', 'Guillaume', 'Restes', 1, 1, 1, true),
+    a2: l1Player('a2', 'Djibril', 'Sidibe', 19, 2, 2, true),
+    a3: l1Player('a3', 'Dayann', 'Methalie', 24, 3, 3, true),
+    a4: l1Player('a4', 'Rasmus', 'Nicolaisen', 2, 2, 4, true),
+    a5: l1Player('a5', 'Seny', 'Koumbassa', 35, 2, 5, true),
+    a6: l1Player('a6', 'Mark', 'Mckenzie', 3, 2, 6, true),
+    a7: l1Player('a7', 'Cristian', 'Casseres', 23, 3, 7, true),
+    a8: l1Player('a8', 'Pape', 'Diop', 18, 3, 8, true),
+    a9: l1Player('a9', 'Emersonn', 'Correia', 20, 4, 9, true),
+    a10: l1Player('a10', 'Aron', 'Donnum', 15, 4, 10, true),
+    a11: l1Player('a11', 'Yann', 'Gboho', 10, 4, 11, true),
+    a12: l1Player('a12', 'Warren', 'Kamanzi', 12, 2, 0, false), // bench
+  }
+  away.goals = [{ scorerId: 'a11', time: "27'", timestamp: 1000005, type: 'goal', side: 'away' }]
+
+  return {
+    id: LIGUE1_MATCH_ID,
+    championshipId: 1,
+    season: LIGUE1_SEASON,
+    gameWeekNumber: 28,
+    date: '2026-04-03T18:45:00.000Z',
+    period: 'fullTime',
+    matchTime: "90' +4",
+    stadium: { name: 'PARC DES PRINCES', address: { city: 'PARIS' } },
+    home,
+    away,
+  }
+})()
+
+export const ligue1StandingsFixture = {
+  competitionType: 'championship',
+  season: LIGUE1_SEASON,
+  standings: Object.fromEntries(
+    Array.from({ length: 18 }, (_, i) => [
+      String(i + 1),
+      {
+        clubId: `club_${i + 1}`,
+        played: i < 10 ? 28 : 27,
+      },
+    ]),
+  ),
 }

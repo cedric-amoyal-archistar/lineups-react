@@ -59,13 +59,21 @@
 | `src/hooks/useCountryFlag.test.ts` | Country flag URL resolution                                                                                                                                                                                                                 |
 | `src/hooks/useApi.test.tsx`        | `useMatches()`, `useMatch()`, `useMatchLineups()`, `useMatchesByGameweek()`, `useDefaultGameweek()` via provider-agnostic hooks — query params, error/loading states, disabled states for falsy match IDs (0, empty string), retry behavior |
 
+### Unit Tests — Providers
+
+| File                                                | What it tests                                                                                                                                                                                                                                                   |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/providers/ligue1/__tests__/formations.test.ts` | Formation-to-coordinate mapping: known formations (433, 3421, 4231), GK/forward y positions, even X distribution, 0-1000 range, cache behavior, unknown formation fallback                                                                                      |
+| `src/providers/ligue1/__tests__/index.test.ts`      | Ligue 1 provider: match list/detail/lineup mapping via MSW, status mapping, string IDs, goal types, scorer sorting, stadium, red cards, field/bench split, coordinates, bookings, coach, gameweek helpers (default GW from standings, total GW from team count) |
+
 ### Component Tests — Match
 
-| File                                                      | What it tests                                                       |
-| --------------------------------------------------------- | ------------------------------------------------------------------- |
-| `src/components/match/__tests__/MatchCard.test.tsx`       | Team names/logos, scores, penalty scores, round info, routing links |
-| `src/components/match/__tests__/MatchEvents.test.tsx`     | Match event rendering (goals, cards)                                |
-| `src/components/match/__tests__/PenaltyShootout.test.tsx` | Penalty shootout display                                            |
+| File                                                       | What it tests                                                                                               |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `src/components/match/__tests__/MatchCard.test.tsx`        | Team names/logos, scores, penalty scores, round info, routing links                                         |
+| `src/components/match/__tests__/MatchEvents.test.tsx`      | Match event rendering (goals, cards)                                                                        |
+| `src/components/match/__tests__/PenaltyShootout.test.tsx`  | Penalty shootout display                                                                                    |
+| `src/components/match/__tests__/GameweekSelector.test.tsx` | Gameweek navigation: matchday label, prev/next button behavior, disabled at bounds, loading state, onChange |
 
 ### Component Tests — Lineup
 

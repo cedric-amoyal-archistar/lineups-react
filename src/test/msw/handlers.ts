@@ -1,28 +1,28 @@
 import { http, HttpResponse } from 'msw'
-import { MATCH_ID, MATCH_ID_STR, matchListFixture, matchFixture, lineupsFixture } from './fixtures'
+import {
+  MATCH_ID,
+  MATCH_ID_STR,
+  matchListFixture,
+  matchFixture,
+  lineupsFixture,
+  LIGUE1_MATCH_ID,
+  ligue1MatchListFixture,
+  ligue1MatchDetailFixture,
+  ligue1StandingsFixture,
+} from './fixtures'
 
 /**
- * MSW request handlers for the UEFA Match API proxy.
- * All requests go through the /uefa-api prefix (Vite dev proxy -> match.uefa.com).
+ * MSW request handlers for competition API proxies.
  *
- * The UEFA API returns:
- *   GET /v5/matches         -> Match[]  (bare array)
- *   GET /v5/matches/:id     -> Match
- *   GET /v5/matches/:id/lineups -> MatchLineups
- *
- * Default handler returns fixture data for ANY seasonYear so tests that use
- * LayoutProvider (which computes the current season from today's date) don't
- * need to know which specific year is computed at runtime.
+ * UEFA API: /uefa-api/v5/...
+ * Ligue 1 API: /ligue1-api/...
  */
 export const handlers = [
-  // GET /uefa-api/v5/matches  -- match list by season, returns Match[]
+  // ---- UEFA ----
   http.get('/uefa-api/v5/matches', () => {
     return HttpResponse.json(matchListFixture)
   }),
 
-  // GET /uefa-api/v5/matches/:id  -- single match detail
-  // NOTE: must be ordered AFTER the lineups handler because MSW matches greedily.
-  // The lineups handler uses /matches/:id/lineups which is more specific and registered first.
   http.get('/uefa-api/v5/matches/:id/lineups', ({ params }) => {
     const id = Number(params['id'])
     if (id !== MATCH_ID) {
@@ -37,5 +37,21 @@ export const handlers = [
       return HttpResponse.json({ error: 'Match not found' }, { status: 404 })
     }
     return HttpResponse.json(matchFixture)
+  }),
+
+  // ---- Ligue 1 ----
+  http.get('/ligue1-api/championship-matches/championship/1/game-week/:gw', () => {
+    return HttpResponse.json(ligue1MatchListFixture)
+  }),
+
+  http.get('/ligue1-api/championship-match/:id', ({ params }) => {
+    if (params['id'] !== LIGUE1_MATCH_ID) {
+      return HttpResponse.json({ error: 'Match not found' }, { status: 404 })
+    }
+    return HttpResponse.json(ligue1MatchDetailFixture)
+  }),
+
+  http.get('/ligue1-api/championship-standings/1/general', () => {
+    return HttpResponse.json(ligue1StandingsFixture)
   }),
 ]
