@@ -111,3 +111,62 @@
 | `src/test/msw/server.ts`   | MSW server instance with all handlers                                                               |
 | `src/test/msw/handlers.ts` | HTTP GET handlers for UEFA API proxy routes (`/uefa-api/v5/matches`, etc.)                          |
 | `src/test/msw/fixtures.ts` | Test data — Real Madrid vs Barcelona match, Bayern vs PSG match, lineup data with field coordinates |
+
+---
+
+## Integration Tests
+
+Integration tests hit **real provider APIs** and are excluded from CI. Run manually only.
+
+### Scripts
+
+| Command                                  | Description                         |
+| ---------------------------------------- | ----------------------------------- |
+| `npm run test:integration`               | Run with a random seed (Date.now()) |
+| `SEED=<number> npm run test:integration` | Reproduce a specific run exactly    |
+
+The seed is printed at the start of every run. Copy it to reproduce a failure.
+
+### Configuration
+
+- **Config file**: `vitest.integration.config.ts`
+- **Environment**: node (no jsdom, no MSW)
+- **Setup**: `src/test/integration/setup.ts` — patches `globalThis.fetch` to rewrite proxy paths to real external URLs
+- **Timeout**: 60 s per test, 120 s per `beforeAll` hook
+
+### Test File
+
+| File                                                 | What it tests                                     |
+| ---------------------------------------------------- | ------------------------------------------------- |
+| `src/test/integration/providers.integration.test.ts` | TC-1 through TC-5 across all registered providers |
+
+### Test Cases
+
+| ID   | Name                      | Description                                                                                                                                                  |
+| ---- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| TC-1 | Match list completeness   | Every picked match has critical fields (id, status, kickOffTime, homeTeam, awayTeam, round); finished matches have numeric scores; IDs are unique per season |
+| TC-2 | Match detail completeness | Fetched detail has all critical fields including mediumLogoUrl; detail ID matches requested ID                                                               |
+| TC-3 | Lineup completeness       | Available lineups have 10–11 field players per side; coordinates in [0, 1000]; at least one name field per player; home/away coordinates differ              |
+| TC-4 | Bench completeness        | Bench players have id, jerseyNumber > 0, and at least one name field                                                                                         |
+| TC-5 | Optional field coverage   | Logs hit rates for score, scorers, lineups, bench, stadium — visibility only, no assertions                                                                  |
+
+### Season Selection Strategy
+
+For each provider, the test picks:
+
+- The **first available season** (oldest)
+- The **current season** (newest)
+- **One random season per decade** in between (seeded, reproducible)
+
+### Match Selection Strategy
+
+- **Offset providers** (UEFA UCL, UEL, UECL): fetches first 100 matches, prefers FINISHED, picks 5 randomly
+- **Gameweek providers** (Ligue 1): picks 5 random gameweeks, pools all matches from those gameweeks, picks 5 randomly
+
+### Integration Test Helpers
+
+| File                                 | Purpose                                                                                                                                                                                    |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `src/test/integration/setup.ts`      | Patches `globalThis.fetch` to rewrite `/uefa-api` and `/ligue1-api` prefixes to real external URLs                                                                                         |
+| `src/test/integration/random.ts`     | Mulberry32 PRNG, `getSeed`, `pickTestSeasons`, `pickN`, `randInt`, `logSelections`                                                                                                         |
+| `src/test/integration/validators.ts` | `validateMatchCritical`, `validateFinishedMatchScore`, `validateMatchDetailCritical`, `validateLineupCritical`, `validateBenchCritical`, `collectCoverage`, `mergeCoverage`, `logCoverage` |

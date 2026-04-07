@@ -55,11 +55,11 @@ function mapTeam(clubIdentity: Ligue1ClubIdentity, clubId: string): TeamInMatch 
   return {
     id: clubId,
     internationalName: clubIdentity.name,
-    logoUrl: clubIdentity.assets.logo.small,
-    mediumLogoUrl: clubIdentity.assets.logo.medium,
-    bigLogoUrl: clubIdentity.assets.logo.large,
+    logoUrl: clubIdentity.assets?.logo?.small ?? '',
+    mediumLogoUrl: clubIdentity.assets?.logo?.medium ?? '',
+    bigLogoUrl: clubIdentity.assets?.logo?.large ?? '',
     countryCode: 'FRA',
-    teamCode: clubIdentity.trigram,
+    teamCode: clubIdentity.trigram || clubIdentity.name.slice(0, 3).toUpperCase(),
     translations: {
       displayName: { FR: clubIdentity.name },
       displayOfficialName: { FR: clubIdentity.name },
@@ -384,7 +384,7 @@ export const ligue1Provider: CompetitionProvider = {
   getSeasons() {
     const now = new Date()
     const current = now.getMonth() >= 6 ? now.getFullYear() : now.getFullYear() - 1
-    return Array.from({ length: current - 2015 + 1 }, (_, i) => current - i)
+    return Array.from({ length: current - 1993 + 1 }, (_, i) => current - i)
   },
 
   getDefaultSeason() {

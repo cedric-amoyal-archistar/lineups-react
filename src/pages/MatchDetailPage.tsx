@@ -117,7 +117,7 @@ export function MatchDetailPage() {
             {/* Home team */}
             <div className="flex flex-col items-center gap-1.5">
               <img
-                src={match.homeTeam.mediumLogoUrl}
+                src={match.homeTeam.mediumLogoUrl || match.homeTeam.logoUrl}
                 alt={match.homeTeam.internationalName}
                 className="h-10 w-10"
               />
@@ -151,7 +151,7 @@ export function MatchDetailPage() {
             {/* Away team */}
             <div className="flex flex-col items-center gap-1.5">
               <img
-                src={match.awayTeam.mediumLogoUrl}
+                src={match.awayTeam.mediumLogoUrl || match.awayTeam.logoUrl}
                 alt={match.awayTeam.internationalName}
                 className="h-10 w-10"
               />

@@ -16,7 +16,7 @@ describe('ligue1Provider', () => {
   it('returns descending season years from getSeasons()', () => {
     const seasons = ligue1Provider.getSeasons()
     expect(seasons[0]).toBeGreaterThanOrEqual(2025)
-    expect(seasons[seasons.length - 1]).toBe(2015)
+    expect(seasons[seasons.length - 1]).toBe(1993)
     // Verify descending order
     for (let i = 1; i < seasons.length; i++) {
       expect(seasons[i]).toBeLessThan(seasons[i - 1])

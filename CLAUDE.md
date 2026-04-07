@@ -137,7 +137,7 @@ There are two provider patterns depending on how the competition API paginates m
    - Normalize lineup coordinates to the 0–1000 scale inside `fetchMatchLineups`
    - Map all player name variants to the canonical `internationalName` / `clubShirtName` fields
    - `getExternalUrl` — return a link to the match on the competition's website
-   - `getSeasons` — return available season years (newest first)
+   - `getSeasons` — return available season years (newest first). The first supported season **must be determined empirically** — probe the API to find the earliest year that returns data (e.g. binary search or backward scan until 404). Do **not** guess or hardcode an arbitrary start year.
    - `getDefaultSeason` — return the current active season
    - `seasonLabel` — format a season year for display (e.g. `"2024/25"`)
 4. **Register the provider**: import it in `src/providers/registry.ts` and add one entry to the `providers` object
