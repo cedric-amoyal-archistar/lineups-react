@@ -106,6 +106,33 @@ describe('MatchDetailPage — scoreboard', () => {
 })
 
 // ---------------------------------------------------------------------------
+// Live indicator
+// ---------------------------------------------------------------------------
+
+describe('MatchDetailPage — live indicator', () => {
+  it('shows a pulsing "Live" badge when match status is LIVE', async () => {
+    server.use(
+      http.get(`/uefa-api/v5/matches/${MATCH_ID_STR}`, () =>
+        HttpResponse.json({
+          ...matchFixture,
+          status: 'LIVE',
+        }),
+      ),
+    )
+    renderPage()
+    await waitFor(() => screen.getByText('Live'))
+    expect(screen.getByText('Live')).toBeInTheDocument()
+    expect(screen.getByText('Live')).toHaveClass('text-emerald-500')
+  })
+
+  it('does not show "Live" badge when match status is FINISHED', async () => {
+    renderPage()
+    await waitFor(() => screen.getByText('RMA'))
+    expect(screen.queryByText('Live')).not.toBeInTheDocument()
+  })
+})
+
+// ---------------------------------------------------------------------------
 // UEFA link
 // ---------------------------------------------------------------------------
 

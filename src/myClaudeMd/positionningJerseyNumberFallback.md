@@ -1,4 +1,4 @@
-Use the team of agents to plan, show me plan and then execute using the team of agents.
+Use the team of agents to plan, show me plan and then execute using the team of agents. ( mode: "acceptEdits" )
 
 The current logic to display the players on the pitch is:
 

@@ -92,10 +92,10 @@
 
 ### Page Tests
 
-| File                                           | What it tests                                                                                                                              |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `src/pages/__tests__/HomePage.test.tsx`        | Loading states, match list rendering, team filtering (name/code/case-insensitive), date grouping, error/empty states, load-more pagination |
-| `src/pages/__tests__/MatchDetailPage.test.tsx` | Match detail page rendering with lineup data                                                                                               |
+| File                                           | What it tests                                                                                                                                     |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/pages/__tests__/HomePage.test.tsx`        | Loading states, match list rendering, team filtering (name/code/case-insensitive), date grouping, error/empty states, load-more pagination        |
+| `src/pages/__tests__/MatchDetailPage.test.tsx` | Match detail page rendering with lineup data. Live indicator: shows pulsing "Live" badge (emerald-500) when status is LIVE, hidden when FINISHED. |
 
 ### Infrastructure Tests
 
