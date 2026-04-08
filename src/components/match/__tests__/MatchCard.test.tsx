@@ -1,8 +1,26 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { MatchCard } from '../MatchCard'
 import type { Match } from '@/types/match'
+
+// ---------------------------------------------------------------------------
+// Freeze time — all tests run at 2025-06-15T12:00:00
+// Fixture date conventions:
+//   past:     2025-04-01
+//   today:    2025-06-15
+//   tomorrow: 2025-06-16
+//   future:   2025-07-10
+// ---------------------------------------------------------------------------
+
+beforeAll(() => {
+  vi.useFakeTimers()
+  vi.setSystemTime(new Date('2025-06-15T12:00:00'))
+})
+
+afterAll(() => {
+  vi.useRealTimers()
+})
 
 // ---------------------------------------------------------------------------
 // Fixture builder
@@ -91,7 +109,7 @@ describe('MatchCard — teams', () => {
 })
 
 // ---------------------------------------------------------------------------
-// Score / Time / Status
+// Score / Status
 // ---------------------------------------------------------------------------
 
 describe('MatchCard — score and status', () => {
@@ -131,26 +149,125 @@ describe('MatchCard — score and status', () => {
     expect(screen.queryByText('FT')).not.toBeInTheDocument()
   })
 
-  it('renders kickoff time for upcoming match', () => {
+  it('does not show FT or Live for upcoming match', () => {
     renderCard(
       makeMatch({
         status: 'UPCOMING',
         score: undefined,
-        kickOffTime: { date: '2025-04-01', dateTime: '2025-04-01T19:00:00', utcOffsetInHours: 0 },
+        kickOffTime: { date: '2025-07-10', dateTime: '2025-07-10T20:00:00', utcOffsetInHours: 0 },
       }),
     )
-    // Should show time string, not score
     expect(screen.queryByText('FT')).not.toBeInTheDocument()
     expect(screen.queryByText('Live')).not.toBeInTheDocument()
-    // Time appears — exact format is locale-dependent but will contain colon
-    const link = screen.getByRole('link')
-    expect(link).toBeInTheDocument()
   })
 
-  it('does not show FT or Live for upcoming match', () => {
-    renderCard(makeMatch({ status: 'UPCOMING', score: undefined }))
-    expect(screen.queryByText('FT')).not.toBeInTheDocument()
-    expect(screen.queryByText('Live')).not.toBeInTheDocument()
+  it('does not render scores for upcoming match', () => {
+    renderCard(
+      makeMatch({
+        status: 'UPCOMING',
+        score: undefined,
+        kickOffTime: { date: '2025-07-10', dateTime: '2025-07-10T20:00:00', utcOffsetInHours: 0 },
+      }),
+    )
+    expect(screen.queryByText('2')).not.toBeInTheDocument()
+    expect(screen.queryByText('1')).not.toBeInTheDocument()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Date labels
+// ---------------------------------------------------------------------------
+
+describe('MatchCard — date labels', () => {
+  it('shows "Today" for FT match played today', () => {
+    renderCard(
+      makeMatch({
+        status: 'FINISHED',
+        kickOffTime: { date: '2025-06-15', dateTime: '2025-06-15T19:00:00', utcOffsetInHours: 0 },
+        score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 } },
+      }),
+    )
+    expect(screen.getByText('FT')).toBeInTheDocument()
+    expect(screen.getByText('Today')).toBeInTheDocument()
+  })
+
+  it('shows "Tomorrow" for upcoming match tomorrow', () => {
+    renderCard(
+      makeMatch({
+        status: 'UPCOMING',
+        score: undefined,
+        kickOffTime: { date: '2025-06-16', dateTime: '2025-06-16T19:00:00', utcOffsetInHours: 0 },
+      }),
+    )
+    expect(screen.getByText('Tomorrow')).toBeInTheDocument()
+    // Time is shown alongside Tomorrow — locale-dependent format but always has a colon
+    expect(screen.getByText(/\d+:\d+/)).toBeInTheDocument()
+  })
+
+  it('shows short date for future match', () => {
+    renderCard(
+      makeMatch({
+        status: 'UPCOMING',
+        score: undefined,
+        kickOffTime: { date: '2025-07-10', dateTime: '2025-07-10T17:00:00', utcOffsetInHours: 0 },
+      }),
+    )
+    expect(screen.queryByText('Tomorrow')).not.toBeInTheDocument()
+    expect(screen.queryByText('Today')).not.toBeInTheDocument()
+    // A time string must still be present
+    expect(screen.getByText(/\d+:\d+/)).toBeInTheDocument()
+  })
+
+  it('shows short date for past FT match', () => {
+    renderCard(
+      makeMatch({
+        status: 'FINISHED',
+        kickOffTime: { date: '2025-04-01', dateTime: '2025-04-01T19:00:00', utcOffsetInHours: 0 },
+        score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 } },
+      }),
+    )
+    expect(screen.getByText('FT')).toBeInTheDocument()
+    expect(screen.queryByText('Today')).not.toBeInTheDocument()
+    // Some locale-formatted date string is present (not asserting exact format)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Live match
+// ---------------------------------------------------------------------------
+
+describe('MatchCard — live match', () => {
+  it('shows live minute when provided', () => {
+    renderCard(
+      makeMatch({
+        status: 'LIVE',
+        minute: 86,
+        score: { total: { home: 1, away: 2 }, regular: { home: 1, away: 2 } },
+      }),
+    )
+    expect(screen.getByText("86'")).toBeInTheDocument()
+  })
+
+  it('live minute element has correct aria-label', () => {
+    renderCard(
+      makeMatch({
+        status: 'LIVE',
+        minute: 45,
+        score: { total: { home: 0, away: 0 }, regular: { home: 0, away: 0 } },
+      }),
+    )
+    expect(screen.getByLabelText('45 minutes played')).toBeInTheDocument()
+  })
+
+  it('shows Live without minute when minute is undefined', () => {
+    renderCard(
+      makeMatch({
+        status: 'LIVE',
+        score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 } },
+      }),
+    )
+    expect(screen.getByText('Live')).toBeInTheDocument()
+    expect(screen.queryByLabelText(/minutes played/)).not.toBeInTheDocument()
   })
 })
 
@@ -180,6 +297,92 @@ describe('MatchCard — penalties', () => {
 })
 
 // ---------------------------------------------------------------------------
+// Winner indicator
+// ---------------------------------------------------------------------------
+
+describe('MatchCard — winner indicator', () => {
+  it('shows winner indicator for winning team', () => {
+    renderCard(
+      makeMatch({
+        status: 'FINISHED',
+        score: { total: { home: 3, away: 1 }, regular: { home: 3, away: 1 } },
+      }),
+    )
+    const indicators = screen.getAllByLabelText('winner')
+    expect(indicators).toHaveLength(1)
+    expect(indicators[0]).toHaveTextContent('◄')
+  })
+
+  it('shows winner indicator on away side for away win', () => {
+    renderCard(
+      makeMatch({
+        status: 'FINISHED',
+        score: { total: { home: 0, away: 2 }, regular: { home: 0, away: 2 } },
+      }),
+    )
+    const indicators = screen.getAllByLabelText('winner')
+    expect(indicators).toHaveLength(1)
+    expect(indicators[0]).toHaveTextContent('◄')
+  })
+
+  it('does not show winner indicator for draw', () => {
+    renderCard(
+      makeMatch({
+        status: 'FINISHED',
+        score: { total: { home: 1, away: 1 }, regular: { home: 1, away: 1 } },
+      }),
+    )
+    expect(screen.queryByLabelText('winner')).not.toBeInTheDocument()
+  })
+
+  it('does not show winner indicator for upcoming match', () => {
+    renderCard(
+      makeMatch({
+        status: 'UPCOMING',
+        score: undefined,
+        kickOffTime: { date: '2025-07-10', dateTime: '2025-07-10T20:00:00', utcOffsetInHours: 0 },
+      }),
+    )
+    expect(screen.queryByLabelText('winner')).not.toBeInTheDocument()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Aggregate strip
+// ---------------------------------------------------------------------------
+
+describe('MatchCard — aggregate', () => {
+  it('shows aggregate strip above teams for SECOND_LEG', () => {
+    renderCard(
+      makeMatch({
+        type: 'SECOND_LEG',
+        score: {
+          total: { home: 2, away: 0 },
+          regular: { home: 2, away: 0 },
+          aggregate: { home: 3, away: 1 },
+        },
+      }),
+    )
+    expect(screen.getByText('Aggregate: 3 - 1')).toBeInTheDocument()
+  })
+
+  it('does not show aggregate strip for non-SECOND_LEG', () => {
+    renderCard(makeMatch({ type: 'FIRST_LEG' }))
+    expect(screen.queryByText(/^Aggregate:/)).not.toBeInTheDocument()
+  })
+
+  it('does not show aggregate strip when aggregate data is absent', () => {
+    renderCard(
+      makeMatch({
+        type: 'SECOND_LEG',
+        score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 } },
+      }),
+    )
+    expect(screen.queryByText(/^Aggregate:/)).not.toBeInTheDocument()
+  })
+})
+
+// ---------------------------------------------------------------------------
 // Round name and extra info
 // ---------------------------------------------------------------------------
 
@@ -199,7 +402,7 @@ describe('MatchCard — round and extra info', () => {
     expect(screen.getByText('Matchday 6')).toBeInTheDocument()
   })
 
-  it('shows aggregate for SECOND_LEG', () => {
+  it('shows aggregate in extra info for SECOND_LEG', () => {
     renderCard(
       makeMatch({
         type: 'SECOND_LEG',
@@ -210,14 +413,79 @@ describe('MatchCard — round and extra info', () => {
         },
       }),
     )
-    expect(screen.getByText(/Agg: 3-1/)).toBeInTheDocument()
+    // extraInfo footer renders "Agg: 3-1"; aggregate strip renders "Aggregate: 3 - 1"
+    const matches = screen.getAllByText(/Agg: 3-1/)
+    expect(matches.length).toBeGreaterThanOrEqual(1)
   })
 
   it('shows no extra info separator when extra info is empty', () => {
     renderCard(makeMatch({ type: 'FINAL' }))
-    // Only the round name should be visible, no separator dot
-    const separators = screen.queryAllByText('·')
-    expect(separators).toHaveLength(0)
+    expect(screen.queryAllByText('·')).toHaveLength(0)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Highlights link
+// ---------------------------------------------------------------------------
+
+describe('MatchCard — highlights link', () => {
+  it('shows highlights link for past finished match', () => {
+    renderCard(
+      makeMatch({
+        status: 'FINISHED',
+        kickOffTime: { date: '2025-04-01', dateTime: '2025-04-01T19:00:00', utcOffsetInHours: 0 },
+        score: { total: { home: 2, away: 1 }, regular: { home: 2, away: 1 } },
+      }),
+    )
+    expect(screen.getByLabelText('Search highlights on YouTube')).toBeInTheDocument()
+  })
+
+  it('highlights link points to YouTube search URL with team names and competition', () => {
+    renderCard(
+      makeMatch({
+        status: 'FINISHED',
+        kickOffTime: { date: '2025-04-01', dateTime: '2025-04-01T19:00:00', utcOffsetInHours: 0 },
+        score: { total: { home: 2, away: 1 }, regular: { home: 2, away: 1 } },
+      }),
+    )
+    const link = screen.getByLabelText('Search highlights on YouTube')
+    const href = link.getAttribute('href') ?? ''
+    expect(href).toContain('youtube.com/results')
+    expect(href).toContain('Real%20Madrid')
+    expect(href).toContain('FC%20Barcelona')
+    expect(href).toContain('highlights')
+  })
+
+  it('does not show highlights for today finished match', () => {
+    renderCard(
+      makeMatch({
+        status: 'FINISHED',
+        kickOffTime: { date: '2025-06-15', dateTime: '2025-06-15T19:00:00', utcOffsetInHours: 0 },
+        score: { total: { home: 2, away: 1 }, regular: { home: 2, away: 1 } },
+      }),
+    )
+    expect(screen.queryByLabelText('Search highlights on YouTube')).not.toBeInTheDocument()
+  })
+
+  it('does not show highlights for upcoming match', () => {
+    renderCard(
+      makeMatch({
+        status: 'UPCOMING',
+        score: undefined,
+        kickOffTime: { date: '2025-07-10', dateTime: '2025-07-10T20:00:00', utcOffsetInHours: 0 },
+      }),
+    )
+    expect(screen.queryByLabelText('Search highlights on YouTube')).not.toBeInTheDocument()
+  })
+
+  it('does not show highlights for live match', () => {
+    renderCard(
+      makeMatch({
+        status: 'LIVE',
+        score: { total: { home: 1, away: 0 }, regular: { home: 1, away: 0 } },
+      }),
+    )
+    expect(screen.queryByLabelText('Search highlights on YouTube')).not.toBeInTheDocument()
   })
 })
 
@@ -228,7 +496,16 @@ describe('MatchCard — round and extra info', () => {
 describe('MatchCard — link', () => {
   it('links to the correct match detail route', () => {
     renderCard(makeMatch({ id: 42 }))
-    const link = screen.getByRole('link')
-    expect(link).toHaveAttribute('href', '/competition/uefa-ucl/match/42')
+    // There may be multiple links (e.g. YouTube highlights link for finished matches)
+    const links = screen.getAllByRole('link')
+    const matchLink = links.find((l) => l.getAttribute('href') === '/competition/uefa-ucl/match/42')
+    expect(matchLink).toBeInTheDocument()
+  })
+
+  it('links work with string match IDs', () => {
+    renderCard(makeMatch({ id: 'abc-123' }))
+    const links = screen.getAllByRole('link')
+    const matchLink = links.find((l) => l.getAttribute('href')?.includes('/match/abc-123'))
+    expect(matchLink).toBeInTheDocument()
   })
 })

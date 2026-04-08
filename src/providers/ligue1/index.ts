@@ -87,6 +87,7 @@ function mapListMatch(raw: Ligue1Match): Match {
         }
       : undefined,
     status,
+    minute: raw.isLive ? parseMinute(raw.matchTime) : undefined,
     round: {
       metaData: { name: `Matchday ${raw.gameWeekNumber}`, type: 'MATCHDAY' },
       phase: 'LEAGUE',
@@ -124,6 +125,7 @@ function mapDetailMatch(raw: Ligue1MatchDetail): Match {
         }
       : undefined,
     status,
+    minute: isLive ? parseMinute(raw.matchTime) : undefined,
     round: {
       metaData: { name: `Matchday ${raw.gameWeekNumber}`, type: 'MATCHDAY' },
       phase: 'LEAGUE',

@@ -50,6 +50,8 @@ export interface Match {
   }
   type?: string
   lineupStatus?: string
+  minute?: number
+  highlightUrl?: string
   leg?: {
     number: number
     translations?: {

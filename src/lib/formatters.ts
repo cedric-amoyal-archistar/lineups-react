@@ -100,3 +100,37 @@ export function currentSeason(): number {
   const now = new Date()
   return now.getMonth() >= 6 ? now.getFullYear() + 1 : now.getFullYear()
 }
+
+function todayLocalDate(): string {
+  return localDate(new Date().toISOString())
+}
+
+function tomorrowLocalDate(): string {
+  const d = new Date()
+  d.setDate(d.getDate() + 1)
+  return localDate(d.toISOString())
+}
+
+export function isToday(dateTime: string): boolean {
+  return localDate(dateTime) === todayLocalDate()
+}
+
+export function isTomorrow(dateTime: string): boolean {
+  return localDate(dateTime) === tomorrowLocalDate()
+}
+
+export function formatDateShort(dateTime: string): string {
+  const d = new Date(dateTime)
+  if (isToday(dateTime) || isTomorrow(dateTime)) {
+    return d.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' })
+  }
+  return d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' })
+}
+
+export function getWinnerSide(match: Match): 'home' | 'away' | null {
+  const total = match.score?.total
+  if (!total) return null
+  if (total.home > total.away) return 'home'
+  if (total.away > total.home) return 'away'
+  return null
+}
