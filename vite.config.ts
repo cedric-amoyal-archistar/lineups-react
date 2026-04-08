@@ -23,6 +23,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/ligue1-api/, ''),
       },
+      '/pl-api': {
+        target: 'https://sdp-prem-prod.premier-league-prod.pulselive.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/pl-api/, ''),
+      },
     },
   },
 })

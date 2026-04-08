@@ -31,7 +31,13 @@ function RightColumn({ match }: { match: Match }) {
     const minuteStr = match.minute != null ? `${match.minute}'` : null
     return (
       <div className="flex flex-col items-center justify-center gap-1">
-        <span className="text-sm font-bold text-emerald-500 uppercase tracking-wide">Live</span>
+        <div className="flex items-center gap-1.5">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          <span className="text-sm font-bold text-emerald-500 uppercase tracking-wide">Live</span>
+        </div>
         {minuteStr && (
           <span
             className="text-sm font-medium text-emerald-500/80 tabular-nums"

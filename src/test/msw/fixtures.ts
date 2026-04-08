@@ -4,6 +4,14 @@
  */
 import type { Match, MatchLineups } from '@/types/match'
 import type { Ligue1MatchesResponse, Ligue1MatchDetail } from '@/providers/ligue1/types'
+import type {
+  PLMatchesResponse,
+  PLMatchDetail,
+  PLLineupsResponse,
+  PLEventsResponse,
+  PLTeamsResponse,
+  PLSquadPlayer,
+} from '@/providers/premier-league/types'
 
 export const MATCH_ID = 2035839
 export const MATCH_ID_STR = String(MATCH_ID)
@@ -436,3 +444,569 @@ export const ligue1StandingsFixture = {
     ]),
   ),
 }
+
+// ---------------------------------------------------------------------------
+// Premier League API fixtures
+// ---------------------------------------------------------------------------
+
+export const PL_MATCH_ID = '2562195'
+export const PL_SEASON = 2025
+
+export const plMatchListFixture: PLMatchesResponse = {
+  pagination: { _limit: 20, _prev: null, _next: null },
+  data: [
+    {
+      matchId: PL_MATCH_ID,
+      kickoff: '2026-03-20 20:00:00',
+      kickoffTimezone: 'GMT',
+      period: 'FullTime',
+      homeTeam: { name: 'Bournemouth', id: '91', shortName: 'Bournemouth', abbr: 'BOU', score: 2 },
+      awayTeam: { name: 'Manchester United', id: '1', shortName: 'Man Utd', abbr: 'MUN', score: 2 },
+      competition: 'Premier League',
+      ground: 'Vitality Stadium, Bournemouth',
+    },
+    {
+      matchId: '2562206',
+      kickoff: '2026-04-11 15:00:00',
+      kickoffTimezone: 'BST',
+      period: 'PreMatch',
+      homeTeam: { name: 'Arsenal', id: '3', shortName: 'Arsenal', abbr: 'ARS' },
+      awayTeam: { name: 'Everton', id: '11', shortName: 'Everton', abbr: 'EVE' },
+      competition: 'Premier League',
+      ground: 'Emirates Stadium, London',
+    },
+  ],
+}
+
+export const plMatchDetailFixture: PLMatchDetail = {
+  matchId: PL_MATCH_ID,
+  kickoff: '2026-03-20 20:00:00',
+  kickoffTimezone: 'GMT',
+  period: 'FullTime',
+  matchWeek: 31,
+  competitionId: '8',
+  seasonId: '2025',
+  clock: '101',
+  attendance: 11250,
+  ground: 'Vitality Stadium, Bournemouth',
+  competition: 'Premier League',
+  homeTeam: {
+    name: 'Bournemouth',
+    id: '91',
+    shortName: 'Bournemouth',
+    abbr: 'BOU',
+    score: 2,
+    halfTimeScore: 0,
+    redCards: 0,
+  },
+  awayTeam: {
+    name: 'Manchester United',
+    id: '1',
+    shortName: 'Man Utd',
+    abbr: 'MUN',
+    score: 2,
+    halfTimeScore: 0,
+    redCards: 1,
+  },
+}
+
+export const plLineupsFixture: PLLineupsResponse = {
+  home_team: {
+    teamId: '91',
+    players: [
+      {
+        firstName: 'Djordje',
+        lastName: 'Petrovic',
+        shirtNum: '1',
+        isCaptain: false,
+        id: '457569',
+        position: 'Goalkeeper',
+      },
+      {
+        firstName: 'Adam',
+        lastName: 'Smith',
+        shirtNum: '15',
+        isCaptain: false,
+        id: '551483',
+        position: 'Defender',
+      },
+      {
+        firstName: 'Marcos',
+        lastName: 'Senesi',
+        shirtNum: '4',
+        isCaptain: false,
+        id: '463981',
+        position: 'Defender',
+      },
+      {
+        firstName: 'Illia',
+        lastName: 'Zabarnyi',
+        shirtNum: '13',
+        isCaptain: false,
+        id: '221466',
+        position: 'Defender',
+      },
+      {
+        firstName: 'Adrien',
+        lastName: 'Truffert',
+        shirtNum: '3',
+        isCaptain: false,
+        id: '494521',
+        position: 'Defender',
+      },
+      {
+        firstName: 'Ryan',
+        lastName: 'Christie',
+        shirtNum: '10',
+        isCaptain: false,
+        id: '503139',
+        position: 'Midfielder',
+      },
+      {
+        firstName: 'Lewis',
+        lastName: 'Cook',
+        shirtNum: '16',
+        isCaptain: true,
+        id: '158499',
+        position: 'Midfielder',
+      },
+      {
+        firstName: 'Justin',
+        lastName: 'Kluivert',
+        shirtNum: '17',
+        isCaptain: false,
+        id: '499604',
+        position: 'Forward',
+      },
+      {
+        firstName: 'David',
+        lastName: 'Brooks',
+        shirtNum: '7',
+        isCaptain: false,
+        id: '201658',
+        position: 'Midfielder',
+      },
+      {
+        firstName: 'Dango',
+        lastName: 'Ouattara',
+        shirtNum: '11',
+        isCaptain: false,
+        id: '489888',
+        position: 'Forward',
+      },
+      {
+        firstName: 'Evanilson',
+        lastName: 'de Barros',
+        shirtNum: '9',
+        isCaptain: false,
+        id: '444102',
+        position: 'Forward',
+        knownName: 'Evanilson',
+      },
+      // Subs
+      {
+        firstName: 'Antoine',
+        lastName: 'Semenyo',
+        shirtNum: '24',
+        isCaptain: false,
+        id: '496208',
+        position: 'Forward',
+      },
+      {
+        firstName: 'Tyler',
+        lastName: 'Adams',
+        shirtNum: '14',
+        isCaptain: false,
+        id: '560262',
+        position: 'Midfielder',
+      },
+    ],
+    formation: {
+      teamId: '91',
+      formation: '4-2-3-1',
+      lineup: [
+        ['457569'],
+        ['551483', '463981', '221466', '494521'],
+        ['503139', '158499'],
+        ['499604', '201658', '489888'],
+        ['444102'],
+      ],
+      subs: ['496208', '560262'],
+    },
+  },
+  away_team: {
+    teamId: '1',
+    players: [
+      {
+        firstName: 'Senne',
+        lastName: 'Lammens',
+        shirtNum: '31',
+        isCaptain: false,
+        id: '465247',
+        position: 'Goalkeeper',
+      },
+      {
+        firstName: 'José Diogo',
+        lastName: 'Dalot Teixeira',
+        shirtNum: '2',
+        isCaptain: false,
+        id: '216051',
+        position: 'Defender',
+        knownName: 'Diogo Dalot',
+      },
+      {
+        firstName: 'Matthijs',
+        lastName: 'de Ligt',
+        shirtNum: '4',
+        isCaptain: false,
+        id: '550864',
+        position: 'Defender',
+      },
+      {
+        firstName: 'Harry',
+        lastName: 'Maguire',
+        shirtNum: '5',
+        isCaptain: false,
+        id: '95658',
+        position: 'Defender',
+      },
+      {
+        firstName: 'Tyrell',
+        lastName: 'Malacia',
+        shirtNum: '12',
+        isCaptain: false,
+        id: '106760',
+        position: 'Defender',
+      },
+      {
+        firstName: 'Casemiro',
+        lastName: 'de Casas',
+        shirtNum: '18',
+        isCaptain: false,
+        id: '61256',
+        position: 'Midfielder',
+        knownName: 'Casemiro',
+      },
+      {
+        firstName: 'Kobbie',
+        lastName: 'Mainoo',
+        shirtNum: '37',
+        isCaptain: false,
+        id: '516895',
+        position: 'Midfielder',
+      },
+      {
+        firstName: 'Mason',
+        lastName: 'Mount',
+        shirtNum: '7',
+        isCaptain: false,
+        id: '493250',
+        position: 'Midfielder',
+      },
+      {
+        firstName: 'Bruno Miguel',
+        lastName: 'Borges Fernandes',
+        shirtNum: '8',
+        isCaptain: true,
+        id: '141746',
+        position: 'Midfielder',
+        knownName: 'Bruno Fernandes',
+      },
+      {
+        firstName: 'Amad',
+        lastName: 'Diallo',
+        shirtNum: '16',
+        isCaptain: false,
+        id: '430871',
+        position: 'Forward',
+      },
+      {
+        firstName: 'Rasmus',
+        lastName: 'Hojlund',
+        shirtNum: '11',
+        isCaptain: false,
+        id: '446008',
+        position: 'Forward',
+      },
+      // Subs
+      {
+        firstName: 'Marcus',
+        lastName: 'Rashford',
+        shirtNum: '10',
+        isCaptain: false,
+        id: '485711',
+        position: 'Forward',
+      },
+    ],
+    formation: {
+      teamId: '1',
+      formation: '4-3-3',
+      lineup: [
+        ['465247'],
+        ['216051', '550864', '95658', '106760'],
+        ['61256', '516895', '493250'],
+        ['141746', '446008', '430871'],
+      ],
+      subs: ['485711'],
+    },
+  },
+}
+
+export const plEventsFixture: PLEventsResponse = {
+  homeTeam: {
+    name: 'Bournemouth',
+    id: '91',
+    shortName: 'Bournemouth',
+    goals: [
+      {
+        goalType: 'Goal',
+        period: 'SecondHalf',
+        assistPlayerId: '494521',
+        time: '67',
+        playerId: '158499',
+        timestamp: '20260320T212401+0000',
+      },
+      {
+        goalType: 'Penalty',
+        period: 'SecondHalf',
+        assistPlayerId: null,
+        time: '81',
+        playerId: '560262',
+        timestamp: '20260320T213723+0000',
+      },
+    ],
+    cards: [
+      {
+        period: 'SecondHalf',
+        time: '59',
+        type: 'Yellow',
+        playerId: '551483',
+        timestamp: '20260320T211608+0000',
+      },
+    ],
+    subs: [
+      {
+        period: 'SecondHalf',
+        playerOnId: '496208',
+        playerOffId: '489888',
+        time: '73',
+        timestamp: '20260320T212942+0000',
+      },
+    ],
+  },
+  awayTeam: {
+    name: 'Manchester United',
+    id: '1',
+    shortName: 'Man Utd',
+    goals: [
+      {
+        goalType: 'Penalty',
+        period: 'SecondHalf',
+        assistPlayerId: null,
+        time: '61',
+        playerId: '141746',
+        timestamp: '20260320T211745+0000',
+      },
+      {
+        goalType: 'Own',
+        period: 'SecondHalf',
+        assistPlayerId: null,
+        time: '71',
+        playerId: '463981',
+        timestamp: '20260320T212814+0000',
+      },
+    ],
+    cards: [
+      {
+        period: 'FirstHalf',
+        time: '28',
+        type: 'Yellow',
+        playerId: '61256',
+        timestamp: '20260320T202727+0000',
+      },
+      {
+        period: 'SecondHalf',
+        time: '78',
+        type: 'StraightRed',
+        playerId: '95658',
+        timestamp: '20260320T213510+0000',
+      },
+    ],
+    subs: [
+      {
+        period: 'SecondHalf',
+        playerOnId: '485711',
+        playerOffId: '446008',
+        time: '71',
+        timestamp: '20260320T212746+0000',
+      },
+    ],
+  },
+}
+
+export const plTeamsFixture: PLTeamsResponse = {
+  pagination: { _limit: 100 },
+  data: Array.from({ length: 20 }, (_, i) => ({
+    name: `Team ${i + 1}`,
+    id: String(i + 1),
+    shortName: `T${i + 1}`,
+    abbr: `T${String(i + 1).padStart(2, '0')}`,
+  })),
+}
+
+export const plSquadFixture: PLSquadPlayer[] = [
+  {
+    id: '457569',
+    name: { first: 'Djordje', last: 'Petrovic', display: 'Djordje Petrovic' },
+    position: 'Goalkeeper',
+    country: { isoCode: 'RS' },
+    dates: { birth: '1999-10-08' },
+  },
+  {
+    id: '158499',
+    name: { first: 'Lewis', last: 'Cook', display: 'Lewis Cook' },
+    position: 'Midfielder',
+    country: { isoCode: 'GB-ENG' },
+    dates: { birth: '1997-02-03' },
+  },
+  {
+    id: '444102',
+    name: { first: 'Evanilson', last: 'de Barros', display: 'Evanilson' },
+    position: 'Forward',
+    country: { isoCode: 'BR' },
+    dates: { birth: '1999-10-06' },
+  },
+  {
+    id: '551483',
+    name: { first: 'Adam', last: 'Smith', display: 'Adam Smith' },
+    position: 'Defender',
+    country: { isoCode: 'GB-ENG' },
+  },
+  {
+    id: '463981',
+    name: { first: 'Marcos', last: 'Senesi', display: 'Marcos Senesi' },
+    position: 'Defender',
+    country: { isoCode: 'AR' },
+  },
+  {
+    id: '221466',
+    name: { first: 'Illia', last: 'Zabarnyi', display: 'Illia Zabarnyi' },
+    position: 'Defender',
+    country: { isoCode: 'UA' },
+  },
+  {
+    id: '494521',
+    name: { first: 'Adrien', last: 'Truffert', display: 'Adrien Truffert' },
+    position: 'Defender',
+    country: { isoCode: 'FR' },
+  },
+  {
+    id: '503139',
+    name: { first: 'Ryan', last: 'Christie', display: 'Ryan Christie' },
+    position: 'Midfielder',
+    country: { isoCode: 'GB-SCT' },
+  },
+  {
+    id: '499604',
+    name: { first: 'Justin', last: 'Kluivert', display: 'Justin Kluivert' },
+    position: 'Forward',
+    country: { isoCode: 'NL' },
+  },
+  {
+    id: '201658',
+    name: { first: 'David', last: 'Brooks', display: 'David Brooks' },
+    position: 'Midfielder',
+    country: { isoCode: 'GB-WLS' },
+  },
+  {
+    id: '489888',
+    name: { first: 'Dango', last: 'Ouattara', display: 'Dango Ouattara' },
+    position: 'Forward',
+    country: { isoCode: 'BF' },
+  },
+  {
+    id: '496208',
+    name: { first: 'Antoine', last: 'Semenyo', display: 'Antoine Semenyo' },
+    position: 'Forward',
+    country: { isoCode: 'GH' },
+  },
+  {
+    id: '560262',
+    name: { first: 'Tyler', last: 'Adams', display: 'Tyler Adams' },
+    position: 'Midfielder',
+    country: { isoCode: 'US' },
+  },
+  // Man Utd players
+  {
+    id: '465247',
+    name: { first: 'Senne', last: 'Lammens', display: 'Senne Lammens' },
+    position: 'Goalkeeper',
+    country: { isoCode: 'BE' },
+  },
+  {
+    id: '216051',
+    name: { first: 'José Diogo', last: 'Dalot Teixeira', display: 'Diogo Dalot' },
+    position: 'Defender',
+    country: { isoCode: 'PT' },
+  },
+  {
+    id: '550864',
+    name: { first: 'Matthijs', last: 'de Ligt', display: 'Matthijs de Ligt' },
+    position: 'Defender',
+    country: { isoCode: 'NL' },
+  },
+  {
+    id: '95658',
+    name: { first: 'Harry', last: 'Maguire', display: 'Harry Maguire' },
+    position: 'Defender',
+    country: { isoCode: 'GB-ENG' },
+  },
+  {
+    id: '106760',
+    name: { first: 'Tyrell', last: 'Malacia', display: 'Tyrell Malacia' },
+    position: 'Defender',
+    country: { isoCode: 'NL' },
+  },
+  {
+    id: '61256',
+    name: { first: 'Casemiro', last: 'de Casas', display: 'Casemiro' },
+    position: 'Midfielder',
+    country: { isoCode: 'BR' },
+  },
+  {
+    id: '516895',
+    name: { first: 'Kobbie', last: 'Mainoo', display: 'Kobbie Mainoo' },
+    position: 'Midfielder',
+    country: { isoCode: 'GB-ENG' },
+  },
+  {
+    id: '493250',
+    name: { first: 'Mason', last: 'Mount', display: 'Mason Mount' },
+    position: 'Midfielder',
+    country: { isoCode: 'GB-ENG' },
+  },
+  {
+    id: '141746',
+    name: { first: 'Bruno Miguel', last: 'Borges Fernandes', display: 'Bruno Fernandes' },
+    position: 'Midfielder',
+    country: { isoCode: 'PT' },
+  },
+  {
+    id: '430871',
+    name: { first: 'Amad', last: 'Diallo', display: 'Amad Diallo' },
+    position: 'Forward',
+    country: { isoCode: 'CI' },
+  },
+  {
+    id: '446008',
+    name: { first: 'Rasmus', last: 'Hojlund', display: 'Rasmus Hojlund' },
+    position: 'Forward',
+    country: { isoCode: 'DK' },
+  },
+  {
+    id: '485711',
+    name: { first: 'Marcus', last: 'Rashford', display: 'Marcus Rashford' },
+    position: 'Forward',
+    country: { isoCode: 'GB-ENG' },
+  },
+]

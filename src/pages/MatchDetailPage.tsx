@@ -169,6 +169,11 @@ export function MatchDetailPage() {
                   <span className="text-[11px] font-bold text-emerald-500 uppercase tracking-wide">
                     Live
                   </span>
+                  {match.minute != null && (
+                    <span className="text-[11px] font-bold text-emerald-500/80 tabular-nums">
+                      {match.minute}&apos;
+                    </span>
+                  )}
                 </div>
               )}
             </div>

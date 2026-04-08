@@ -1,6 +1,7 @@
 const PROXY_MAP: Record<string, string> = {
   '/uefa-api': 'https://match.uefa.com',
   '/ligue1-api': 'https://ma-api.ligue1.fr',
+  '/pl-api': 'https://sdp-prem-prod.premier-league-prod.pulselive.com',
 }
 
 const originalFetch = globalThis.fetch
