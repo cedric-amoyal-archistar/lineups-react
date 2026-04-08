@@ -57,22 +57,19 @@ function RightColumn({ match }: { match: Match }) {
         <span className="text-[13px] font-bold text-foreground">FT</span>
         <span className="text-xs text-muted-foreground">{dateLabel}</span>
         {!today && (
-          <a
-            href={buildYouTubeSearchUrl(match)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
             aria-label="Search highlights on YouTube"
             className="mt-1 flex items-center gap-1 rounded-md bg-muted px-2 py-1 text-[10px] font-medium
               text-muted-foreground hover:bg-muted/80 hover:text-foreground transition-colors"
             onClick={(e) => {
-              e.preventDefault()
               e.stopPropagation()
               window.open(buildYouTubeSearchUrl(match), '_blank', 'noopener,noreferrer')
             }}
           >
             <Play className="h-2.5 w-2.5" />
             Highlights
-          </a>
+          </button>
         )}
       </div>
     )

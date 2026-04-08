@@ -253,9 +253,8 @@ export function MatchListPage() {
         <img
           src={provider.logoUrl}
           alt={provider.name}
-          className="h-12 w-12 shrink-0 object-contain"
+          className="h-14 w-14 shrink-0 object-contain"
         />
-        <p className="text-sm font-semibold text-foreground shrink-0">{provider.name}</p>
         <input
           type="text"
           placeholder="Filter by team..."

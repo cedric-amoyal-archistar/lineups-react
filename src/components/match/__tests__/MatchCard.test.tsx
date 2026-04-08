@@ -440,7 +440,8 @@ describe('MatchCard — highlights link', () => {
     expect(screen.getByLabelText('Search highlights on YouTube')).toBeInTheDocument()
   })
 
-  it('highlights link points to YouTube search URL with team names and competition', () => {
+  it('highlights button opens YouTube search URL with team names and competition', () => {
+    const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null)
     renderCard(
       makeMatch({
         status: 'FINISHED',
@@ -448,12 +449,15 @@ describe('MatchCard — highlights link', () => {
         score: { total: { home: 2, away: 1 }, regular: { home: 2, away: 1 } },
       }),
     )
-    const link = screen.getByLabelText('Search highlights on YouTube')
-    const href = link.getAttribute('href') ?? ''
-    expect(href).toContain('youtube.com/results')
-    expect(href).toContain('Real%20Madrid')
-    expect(href).toContain('FC%20Barcelona')
-    expect(href).toContain('highlights')
+    const btn = screen.getByLabelText('Search highlights on YouTube')
+    btn.click()
+    expect(openSpy).toHaveBeenCalledOnce()
+    const url = openSpy.mock.calls[0][0] as string
+    expect(url).toContain('youtube.com/results')
+    expect(url).toContain('Real%20Madrid')
+    expect(url).toContain('FC%20Barcelona')
+    expect(url).toContain('highlights')
+    openSpy.mockRestore()
   })
 
   it('does not show highlights for today finished match', () => {
