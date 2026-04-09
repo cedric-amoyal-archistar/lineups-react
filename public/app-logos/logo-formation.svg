@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" fill="none">
+  <!-- Shield/badge outline -->
+  <path d="M250 28 L440 90 L440 280 Q440 390 250 472 Q60 390 60 280 L60 90 Z"
+        fill="#1a8d48" stroke="#0f5a2e" stroke-width="8"/>
+
+  <!-- Inner shield subtle border -->
+  <path d="M250 52 L418 106 L418 278 Q418 374 250 448 Q82 374 82 278 L82 106 Z"
+        fill="none" stroke="#ffffff" stroke-width="3" opacity="0.3"/>
+
+  <!-- Formation dots: 4-3-3 pattern -->
+  <!-- GK (1) -->
+  <circle cx="250" cy="395" r="20" fill="#ffffff"/>
+
+  <!-- Defenders (4) -->
+  <circle cx="138" cy="330" r="18" fill="#ffffff" opacity="0.95"/>
+  <circle cx="201" cy="318" r="18" fill="#ffffff" opacity="0.95"/>
+  <circle cx="299" cy="318" r="18" fill="#ffffff" opacity="0.95"/>
+  <circle cx="362" cy="330" r="18" fill="#ffffff" opacity="0.95"/>
+
+  <!-- Midfielders (3) -->
+  <circle cx="178" cy="240" r="18" fill="#ffffff" opacity="0.95"/>
+  <circle cx="250" cy="232" r="18" fill="#ffffff" opacity="0.95"/>
+  <circle cx="322" cy="240" r="18" fill="#ffffff" opacity="0.95"/>
+
+  <!-- Forwards (3) -->
+  <circle cx="168" cy="155" r="18" fill="#ffffff" opacity="0.95"/>
+  <circle cx="250" cy="144" r="18" fill="#ffffff" opacity="0.95"/>
+  <circle cx="332" cy="155" r="18" fill="#ffffff" opacity="0.95"/>
+
+  <!-- Connection lines between players (subtle) -->
+  <!-- GK to defenders -->
+  <line x1="250" y1="375" x2="138" y2="348" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="250" y1="375" x2="201" y2="336" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="250" y1="375" x2="299" y2="336" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="250" y1="375" x2="362" y2="348" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+
+  <!-- Defenders to midfielders -->
+  <line x1="138" y1="312" x2="178" y2="258" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="201" y1="300" x2="178" y2="258" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="201" y1="300" x2="250" y2="250" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="299" y1="300" x2="250" y2="250" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="299" y1="300" x2="322" y2="258" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="362" y1="312" x2="322" y2="258" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+
+  <!-- Midfielders to forwards -->
+  <line x1="178" y1="222" x2="168" y2="173" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="178" y1="222" x2="250" y2="162" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="250" y1="214" x2="250" y2="162" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="322" y1="222" x2="250" y2="162" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+  <line x1="322" y1="222" x2="332" y2="173" stroke="#ffffff" stroke-width="2.5" opacity="0.35"/>
+</svg>

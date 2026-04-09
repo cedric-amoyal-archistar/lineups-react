@@ -338,7 +338,7 @@ function mapTeamLineup(side: Ligue1MatchSide): TeamLineup {
 export const ligue1Provider: CompetitionProvider = {
   id: 'ligue1',
   name: 'Ligue 1',
-  logoUrl: '/logos/ligue1.png',
+  logoUrl: '/competitions-logos/ligue1.png',
   proxyPath: PROXY,
   paginationMode: 'gameweek',
 

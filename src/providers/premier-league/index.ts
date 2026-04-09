@@ -393,7 +393,7 @@ function mapLineups(
 export const premierLeagueProvider: CompetitionProvider = {
   id: 'premier-league',
   name: 'Premier League',
-  logoUrl: '/logos/premier-league.svg',
+  logoUrl: '/competitions-logos/premier-league.svg',
   proxyPath: PROXY,
   paginationMode: 'gameweek',
 

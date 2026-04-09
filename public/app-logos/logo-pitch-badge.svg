@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" fill="none">
+  <!-- Outer badge ring -->
+  <path d="M250 22 L458 88 L458 290 Q458 408 250 478 Q42 408 42 290 L42 88 Z"
+        fill="#0f5a2e"/>
+
+  <!-- Inner badge fill -->
+  <path d="M250 42 L438 100 L438 288 Q438 396 250 458 Q62 396 62 288 L62 100 Z"
+        fill="#1a8d48"/>
+
+  <!-- Badge top strip accent -->
+  <path d="M250 42 L438 100 L438 158 L62 158 L62 100 Z"
+        fill="#167a40"/>
+
+  <!-- Pitch outline inside badge -->
+  <rect x="88" y="168" width="324" height="270" rx="6" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.9"/>
+
+  <!-- Center line (horizontal across pitch) -->
+  <line x1="88" y1="303" x2="412" y2="303" stroke="#ffffff" stroke-width="10" opacity="0.9"/>
+
+  <!-- Center circle -->
+  <circle cx="250" cy="303" r="52" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.9"/>
+
+  <!-- Center dot -->
+  <circle cx="250" cy="303" r="8" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Top penalty area (smaller, top of pitch) -->
+  <rect x="163" y="168" width="174" height="72" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.9"/>
+
+  <!-- Bottom penalty area -->
+  <rect x="163" y="366" width="174" height="72" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.9"/>
+
+  <!-- Top goal area -->
+  <rect x="200" y="168" width="100" height="36" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.9"/>
+
+  <!-- Bottom goal area -->
+  <rect x="200" y="402" width="100" height="36" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.9"/>
+
+  <!-- Badge label area (top strip) -->
+  <!-- Decorative lines in top strip -->
+  <line x1="62" y1="130" x2="438" y2="130" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+
+  <!-- Stars (top strip decoration) — 3 stars centered at y=112 -->
+  <!-- Left star, centered at (178, 112) -->
+  <polygon points="178,94 182,106 195,106 185,114 189,126 178,118 167,126 171,114 161,106 174,106"
+           fill="#ffffff" opacity="0.75"/>
+  <!-- Center star (slightly larger), centered at (250, 112) -->
+  <polygon points="250,92 255,108 272,108 259,118 264,134 250,124 236,134 241,118 228,108 245,108"
+           fill="#ffffff" opacity="0.9"/>
+  <!-- Right star, centered at (322, 112) -->
+  <polygon points="322,94 326,106 339,106 329,114 333,126 322,118 311,126 315,114 305,106 318,106"
+           fill="#ffffff" opacity="0.75"/>
+</svg>

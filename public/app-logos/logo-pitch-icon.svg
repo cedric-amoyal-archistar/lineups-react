@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" fill="none">
+  <!-- Rounded square background -->
+  <rect width="500" height="500" rx="80" fill="#1a8d48"/>
+
+  <!-- Pitch outline -->
+  <rect x="60" y="40" width="380" height="420" rx="12" stroke="#ffffff" stroke-width="14" fill="none"/>
+
+  <!-- Center line (horizontal) -->
+  <line x1="60" y1="250" x2="440" y2="250" stroke="#ffffff" stroke-width="14"/>
+
+  <!-- Center circle -->
+  <circle cx="250" cy="250" r="72" stroke="#ffffff" stroke-width="14" fill="none"/>
+
+  <!-- Center dot -->
+  <circle cx="250" cy="250" r="12" fill="#ffffff"/>
+
+  <!-- Top penalty area -->
+  <rect x="145" y="40" width="210" height="105" stroke="#ffffff" stroke-width="14" fill="none"/>
+
+  <!-- Bottom penalty area -->
+  <rect x="145" y="355" width="210" height="105" stroke="#ffffff" stroke-width="14" fill="none"/>
+
+  <!-- Top goal area -->
+  <rect x="190" y="40" width="120" height="52" stroke="#ffffff" stroke-width="14" fill="none"/>
+
+  <!-- Bottom goal area -->
+  <rect x="190" y="408" width="120" height="52" stroke="#ffffff" stroke-width="14" fill="none"/>
+
+  <!-- Top penalty spot -->
+  <circle cx="250" cy="115" r="8" fill="#ffffff"/>
+
+  <!-- Bottom penalty spot -->
+  <circle cx="250" cy="385" r="8" fill="#ffffff"/>
+
+  <!-- 4-3-3 formation dots (top half = attacking) -->
+  <!-- Goalkeeper -->
+  <circle cx="250" cy="82" r="14" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Back 4 -->
+  <circle cx="120" cy="165" r="14" fill="#ffffff" opacity="0.9"/>
+  <circle cx="193" cy="155" r="14" fill="#ffffff" opacity="0.9"/>
+  <circle cx="307" cy="155" r="14" fill="#ffffff" opacity="0.9"/>
+  <circle cx="380" cy="165" r="14" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Midfield 3 -->
+  <circle cx="160" cy="225" r="14" fill="#ffffff" opacity="0.9"/>
+  <circle cx="250" cy="218" r="14" fill="#ffffff" opacity="0.9"/>
+  <circle cx="340" cy="225" r="14" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Front 3 -->
+  <circle cx="155" cy="295" r="14" fill="#ffffff" opacity="0.9"/>
+  <circle cx="250" cy="285" r="14" fill="#ffffff" opacity="0.9"/>
+  <circle cx="345" cy="295" r="14" fill="#ffffff" opacity="0.9"/>
+</svg>

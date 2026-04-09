@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" fill="none">
+  <!-- Rounded square background (tactical board) -->
+  <rect width="500" height="500" rx="72" fill="#0d1f14"/>
+
+  <!-- Subtle grid texture (tactical board feel) -->
+  <line x1="0" y1="166" x2="500" y2="166" stroke="#1a8d48" stroke-width="1" opacity="0.2"/>
+  <line x1="0" y1="333" x2="500" y2="333" stroke="#1a8d48" stroke-width="1" opacity="0.2"/>
+  <line x1="166" y1="0" x2="166" y2="500" stroke="#1a8d48" stroke-width="1" opacity="0.2"/>
+  <line x1="333" y1="0" x2="333" y2="500" stroke="#1a8d48" stroke-width="1" opacity="0.2"/>
+
+  <!-- Half-pitch view (top-down, lower half shown) -->
+  <!-- Pitch surface -->
+  <rect x="54" y="80" width="392" height="360" rx="8" fill="#1a8d48" opacity="0.85"/>
+
+  <!-- Pitch outline -->
+  <rect x="54" y="80" width="392" height="360" rx="8" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.7"/>
+
+  <!-- Halfway line at top -->
+  <line x1="54" y1="80" x2="446" y2="80" stroke="#ffffff" stroke-width="10" opacity="0.7"/>
+
+  <!-- Center circle arc (bottom half of circle showing at top) -->
+  <path d="M 182 80 A 70 70 0 0 0 318 80" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.7"/>
+
+  <!-- Center spot -->
+  <circle cx="250" cy="80" r="8" fill="#ffffff" opacity="0.7"/>
+
+  <!-- Penalty area -->
+  <rect x="148" y="310" width="204" height="130" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.7"/>
+
+  <!-- Goal area (6-yard box) -->
+  <rect x="192" y="380" width="116" height="60" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.7"/>
+
+  <!-- Penalty spot -->
+  <circle cx="250" cy="358" r="8" fill="#ffffff" opacity="0.7"/>
+
+  <!-- Penalty arc -->
+  <path d="M 196 310 A 62 62 0 0 1 304 310" stroke="#ffffff" stroke-width="10" fill="none" opacity="0.7"/>
+
+  <!-- Formation markers: 4-3-3 attacking half -->
+  <!-- Forward line (3) — top of pitch view -->
+  <circle cx="148" cy="155" r="20" fill="#ffffff"/>
+  <circle cx="250" cy="140" r="20" fill="#ffffff"/>
+  <circle cx="352" cy="155" r="20" fill="#ffffff"/>
+
+  <!-- Midfield line (3) -->
+  <circle cx="170" cy="248" r="18" fill="#ffffff" opacity="0.9"/>
+  <circle cx="250" cy="238" r="18" fill="#ffffff" opacity="0.9"/>
+  <circle cx="330" cy="248" r="18" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Movement arrows from midfield to attack -->
+  <!-- Left midfielder arrow up-left -->
+  <path d="M 158 232 Q 148 195 148 177" stroke="#ffffff" stroke-width="4" fill="none" opacity="0.5" stroke-dasharray="8 6" marker-end="url(#arr)"/>
+  <!-- Center midfielder arrow up -->
+  <path d="M 250 220 Q 250 190 250 162" stroke="#ffffff" stroke-width="4" fill="none" opacity="0.5" stroke-dasharray="8 6"/>
+  <!-- Right midfielder arrow up-right -->
+  <path d="M 342 232 Q 352 195 352 177" stroke="#ffffff" stroke-width="4" fill="none" opacity="0.5" stroke-dasharray="8 6"/>
+
+  <!-- Small player silhouette dots (defenders) -->
+  <circle cx="118" cy="335" r="15" fill="#ffffff" opacity="0.7"/>
+  <circle cx="196" cy="318" r="15" fill="#ffffff" opacity="0.7"/>
+  <circle cx="304" cy="318" r="15" fill="#ffffff" opacity="0.7"/>
+  <circle cx="382" cy="335" r="15" fill="#ffffff" opacity="0.7"/>
+</svg>

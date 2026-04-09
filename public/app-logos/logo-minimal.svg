@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" fill="none">
+  <!-- Clean background -->
+  <rect width="500" height="500" rx="80" fill="#1a8d48"/>
+
+  <!--
+    Stylized "L" letterform with pitch lines integrated.
+    The vertical stroke of the L has a center circle cutout,
+    and the horizontal base extends with a goal-line feel.
+  -->
+
+  <!-- Vertical stroke of "L" -->
+  <rect x="128" y="82" width="88" height="336" rx="12" fill="#ffffff"/>
+
+  <!-- Horizontal base stroke of "L" -->
+  <rect x="128" y="330" width="268" height="88" rx="12" fill="#ffffff"/>
+
+  <!-- Carved center circle into the vertical stroke (green cutout) -->
+  <circle cx="172" cy="250" r="36" fill="#1a8d48"/>
+
+  <!-- Center circle ring (white) -->
+  <circle cx="172" cy="250" r="36" stroke="#ffffff" stroke-width="10" fill="none"/>
+
+  <!-- Center dot (restores the dot inside the circle) -->
+  <circle cx="172" cy="250" r="9" fill="#ffffff"/>
+
+  <!-- Horizontal center line through the vertical stroke (pitch halway) -->
+  <rect x="128" y="244" width="88" height="12" fill="#1a8d48"/>
+
+  <!-- Restore center circle over the cutout line -->
+  <circle cx="172" cy="250" r="36" stroke="#ffffff" stroke-width="10" fill="none"/>
+  <circle cx="172" cy="250" r="9" fill="#ffffff"/>
+
+  <!-- Goal line detail at top of vertical stroke -->
+  <rect x="128" y="82" width="88" height="12" rx="6" fill="#1a8d48" opacity="0.5"/>
+
+  <!-- Subtle pitch lines on the horizontal base -->
+  <!-- Vertical divider line on base (like a goal post line) -->
+  <rect x="282" y="330" width="10" height="88" fill="#1a8d48" opacity="0.35"/>
+
+  <!-- Top of base — penalty area hint lines -->
+  <rect x="128" y="330" width="268" height="10" rx="0" fill="#1a8d48" opacity="0.25"/>
+
+  <!-- Small formation dots on the L (at small sizes reads as abstract dots) -->
+  <!-- Three dots on upper vertical stroke suggesting a formation column -->
+  <circle cx="172" cy="118" r="10" fill="#1a8d48" opacity="0.6"/>
+  <circle cx="172" cy="155" r="10" fill="#1a8d48" opacity="0.5"/>
+
+  <!-- Two dots on horizontal base -->
+  <circle cx="340" cy="374" r="10" fill="#1a8d48" opacity="0.5"/>
+  <circle cx="375" cy="374" r="10" fill="#1a8d48" opacity="0.5"/>
+</svg>
