@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, cleanup } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { MatchCard } from '../MatchCard'
 import type { Match } from '@/types/match'
@@ -511,5 +511,67 @@ describe('MatchCard — link', () => {
     const links = screen.getAllByRole('link')
     const matchLink = links.find((l) => l.getAttribute('href')?.includes('/match/abc-123'))
     expect(matchLink).toBeInTheDocument()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Red card indicators
+// ---------------------------------------------------------------------------
+
+describe('MatchCard — red cards', () => {
+  function makeRedCard(teamId: string, minute = 55) {
+    return {
+      id: `rc-${teamId}-${minute}`,
+      phase: 'FIRST_HALF',
+      teamId,
+      time: { minute, second: 0 },
+      player: { clubShirtName: 'Player', internationalName: 'Player Name', countryCode: 'ESP' },
+    }
+  }
+
+  it('does not render red card indicator when no playerEvents', () => {
+    renderCard(makeMatch({ playerEvents: undefined }))
+    expect(screen.queryByLabelText(/red card/i)).not.toBeInTheDocument()
+  })
+
+  it('does not render red card indicator when redCards is empty', () => {
+    renderCard(makeMatch({ playerEvents: { redCards: [] } }))
+    expect(screen.queryByLabelText(/red card/i)).not.toBeInTheDocument()
+  })
+
+  it('renders red card indicator for home team', () => {
+    renderCard(makeMatch({ playerEvents: { redCards: [makeRedCard('h1')] } }))
+    expect(screen.getByLabelText('1 red card')).toBeInTheDocument()
+  })
+
+  it('renders red card indicator for away team', () => {
+    renderCard(makeMatch({ playerEvents: { redCards: [makeRedCard('a1')] } }))
+    expect(screen.getByLabelText('1 red card')).toBeInTheDocument()
+  })
+
+  it('shows multiple red card icons side by side', () => {
+    renderCard(
+      makeMatch({ playerEvents: { redCards: [makeRedCard('h1', 30), makeRedCard('h1', 70)] } }),
+    )
+    const container = screen.getByLabelText('2 red cards')
+    expect(container).toBeInTheDocument()
+    const cards = container.querySelectorAll('span.bg-red-600')
+    expect(cards).toHaveLength(2)
+  })
+
+  it('renders red cards for both teams', () => {
+    renderCard(makeMatch({ playerEvents: { redCards: [makeRedCard('h1'), makeRedCard('a1')] } }))
+    expect(screen.getAllByLabelText(/red card/i)).toHaveLength(2)
+  })
+
+  it('uses correct singular/plural aria-label', () => {
+    renderCard(makeMatch({ playerEvents: { redCards: [makeRedCard('h1')] } }))
+    expect(screen.getByLabelText('1 red card')).toBeInTheDocument()
+    cleanup()
+
+    renderCard(
+      makeMatch({ playerEvents: { redCards: [makeRedCard('h1', 30), makeRedCard('h1', 70)] } }),
+    )
+    expect(screen.getByLabelText('2 red cards')).toBeInTheDocument()
   })
 })

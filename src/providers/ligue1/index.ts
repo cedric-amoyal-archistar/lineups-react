@@ -68,6 +68,27 @@ function mapTeam(clubIdentity: Ligue1ClubIdentity, clubId: string): TeamInMatch 
   }
 }
 
+function buildListRedCards(raw: Ligue1Match): Match['playerEvents'] | undefined {
+  const events: MatchEvent[] = []
+  const sides = [
+    { bookings: raw.home.bookings, teamId: raw.home.clubId },
+    { bookings: raw.away.bookings, teamId: raw.away.clubId },
+  ]
+  for (const { bookings, teamId } of sides) {
+    for (const booking of bookings ?? []) {
+      if (booking.type.toLowerCase() !== 'red') continue
+      events.push({
+        id: `${booking.timestamp}`,
+        phase: 'REGULAR',
+        teamId,
+        time: { minute: parseMinute(booking.time), second: 0 },
+        player: { clubShirtName: '', internationalName: '', countryCode: '' },
+      })
+    }
+  }
+  return events.length > 0 ? { redCards: events } : undefined
+}
+
 function mapListMatch(raw: Ligue1Match): Match {
   const status = mapStatus(raw.period, raw.isLive)
   const hasScore = status !== 'UPCOMING'
@@ -99,6 +120,7 @@ function mapListMatch(raw: Ligue1Match): Match {
       dateTo: raw.date,
     },
     competition: { id: '1', metaData: { name: 'Ligue 1' } },
+    playerEvents: buildListRedCards(raw),
   }
 }
 
@@ -207,7 +229,7 @@ function mapRedCards(home: Ligue1MatchSide, away: Ligue1MatchSide): MatchEvent[]
 
   const mapSide = (side: Ligue1MatchSide, teamId: string) => {
     for (const booking of side.bookings) {
-      if (booking.type !== 'red') continue
+      if (booking.type.toLowerCase() !== 'red') continue
       const { name, countryCode } = findPlayerName(side, booking.playerId)
       events.push({
         id: `${booking.timestamp}`,

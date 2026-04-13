@@ -79,6 +79,32 @@ function mapGoalType(goalType: string): string {
   return 'REGULAR'
 }
 
+function buildRedCardsFromCount(home: PLTeamRef, away: PLTeamRef): MatchEvent[] | undefined {
+  const homeCount = home.redCards ?? 0
+  const awayCount = away.redCards ?? 0
+  if (homeCount === 0 && awayCount === 0) return undefined
+  const events: MatchEvent[] = []
+  for (let i = 0; i < homeCount; i++) {
+    events.push({
+      id: `home-rc-${i}`,
+      phase: 'REGULAR',
+      teamId: home.id,
+      time: { minute: 0, second: 0 },
+      player: { clubShirtName: '', internationalName: '', countryCode: '' },
+    })
+  }
+  for (let i = 0; i < awayCount; i++) {
+    events.push({
+      id: `away-rc-${i}`,
+      phase: 'REGULAR',
+      teamId: away.id,
+      time: { minute: 0, second: 0 },
+      player: { clubShirtName: '', internationalName: '', countryCode: '' },
+    })
+  }
+  return events
+}
+
 function mapMatchSummary(raw: PLMatchSummary, gameweek: number): Match {
   const status = mapStatus(raw.period)
   const date = raw.kickoff.slice(0, 10)
@@ -118,6 +144,10 @@ function mapMatchSummary(raw: PLMatchSummary, gameweek: number): Match {
       translations: { officialName: { EN: stadium } },
       city: { translations: { name: { EN: city } } },
     },
+    playerEvents: (() => {
+      const redCards = buildRedCardsFromCount(raw.homeTeam, raw.awayTeam)
+      return redCards ? { redCards } : undefined
+    })(),
   }
 }
 

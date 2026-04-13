@@ -45,7 +45,9 @@
       "WebFetch(domain:www.premierleague.com)",
       "WebFetch(domain:resources.premierleague.com)",
       "WebFetch(domain:resources.premierleague.pulselive.com)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git diff:*)",
+      "Bash(grep:*)"
     ]
   }
 }

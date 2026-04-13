@@ -12,6 +12,10 @@ import {
   getWinnerSide,
 } from '@/lib/formatters'
 
+function getRedCardCount(match: Match, teamId: string): number {
+  return match.playerEvents?.redCards?.filter((rc) => rc.teamId === teamId).length ?? 0
+}
+
 function buildYouTubeSearchUrl(match: Match): string {
   const home = match.homeTeam.internationalName
   const away = match.awayTeam.internationalName
@@ -115,6 +119,8 @@ export const MatchCard = memo(function MatchCard({ match }: MatchCardProps) {
   const qs = searchParams.toString()
   const matchUrl = `/competition/${providerId}/match/${match.id}${qs ? `?${qs}` : ''}`
   const winner = hasScore ? getWinnerSide(match) : null
+  const homeRedCards = getRedCardCount(match, match.homeTeam.id)
+  const awayRedCards = getRedCardCount(match, match.awayTeam.id)
 
   return (
     <div className="flex flex-col gap-1.5">
@@ -146,6 +152,16 @@ export const MatchCard = memo(function MatchCard({ match }: MatchCardProps) {
                 <span className="truncate text-[13px] font-medium">
                   {match.homeTeam.internationalName}
                 </span>
+                {homeRedCards > 0 && (
+                  <span
+                    className="flex items-center gap-0.5 shrink-0"
+                    aria-label={`${homeRedCards} red card${homeRedCards > 1 ? 's' : ''}`}
+                  >
+                    {Array.from({ length: homeRedCards }, (_, i) => (
+                      <span key={i} className="inline-block w-2.5 h-3.5 rounded-[2px] bg-red-600" />
+                    ))}
+                  </span>
+                )}
                 {hasScore && (
                   <span className="ml-auto shrink-0 text-[17px] font-bold tabular-nums">
                     {match.score?.total.home}
@@ -171,6 +187,16 @@ export const MatchCard = memo(function MatchCard({ match }: MatchCardProps) {
                 <span className="truncate text-[13px] font-medium">
                   {match.awayTeam.internationalName}
                 </span>
+                {awayRedCards > 0 && (
+                  <span
+                    className="flex items-center gap-0.5 shrink-0"
+                    aria-label={`${awayRedCards} red card${awayRedCards > 1 ? 's' : ''}`}
+                  >
+                    {Array.from({ length: awayRedCards }, (_, i) => (
+                      <span key={i} className="inline-block w-2.5 h-3.5 rounded-[2px] bg-red-600" />
+                    ))}
+                  </span>
+                )}
                 {hasScore && (
                   <span className="ml-auto shrink-0 text-[17px] font-bold tabular-nums">
                     {match.score?.total.away}

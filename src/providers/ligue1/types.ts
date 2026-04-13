@@ -12,6 +12,13 @@ export interface Ligue1ClubIdentity {
   }
 }
 
+export interface Ligue1MatchListSide {
+  clubId: string
+  score: number
+  clubIdentity: Ligue1ClubIdentity
+  bookings?: Ligue1Booking[]
+}
+
 export interface Ligue1Match {
   matchId: string
   championshipId: number
@@ -20,16 +27,8 @@ export interface Ligue1Match {
   period: string
   matchTime: string
   isLive: boolean
-  home: {
-    clubId: string
-    score: number
-    clubIdentity: Ligue1ClubIdentity
-  }
-  away: {
-    clubId: string
-    score: number
-    clubIdentity: Ligue1ClubIdentity
-  }
+  home: Ligue1MatchListSide
+  away: Ligue1MatchListSide
 }
 
 export interface Ligue1MatchDetail {
