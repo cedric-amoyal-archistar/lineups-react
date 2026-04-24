@@ -28,6 +28,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/pl-api/, ''),
       },
+      '/fifa-api': {
+        target: 'https://api.fifa.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/fifa-api/, ''),
+      },
     },
   },
 })

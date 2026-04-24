@@ -37,6 +37,8 @@ export function TeamHalf({ lineup, displayMode, inverted = false, matchDate }: T
             matchDate={matchDate}
             height={player.player.height}
             imageUrl={player.player.imageUrl}
+            clubName={player.player.clubName}
+            clubLogoUrl={player.player.clubLogoUrl}
             shirtColor={lineup.shirtColor}
             displayMode={displayMode}
           />

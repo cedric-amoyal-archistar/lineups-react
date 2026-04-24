@@ -2,6 +2,7 @@ import type { CompetitionProvider } from './types'
 import { uefaUclProvider, uefaUelProvider, uefaUeclProvider } from './uefa'
 import { ligue1Provider } from './ligue1'
 import { premierLeagueProvider } from './premier-league'
+import { fifaWorldCupProvider } from './fifa'
 
 const providers: Record<string, CompetitionProvider> = {
   [uefaUclProvider.id]: uefaUclProvider,
@@ -9,6 +10,7 @@ const providers: Record<string, CompetitionProvider> = {
   [uefaUeclProvider.id]: uefaUeclProvider,
   [ligue1Provider.id]: ligue1Provider,
   [premierLeagueProvider.id]: premierLeagueProvider,
+  [fifaWorldCupProvider.id]: fifaWorldCupProvider,
 }
 
 export function getProvider(id: string): CompetitionProvider {

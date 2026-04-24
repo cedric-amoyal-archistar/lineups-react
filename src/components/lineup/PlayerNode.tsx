@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { getFlagUrl } from '@/hooks/useCountryFlag'
 import type { DisplayMode } from '@/types/common'
 
@@ -24,6 +24,8 @@ interface PlayerNodeProps {
   matchDate?: string
   height?: string | number
   imageUrl?: string
+  clubName?: string
+  clubLogoUrl?: string
   shirtColor?: string
   displayMode?: DisplayMode
 }
@@ -38,6 +40,8 @@ export const PlayerNode = memo(function PlayerNode({
   matchDate,
   height,
   imageUrl,
+  clubName,
+  clubLogoUrl,
   shirtColor,
   displayMode,
 }: PlayerNodeProps) {
@@ -45,15 +49,59 @@ export const PlayerNode = memo(function PlayerNode({
   const flagUrl = countryCode ? getFlagUrl(countryCode) : ''
   const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(fullName)}`
 
+  const [clubLogoErrorUrl, setClubLogoErrorUrl] = useState<string | undefined>(undefined)
+  const clubLogoError = clubLogoErrorUrl === clubLogoUrl
+
   const isFlag = displayMode === 'countryCode'
   const isPhoto = displayMode === 'imageUrl'
-  const showLight = isFlag || isPhoto
+  const isClubLogo = displayMode === 'clubLogo'
+  const showLight = isFlag || isPhoto || isClubLogo
 
   const bgColor = showLight ? '#e5e7eb' : (shirtColor ?? '#1a2a4a')
   const needsDarkText = !showLight && isLightColor(bgColor)
-  const borderClass = showLight ? 'border-white/80' : 'border-white/60'
+  const borderClass = isClubLogo
+    ? 'border-gray-300'
+    : showLight
+      ? 'border-white/80'
+      : 'border-white/60'
+
+  const clubLogoTitle = isClubLogo ? (clubName ? `${fullName} — ${clubName}` : fullName) : undefined
+
+  function getClubInitials(name: string): string {
+    const parts = name.trim().split(/\s+/)
+    if (parts.length > 1) {
+      return (parts[0][0] + parts[1][0]).toUpperCase()
+    }
+    return name.substring(0, 2).toUpperCase()
+  }
 
   function renderInner() {
+    if (isClubLogo) {
+      if (clubLogoUrl && !clubLogoError) {
+        return (
+          <img
+            src={clubLogoUrl}
+            alt={`${clubName || 'Club'} logo`}
+            className="h-full w-full object-contain p-0.5"
+            onError={() => setClubLogoErrorUrl(clubLogoUrl)}
+          />
+        )
+      }
+      if (clubName) {
+        return (
+          <div className="flex items-center justify-center h-full w-full">
+            <span className="text-[10px] font-bold tracking-wide text-gray-700">
+              {getClubInitials(clubName)}
+            </span>
+          </div>
+        )
+      }
+      if (countryCode && flagUrl) {
+        return <img src={flagUrl} alt={countryCode} className="h-full w-full object-cover" />
+      }
+      return <span>{jerseyNumber}</span>
+    }
+
     if (isFlag && flagUrl) {
       return <img src={flagUrl} alt={countryCode} className="h-full w-full object-cover" />
     }
@@ -83,6 +131,7 @@ export const PlayerNode = memo(function PlayerNode({
       className="flex flex-col items-center gap-0.5 w-14 cursor-pointer no-underline group/player"
     >
       <div
+        title={clubLogoTitle}
         className={`flex items-center justify-center rounded-full border-2 font-bold h-9 w-9 text-xs overflow-hidden shadow-sm transition-transform group-hover/player:scale-110 ${needsDarkText ? 'text-gray-900' : 'text-white'} ${borderClass}`}
         style={{ backgroundColor: bgColor }}
       >

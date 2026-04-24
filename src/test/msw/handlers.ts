@@ -16,6 +16,9 @@ import {
   plEventsFixture,
   plTeamsFixture,
   plSquadFixture,
+  FIFA_MATCH_ID,
+  fifaCalendarFixture,
+  fifaMatchDetailFixture,
 } from './fixtures'
 
 /**
@@ -94,5 +97,17 @@ export const handlers = [
 
   http.get('/pl-api/api/v2/competitions/8/seasons/:season/teams/:teamId/squad', () => {
     return HttpResponse.json(plSquadFixture)
+  }),
+
+  // ---- FIFA World Cup ----
+  http.get('/fifa-api/api/v3/calendar/matches', () => {
+    return HttpResponse.json(fifaCalendarFixture)
+  }),
+
+  http.get('/fifa-api/api/v3/live/football/:matchId', ({ params }) => {
+    if (params['matchId'] !== FIFA_MATCH_ID) {
+      return HttpResponse.json({ error: 'Match not found' }, { status: 404 })
+    }
+    return HttpResponse.json(fifaMatchDetailFixture)
   }),
 ]

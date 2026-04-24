@@ -321,6 +321,8 @@ function mapTeamLineup(
   teamData: PLTeamLineup,
   events?: PLEventsSide,
   countryMap?: Map<string, string>,
+  clubName?: string,
+  clubLogoUrl?: string,
 ): TeamLineup {
   const playerMap = new Map<string, PLPlayer>()
   for (const p of teamData.players) {
@@ -355,6 +357,8 @@ function mapTeamLineup(
           fieldPosition,
           detailedFieldPosition: fieldPosition,
           imageUrl: `${PLAYER_IMG_BASE}/${player.id}.png`,
+          clubName,
+          clubLogoUrl,
           translations: {
             shortName: { EN: shirtName },
             name: { EN: displayName },
@@ -383,6 +387,8 @@ function mapTeamLineup(
           fieldPosition,
           detailedFieldPosition: fieldPosition,
           imageUrl: `${PLAYER_IMG_BASE}/${player.id}.png`,
+          clubName,
+          clubLogoUrl,
           translations: {
             shortName: { EN: shirtName },
             name: { EN: displayName },
@@ -411,12 +417,30 @@ function mapLineups(
   data: PLLineupsResponse,
   events?: PLEventsResponse,
   countryMap?: Map<string, string>,
+  homeTeamRef?: PLTeamRef,
+  awayTeamRef?: PLTeamRef,
 ): MatchLineups {
+  const homeClubName = homeTeamRef?.name
+  const awayClubName = awayTeamRef?.name
+  const homeClubLogoUrl = homeTeamRef ? `${BADGE_BASE}/50/t${data.home_team.teamId}.png` : undefined
+  const awayClubLogoUrl = awayTeamRef ? `${BADGE_BASE}/50/t${data.away_team.teamId}.png` : undefined
   return {
     matchId,
     lineupStatus: 'TACTICAL',
-    homeTeam: mapTeamLineup(data.home_team, events?.homeTeam, countryMap),
-    awayTeam: mapTeamLineup(data.away_team, events?.awayTeam, countryMap),
+    homeTeam: mapTeamLineup(
+      data.home_team,
+      events?.homeTeam,
+      countryMap,
+      homeClubName,
+      homeClubLogoUrl,
+    ),
+    awayTeam: mapTeamLineup(
+      data.away_team,
+      events?.awayTeam,
+      countryMap,
+      awayClubName,
+      awayClubLogoUrl,
+    ),
   }
 }
 
@@ -425,6 +449,7 @@ export const premierLeagueProvider: CompetitionProvider = {
   name: 'Premier League',
   logoUrl: '/competitions-logos/premier-league.svg',
   proxyPath: PROXY,
+  competitionType: 'club-league',
   paginationMode: 'gameweek',
 
   async fetchMatches(seasonYear, _offset, _limit, signal) {
@@ -480,7 +505,14 @@ export const premierLeagueProvider: CompetitionProvider = {
     ])
     const countryMap = buildPlayerCountryMap([...homeSquad, ...awaySquad])
 
-    return mapLineups(String(matchId), lineups, events, countryMap)
+    return mapLineups(
+      String(matchId),
+      lineups,
+      events,
+      countryMap,
+      detail.homeTeam,
+      detail.awayTeam,
+    )
   },
 
   async getTotalGameweeks(seasonYear, signal) {

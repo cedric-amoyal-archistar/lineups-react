@@ -18,13 +18,21 @@ interface LayoutContextValue {
 const LayoutContext = createContext<LayoutContextValue | null>(null)
 
 export function LayoutProvider({ children }: { children: ReactNode }) {
-  const [displayMode, setDisplayMode] = useState<DisplayMode>('countryCode')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>(
+    () => getProvider(defaultProviderId).defaultDisplayMode ?? 'countryCode',
+  )
   const [showDisplaySelect, setShowDisplaySelect] = useState(false)
   const [selectedProvider, setSelectedProvider] = useState(defaultProviderId)
   const [selectedSeason, setSelectedSeason] = useState(() =>
     String(getProvider(defaultProviderId).getDefaultSeason()),
   )
   const [showSeasonSelect, setShowSeasonSelect] = useState(false)
+
+  function handleSetSelectedProvider(id: string) {
+    const nextProvider = getProvider(id)
+    setDisplayMode(nextProvider.defaultDisplayMode ?? 'countryCode')
+    setSelectedProvider(id)
+  }
 
   return (
     <LayoutContext.Provider
@@ -38,7 +46,7 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
         showSeasonSelect,
         setShowSeasonSelect,
         selectedProvider,
-        setSelectedProvider,
+        setSelectedProvider: handleSetSelectedProvider,
       }}
     >
       {children}

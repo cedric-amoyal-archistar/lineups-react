@@ -12,6 +12,7 @@ import type {
   PLTeamsResponse,
   PLSquadPlayer,
 } from '@/providers/premier-league/types'
+import type { FifaCalendarResponse, FifaMatch, FifaPlayer } from '@/providers/fifa/types'
 
 export const MATCH_ID = 2035839
 export const MATCH_ID_STR = String(MATCH_ID)
@@ -1010,3 +1011,367 @@ export const plSquadFixture: PLSquadPlayer[] = [
     country: { isoCode: 'GB-ENG' },
   },
 ]
+
+// ---------------------------------------------------------------------------
+// FIFA World Cup API fixtures
+// ---------------------------------------------------------------------------
+
+export const FIFA_MATCH_ID = '400128145'
+export const FIFA_SEASON = 2022
+
+// Helper to build FIFA locale description
+const fifaLocale = (description: string) => [{ Locale: 'en-GB', Description: description }]
+
+// Helper to build a FIFA player
+function fifaPlayer(
+  id: string,
+  name: string,
+  shirtNumber: number,
+  position: 0 | 1 | 2 | 3 | 4,
+  lineupX: number | null,
+  lineupY: number | null,
+): FifaPlayer {
+  return {
+    IdPlayer: id,
+    PlayerName: fifaLocale(name),
+    ShirtNumber: shirtNumber,
+    Position: position,
+    LineupX: lineupX,
+    LineupY: lineupY,
+    IdTeam: 'team-arg',
+    IdCountry: 'ARG',
+  }
+}
+
+function fifaPlayerAway(
+  id: string,
+  name: string,
+  shirtNumber: number,
+  position: 0 | 1 | 2 | 3 | 4,
+  lineupX: number | null,
+  lineupY: number | null,
+): FifaPlayer {
+  return {
+    IdPlayer: id,
+    PlayerName: fifaLocale(name),
+    ShirtNumber: shirtNumber,
+    Position: position,
+    LineupX: lineupX,
+    LineupY: lineupY,
+    IdTeam: 'team-fra',
+    IdCountry: 'FRA',
+  }
+}
+
+// Home team (Argentina) players — 11 starters + 3 bench
+// Coord scale: X 2-18, Y 1-12. GK at y=1 (bottom), forwards at y=12 (top).
+const argPlayers: FifaPlayer[] = [
+  // GK — x=10 (center), y=1 (bottom row)
+  fifaPlayer('arg-gk-1', 'Emiliano Martinez', 23, 0, 10, 1),
+  // DEF line y=3
+  fifaPlayer('arg-def-2', 'Nahuel Molina', 26, 1, 5, 3),
+  fifaPlayer('arg-def-3', 'Cristian Romero', 13, 1, 8, 3),
+  fifaPlayer('arg-def-4', 'Nicolas Otamendi', 19, 1, 12, 3),
+  fifaPlayer('arg-def-5', 'Nicolas Tagliafico', 3, 1, 15, 3),
+  // MID line y=6
+  fifaPlayer('arg-mid-6', 'Alexis Mac Allister', 20, 2, 7, 6),
+  fifaPlayer('arg-mid-7', 'Enzo Fernandez', 24, 2, 10, 6),
+  fifaPlayer('arg-mid-8', 'Rodrigo De Paul', 7, 2, 13, 6),
+  // FWD line y=10
+  // HIT player: Lionel Messi — present in test squad map under 'ARG' with clubName 'Inter Miami'
+  fifaPlayer('arg-fwd-9', 'Lionel Messi', 10, 3, 6, 10),
+  // PARTIAL player: Julian Alvarez — in squad map (clubName resolved) but club NOT in clubs map
+  fifaPlayer('arg-fwd-10', 'Julian Alvarez', 9, 3, 10, 10),
+  // MISS player: Angel Di Maria — NOT in squad map
+  fifaPlayer('arg-fwd-11', 'Angel Di Maria', 11, 3, 14, 10),
+  // Bench — null coords, Position 4
+  fifaPlayer('arg-sub-12', 'Geronimo Rulli', 1, 4, null, null),
+  fifaPlayer('arg-sub-13', 'Leandro Paredes', 5, 4, null, null),
+  fifaPlayer('arg-sub-14', 'Lautaro Martinez', 22, 4, null, null),
+]
+
+// Away team (France) players — 11 starters + 3 bench
+const fraPlayers: FifaPlayer[] = [
+  fifaPlayerAway('fra-gk-1', 'Hugo Lloris', 1, 0, 10, 1),
+  fifaPlayerAway('fra-def-2', 'Benjamin Pavard', 5, 1, 5, 3),
+  fifaPlayerAway('fra-def-3', 'Raphael Varane', 4, 1, 8, 3),
+  fifaPlayerAway('fra-def-4', 'Dayot Upamecano', 15, 1, 12, 3),
+  fifaPlayerAway('fra-def-5', 'Theo Hernandez', 22, 1, 15, 3),
+  fifaPlayerAway('fra-mid-6', 'Aurelien Tchouameni', 8, 2, 7, 6),
+  fifaPlayerAway('fra-mid-7', 'Adrien Rabiot', 14, 2, 10, 6),
+  fifaPlayerAway('fra-mid-8', 'Antoine Griezmann', 7, 2, 13, 6),
+  fifaPlayerAway('fra-fwd-9', 'Ousmane Dembele', 11, 3, 6, 10),
+  fifaPlayerAway('fra-fwd-10', 'Olivier Giroud', 9, 3, 10, 10),
+  fifaPlayerAway('fra-fwd-11', 'Kylian Mbappe', 10, 3, 14, 10),
+  fifaPlayerAway('fra-sub-12', 'Steve Mandanda', 16, 4, null, null),
+  fifaPlayerAway('fra-sub-13', 'Marcus Thuram', 20, 4, null, null),
+  fifaPlayerAway('fra-sub-14', 'Kingsley Coman', 21, 4, null, null),
+]
+
+// The full match detail fixture — the 2022 WC Final (Argentina vs France)
+export const fifaMatchDetailFixture: FifaMatch = {
+  IdMatch: FIFA_MATCH_ID,
+  IdCompetition: '17',
+  IdSeason: '255711',
+  IdStage: 'stage-final',
+  IdGroup: null,
+  StageName: fifaLocale('Final'),
+  MatchDay: '1',
+  MatchNumber: 64,
+  Date: '2022-12-18T15:00:00Z',
+  LocalDate: '2022-12-18T19:00:00+04:00',
+  MatchTime: '90+3',
+  MatchStatus: 0, // FINISHED
+  HomeTeamScore: 3,
+  AwayTeamScore: 3,
+  HomeTeamPenaltyScore: 4,
+  AwayTeamPenaltyScore: 2,
+  Winner: 'team-arg',
+  ResultType: 2,
+  Stadium: {
+    Name: fifaLocale('Lusail Stadium'),
+    CityName: fifaLocale('Lusail'),
+    CountryName: fifaLocale('Qatar'),
+  },
+  HomeTeam: {
+    IdTeam: 'team-arg',
+    IdCountry: 'ARG',
+    TeamName: fifaLocale('Argentina'),
+    Tactics: '433',
+    Score: 3,
+    PictureUrl: 'https://img.fifa.com/teams/argentina.png',
+    Abbreviation: 'ARG',
+    Players: argPlayers,
+    Goals: [
+      {
+        Type: 1,
+        IdPlayer: 'arg-fwd-9',
+        Minute: "23'",
+        IdAssistPlayer: null,
+        Period: 3,
+        IdGoal: 'g1',
+        IdTeam: 'team-arg',
+      },
+      {
+        Type: 2,
+        IdPlayer: 'arg-fwd-9',
+        Minute: "108'",
+        IdAssistPlayer: null,
+        Period: 5,
+        IdGoal: 'g2',
+        IdTeam: 'team-arg',
+      },
+      // Penalty shootout goals — Period=11, Type=2
+      {
+        Type: 2,
+        IdPlayer: 'arg-fwd-9',
+        Minute: "1'",
+        IdAssistPlayer: null,
+        Period: 11,
+        IdGoal: 'pen-arg-1',
+        IdTeam: 'team-arg',
+      },
+      {
+        Type: 2,
+        IdPlayer: 'arg-mid-6',
+        Minute: "2'",
+        IdAssistPlayer: null,
+        Period: 11,
+        IdGoal: 'pen-arg-2',
+        IdTeam: 'team-arg',
+      },
+      {
+        Type: 2,
+        IdPlayer: 'arg-mid-7',
+        Minute: "3'",
+        IdAssistPlayer: null,
+        Period: 11,
+        IdGoal: 'pen-arg-3',
+        IdTeam: 'team-arg',
+      },
+      {
+        Type: 2,
+        IdPlayer: 'arg-def-2',
+        Minute: "4'",
+        IdAssistPlayer: null,
+        Period: 11,
+        IdGoal: 'pen-arg-4',
+        IdTeam: 'team-arg',
+      },
+    ],
+    Bookings: [
+      {
+        Card: 1, // yellow
+        Period: 3,
+        IdEvent: 'bk-1',
+        EventNumber: 1,
+        IdPlayer: 'arg-mid-8',
+        IdCoach: null,
+        IdTeam: 'team-arg',
+        Minute: "37'",
+        Reason: null,
+      },
+    ],
+    Substitutions: [
+      {
+        IdEvent: 'sub-1',
+        Period: 3,
+        Reason: 0,
+        SubstitutePosition: 1,
+        IdPlayerOff: 'arg-mid-8',
+        IdPlayerOn: 'arg-sub-13',
+        PlayerOffName: fifaLocale('Rodrigo De Paul'),
+        PlayerOnName: fifaLocale('Leandro Paredes'),
+        Minute: "77'",
+        IdTeam: 'team-arg',
+      },
+    ],
+  },
+  AwayTeam: {
+    IdTeam: 'team-fra',
+    IdCountry: 'FRA',
+    TeamName: fifaLocale('France'),
+    Tactics: '4231',
+    Score: 3,
+    PictureUrl: 'https://img.fifa.com/teams/france.png',
+    Abbreviation: 'FRA',
+    Players: fraPlayers,
+    Goals: [
+      {
+        Type: 2,
+        IdPlayer: 'fra-fwd-11',
+        Minute: "80'",
+        IdAssistPlayer: null,
+        Period: 3,
+        IdGoal: 'g3',
+        IdTeam: 'team-fra',
+      },
+      {
+        Type: 2,
+        IdPlayer: 'fra-fwd-11',
+        Minute: "118'",
+        IdAssistPlayer: null,
+        Period: 5,
+        IdGoal: 'g4',
+        IdTeam: 'team-fra',
+      },
+      {
+        Type: 2,
+        IdPlayer: 'fra-fwd-11',
+        Minute: "1'",
+        IdAssistPlayer: null,
+        Period: 11,
+        IdGoal: 'pen-fra-1',
+        IdTeam: 'team-fra',
+      },
+      {
+        Type: 2,
+        IdPlayer: 'fra-mid-6',
+        Minute: "2'",
+        IdAssistPlayer: null,
+        Period: 11,
+        IdGoal: 'pen-fra-2',
+        IdTeam: 'team-fra',
+      },
+    ],
+    Bookings: [],
+    Substitutions: [],
+  },
+}
+
+// Calendar response with 3 matches across different gameweeks:
+// - Group stage MD1 (gw 1)
+// - Round of 16 (gw 4)
+// - Final (gw 8)
+export const fifaCalendarFixture: FifaCalendarResponse = {
+  Results: [
+    {
+      IdMatch: 'fifa-match-group-md1',
+      IdCompetition: '17',
+      IdSeason: '255711',
+      IdStage: 'stage-group',
+      IdGroup: 'group-a',
+      StageName: fifaLocale('Group A'),
+      MatchDay: '1',
+      MatchNumber: 1,
+      Date: '2022-11-20T17:00:00Z',
+      LocalDate: '2022-11-20T20:00:00+03:00',
+      MatchTime: '90',
+      MatchStatus: 0,
+      HomeTeamScore: 0,
+      AwayTeamScore: 0,
+      Winner: null,
+      ResultType: 0,
+      HomeTeam: {
+        IdTeam: 'team-qat',
+        IdCountry: 'QAT',
+        TeamName: fifaLocale('Qatar'),
+        Tactics: '541',
+        Score: 0,
+        Players: [],
+        Goals: [],
+        Bookings: [],
+        Substitutions: [],
+        Abbreviation: 'QAT',
+      },
+      AwayTeam: {
+        IdTeam: 'team-ecu',
+        IdCountry: 'ECU',
+        TeamName: fifaLocale('Ecuador'),
+        Tactics: '442',
+        Score: 2,
+        Players: [],
+        Goals: [],
+        Bookings: [],
+        Substitutions: [],
+        Abbreviation: 'ECU',
+      },
+    },
+    {
+      IdMatch: 'fifa-match-r16',
+      IdCompetition: '17',
+      IdSeason: '255711',
+      IdStage: 'stage-r16',
+      IdGroup: null,
+      StageName: fifaLocale('Round of 16'),
+      MatchDay: '1',
+      MatchNumber: 49,
+      Date: '2022-12-03T15:00:00Z',
+      LocalDate: '2022-12-03T18:00:00+03:00',
+      MatchTime: '90',
+      MatchStatus: 0,
+      HomeTeamScore: 2,
+      AwayTeamScore: 1,
+      Winner: null,
+      ResultType: 0,
+      HomeTeam: {
+        IdTeam: 'team-ned',
+        IdCountry: 'NED',
+        TeamName: fifaLocale('Netherlands'),
+        Tactics: '433',
+        Score: 2,
+        Players: [],
+        Goals: [],
+        Bookings: [],
+        Substitutions: [],
+        Abbreviation: 'NED',
+      },
+      AwayTeam: {
+        IdTeam: 'team-usa',
+        IdCountry: 'USA',
+        TeamName: fifaLocale('United States'),
+        Tactics: '4231',
+        Score: 1,
+        Players: [],
+        Goals: [],
+        Bookings: [],
+        Substitutions: [],
+        Abbreviation: 'USA',
+      },
+    },
+    {
+      ...fifaMatchDetailFixture,
+    },
+  ],
+  ContinuationToken: null,
+}

@@ -1,4 +1,14 @@
 import type { Match, MatchLineups } from '@/types/match'
+import type { DisplayMode } from '@/types/common'
+
+/**
+ * Broad category of competition. Drives per-type UI decisions (e.g. square club
+ * crest vs rectangular national-team flag in MatchCard).
+ *
+ * Invariant: `paginationMode: 'gameweek'` is only valid for `'club-league'`.
+ * Club cups and national-team tournaments always use `'offset'` pagination.
+ */
+export type CompetitionType = 'club-league' | 'club-cup' | 'national'
 
 export interface CompetitionProvider {
   /** Unique key, used in registry and query cache keys */
@@ -10,8 +20,14 @@ export interface CompetitionProvider {
   /** Base path for the Vite dev proxy (e.g. '/uefa-api') */
   proxyPath: string
 
-  /** How this competition paginates match lists */
+  /** Broad category (see `CompetitionType`) */
+  competitionType: CompetitionType
+
+  /** How this competition paginates match lists — `gameweek` only for `club-league` */
   paginationMode: 'offset' | 'gameweek'
+
+  /** Override the default display mode for this competition */
+  defaultDisplayMode?: DisplayMode
 
   /** Offset-based fetching (UEFA-style) */
   fetchMatches(

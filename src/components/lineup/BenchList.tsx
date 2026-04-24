@@ -28,20 +28,28 @@ export function BenchList({ lineup, displayMode, matchDate }: BenchListProps) {
       </div>
       <div className="grid grid-cols-6 gap-x-1 gap-y-3">
         {lineup.bench.map((player) => (
-          <PlayerNode
-            key={player.player.id}
-            jerseyNumber={player.jerseyNumber}
-            name={getPlayerName(player.player)}
-            fullName={player.player.internationalName}
-            countryCode={player.player.countryCode}
-            age={player.player.age}
-            birthDate={player.player.birthDate}
-            matchDate={matchDate}
-            height={player.player.height}
-            imageUrl={player.player.imageUrl}
-            shirtColor={lineup.shirtColor}
-            displayMode={displayMode}
-          />
+          <div key={player.player.id} className="flex flex-col items-center">
+            <PlayerNode
+              jerseyNumber={player.jerseyNumber}
+              name={getPlayerName(player.player)}
+              fullName={player.player.internationalName}
+              countryCode={player.player.countryCode}
+              age={player.player.age}
+              birthDate={player.player.birthDate}
+              matchDate={matchDate}
+              height={player.player.height}
+              imageUrl={player.player.imageUrl}
+              clubName={player.player.clubName}
+              clubLogoUrl={player.player.clubLogoUrl}
+              shirtColor={lineup.shirtColor}
+              displayMode={displayMode}
+            />
+            {displayMode === 'clubLogo' && player.player.clubName && (
+              <span className="text-[9px] text-gray-400 text-center leading-tight mt-0.5 w-full truncate">
+                {player.player.clubName}
+              </span>
+            )}
+          </div>
         ))}
       </div>
     </div>

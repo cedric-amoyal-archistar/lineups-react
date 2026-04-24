@@ -47,7 +47,13 @@
       "WebFetch(domain:resources.premierleague.pulselive.com)",
       "Bash(curl:*)",
       "Bash(git diff:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "WebFetch(domain:www.api-football.com)",
+      "WebFetch(domain:www.sportmonks.com)",
+      "WebFetch(domain:api.fifa.com)",
+      "Bash(python3 *)",
+      "Bash(node *)",
+      "Bash(git stash *)"
     ]
   }
 }

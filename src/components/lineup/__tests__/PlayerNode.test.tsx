@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { PlayerNode } from '../PlayerNode'
 
 // ---------------------------------------------------------------------------
@@ -124,6 +124,70 @@ describe('PlayerNode — display modes', () => {
 
   it('renders jersey number for unknown/undefined display mode', () => {
     render(<PlayerNode {...defaultProps} displayMode={undefined} />)
+    expect(screen.getByText('7')).toBeInTheDocument()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Club logo display mode
+// ---------------------------------------------------------------------------
+
+describe('PlayerNode — clubLogo display mode', () => {
+  const clubLogoProps = {
+    ...defaultProps,
+    displayMode: 'clubLogo' as const,
+    clubLogoUrl: 'https://logos.example.com/psg.png',
+    clubName: 'Paris Saint-Germain',
+  }
+
+  it('renders club logo img when clubLogoUrl is provided', () => {
+    render(<PlayerNode {...clubLogoProps} />)
+    const logoImg = screen.getByAltText('Paris Saint-Germain logo')
+    expect(logoImg).toBeInTheDocument()
+    expect(logoImg).toHaveAttribute('src', 'https://logos.example.com/psg.png')
+  })
+
+  it('uses light grey background for clubLogo mode', () => {
+    const { container } = render(<PlayerNode {...clubLogoProps} />)
+    const circle = container.querySelector('a > div') as HTMLElement
+    expect(circle.style.backgroundColor).toBe('rgb(229, 231, 235)') // #e5e7eb
+  })
+
+  it('falls back to club initials when logo image errors', () => {
+    render(<PlayerNode {...clubLogoProps} />)
+    const logoImg = screen.getByAltText('Paris Saint-Germain logo')
+    fireEvent.error(logoImg)
+    expect(screen.getByText('PS')).toBeInTheDocument()
+  })
+
+  it('uses first two letters of single-word club name for initials', () => {
+    render(<PlayerNode {...clubLogoProps} clubLogoUrl={undefined} clubName="Chelsea" />)
+    expect(screen.getByText('CH')).toBeInTheDocument()
+  })
+
+  it('falls back to flag when neither clubLogoUrl nor clubName is present', () => {
+    render(
+      <PlayerNode
+        {...clubLogoProps}
+        clubLogoUrl={undefined}
+        clubName={undefined}
+        countryCode="BRA"
+      />,
+    )
+    const flagImg = screen.getByAltText('BRA')
+    expect(flagImg).toBeInTheDocument()
+    expect(flagImg).toHaveAttribute('src', expect.stringContaining('br.png'))
+  })
+
+  it('renders jersey number when clubLogoUrl, clubName, and countryCode are all absent', () => {
+    render(
+      <PlayerNode
+        {...clubLogoProps}
+        clubLogoUrl={undefined}
+        clubName={undefined}
+        countryCode={undefined}
+      />,
+    )
     expect(screen.getByText('7')).toBeInTheDocument()
   })
 })

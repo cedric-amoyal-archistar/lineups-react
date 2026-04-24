@@ -294,6 +294,8 @@ function mapTeamLineup(side: Ligue1MatchSide): TeamLineup {
           detailedFieldPosition: fieldPosition,
           imageUrl: pi.assets?.facePictures?.medium ?? '',
           birthDate: pi.birthDate,
+          clubName: side.clubIdentity.name,
+          clubLogoUrl: side.clubIdentity.assets?.logo?.small ?? '',
           translations: {
             shortName: { EN: lastName },
             name: { EN: fullName },
@@ -314,6 +316,8 @@ function mapTeamLineup(side: Ligue1MatchSide): TeamLineup {
           detailedFieldPosition: fieldPosition,
           imageUrl: pi.assets?.facePictures?.medium ?? '',
           birthDate: pi.birthDate,
+          clubName: side.clubIdentity.name,
+          clubLogoUrl: side.clubIdentity.assets?.logo?.small ?? '',
           translations: {
             shortName: { EN: lastName },
             name: { EN: fullName },
@@ -362,6 +366,7 @@ export const ligue1Provider: CompetitionProvider = {
   name: 'Ligue 1',
   logoUrl: '/competitions-logos/ligue1.png',
   proxyPath: PROXY,
+  competitionType: 'club-league',
   paginationMode: 'gameweek',
 
   async fetchMatches(seasonYear, _offset, _limit, signal) {

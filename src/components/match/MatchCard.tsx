@@ -2,6 +2,8 @@ import { memo } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { Play } from 'lucide-react'
 import type { Match } from '@/types/match'
+import { getProvider } from '@/providers/registry'
+import { cn } from '@/lib/utils'
 import {
   formatTime,
   formatRound,
@@ -121,6 +123,11 @@ export const MatchCard = memo(function MatchCard({ match }: MatchCardProps) {
   const winner = hasScore ? getWinnerSide(match) : null
   const homeRedCards = getRedCardCount(match, match.homeTeam.id)
   const awayRedCards = getRedCardCount(match, match.awayTeam.id)
+  const competitionType = providerId ? getProvider(providerId).competitionType : 'club-cup'
+  const logoClass = cn(
+    'shrink-0',
+    competitionType === 'national' ? 'h-4 w-6 rounded-sm' : 'h-7 w-7',
+  )
 
   return (
     <div className="flex flex-col gap-1.5">
@@ -147,7 +154,7 @@ export const MatchCard = memo(function MatchCard({ match }: MatchCardProps) {
                 <img
                   src={match.homeTeam.logoUrl}
                   alt={match.homeTeam.internationalName}
-                  className="h-7 w-7 shrink-0"
+                  className={logoClass}
                 />
                 <span className="truncate text-[13px] font-medium">
                   {match.homeTeam.internationalName}
@@ -182,7 +189,7 @@ export const MatchCard = memo(function MatchCard({ match }: MatchCardProps) {
                 <img
                   src={match.awayTeam.logoUrl}
                   alt={match.awayTeam.internationalName}
-                  className="h-7 w-7 shrink-0"
+                  className={logoClass}
                 />
                 <span className="truncate text-[13px] font-medium">
                   {match.awayTeam.internationalName}

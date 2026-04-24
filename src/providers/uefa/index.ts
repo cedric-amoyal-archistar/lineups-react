@@ -41,6 +41,7 @@ function createUefaProvider(config: UefaProviderConfig): CompetitionProvider {
     name: config.name,
     logoUrl: config.logoUrl,
     proxyPath: '/uefa-api',
+    competitionType: 'club-cup',
     paginationMode: 'offset',
 
     async fetchMatches(seasonYear, offset, limit, signal) {
@@ -67,7 +68,30 @@ function createUefaProvider(config: UefaProviderConfig): CompetitionProvider {
     },
 
     async fetchMatchLineups(matchId, signal) {
-      return fetchJson<MatchLineups>(`/uefa-api/v5/matches/${matchId}/lineups`, signal)
+      const lineups = await fetchJson<MatchLineups>(
+        `/uefa-api/v5/matches/${matchId}/lineups`,
+        signal,
+      )
+      const enrichTeam = (teamLineup: MatchLineups['homeTeam']) => {
+        const clubName = teamLineup.team.internationalName
+        const clubLogoUrl = teamLineup.team.logoUrl
+        return {
+          ...teamLineup,
+          field: teamLineup.field.map((p) => ({
+            ...p,
+            player: { ...p.player, clubName, clubLogoUrl },
+          })),
+          bench: teamLineup.bench.map((p) => ({
+            ...p,
+            player: { ...p.player, clubName, clubLogoUrl },
+          })),
+        }
+      }
+      return {
+        ...lineups,
+        homeTeam: enrichTeam(lineups.homeTeam),
+        awayTeam: enrichTeam(lineups.awayTeam),
+      }
     },
 
     getExternalUrl(match) {

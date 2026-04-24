@@ -157,6 +157,8 @@ export interface PlayerInfo {
   age?: string | number
   birthDate?: string
   height?: string | number
+  clubName?: string
+  clubLogoUrl?: string
   translations: {
     shortName: Record<string, string>
     name: Record<string, string>

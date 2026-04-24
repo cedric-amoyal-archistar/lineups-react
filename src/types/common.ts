@@ -1,1 +1,7 @@
-export type DisplayMode = 'countryCode' | 'clubJerseyNumber' | 'age' | 'height' | 'imageUrl'
+export type DisplayMode =
+  | 'countryCode'
+  | 'clubJerseyNumber'
+  | 'age'
+  | 'height'
+  | 'imageUrl'
+  | 'clubLogo'

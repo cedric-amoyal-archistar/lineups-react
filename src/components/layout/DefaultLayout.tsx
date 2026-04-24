@@ -9,6 +9,7 @@ import { getProvider } from '@/providers/registry'
 
 const displayOptions: { label: string; value: DisplayMode }[] = [
   { label: 'Flag', value: 'countryCode' },
+  { label: 'Club', value: 'clubLogo' },
   { label: 'Number', value: 'clubJerseyNumber' },
   { label: 'Age', value: 'age' },
   { label: 'Height', value: 'height' },
