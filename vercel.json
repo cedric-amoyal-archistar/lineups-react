@@ -27,7 +27,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://flagcdn.com https://*.uefa.com data:; font-src 'self'; connect-src 'self' https://match.uefa.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://flagcdn.com https://*.uefa.com https://upload.wikimedia.org https://api.fifa.com https://resources.premierleague.com https://s3.eu-west-1.amazonaws.com https://s3.eu-west-3.amazonaws.com data:; font-src 'self'; connect-src 'self' https://match.uefa.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
         },
         {
           "key": "X-Content-Type-Options",
