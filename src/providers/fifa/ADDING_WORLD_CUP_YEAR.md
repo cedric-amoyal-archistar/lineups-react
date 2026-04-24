@@ -102,6 +102,78 @@ Write the output to `src/providers/fifa/squads/YYYY.json`.
 
 ---
 
+## Step 4a — (Optional) Curate shootout sequences in `shootouts.json`
+
+FIFA's public API only reports **scored** shootout kicks (Goals with `Period=11`); missed kicks are absent, and even the order of scored kicks is only loosely conveyed via `Minute` values. For an accurate shootout display with all kicks in the correct order, add an entry to `src/providers/fifa/shootouts.json` with the full ordered `kicks[]` sequence. When a match has this entry, the provider uses it as the **sole source of truth** for `penaltyScorers`.
+
+Shape:
+
+```json
+{
+  "<IdMatch>": {
+    "description": "2022 Final — Argentina 3-3 France (4-2 pens)",
+    "kicks": [
+      { "idTeam": "43946", "playerName": "Kylian Mbappe", "result": "SCORED" },
+      { "idTeam": "43922", "playerName": "Lionel Messi", "result": "SCORED" },
+      { "idTeam": "43946", "playerName": "Kingsley Coman", "result": "MISSED" },
+      { "idTeam": "43922", "playerName": "Paulo Dybala", "result": "SCORED" }
+    ]
+  }
+}
+```
+
+Field rules:
+
+- `IdMatch` (JSON key): FIFA match ID string.
+- `idTeam` (required): FIFA team ID — find it via the live endpoint's `HomeTeam.IdTeam` / `AwayTeam.IdTeam`.
+- `playerName` (required): unnormalized Latinized form (no diacritics — matches FIFA's player names). This string is what renders in the UI.
+- `idPlayer` (optional): FIFA player ID. When present, the provider resolves the player via the roster for richer data.
+- `result` (required): `"SCORED"` or `"MISSED"`.
+- Order the `kicks[]` array in **real shootout order** — team A's kick 1, team B's kick 1, team A's kick 2, … If a kick wasn't taken (team already won before their 5th), don't include it.
+
+### Shootout matches currently curated
+
+| Year | Match ID    | Description                               |
+| ---- | ----------- | ----------------------------------------- |
+| 2018 | `300331498` | R16 — Croatia 1-1 Denmark (3-2 pens)      |
+| 2018 | `300331504` | QF — Russia 2-2 Croatia (3-4 pens)        |
+| 2018 | `300331517` | R16 — Spain 1-1 Russia (3-4 pens)         |
+| 2018 | `300331542` | R16 — Colombia 1-1 England (3-4 pens)     |
+| 2022 | `400128132` | R16 — Japan 1-1 Croatia (1-3 pens)        |
+| 2022 | `400128137` | R16 — Morocco 0-0 Spain (3-0 pens)        |
+| 2022 | `400128139` | QF — Netherlands 2-2 Argentina (3-4 pens) |
+| 2022 | `400128141` | QF — Croatia 1-1 Brazil (4-2 pens)        |
+| 2022 | `400128145` | Final — Argentina 3-3 France (4-2 pens)   |
+
+To find shootout matches for a new WC year, filter the calendar response by non-zero `HomeTeamPenaltyScore` or `AwayTeamPenaltyScore`:
+
+```bash
+curl -s 'https://api.fifa.com/api/v3/calendar/matches?idCompetition=17&idSeason=<SEASON_ID>&language=en&count=200' \
+  | jq '.Results[] | select((.HomeTeamPenaltyScore // 0) > 0 or (.AwayTeamPenaltyScore // 0) > 0) | {IdMatch, stage: .StageName[0].Description, home: .Home.TeamName[0].Description, away: .Away.TeamName[0].Description, pens: "\(.HomeTeamPenaltyScore)-\(.AwayTeamPenaltyScore)"}'
+```
+
+### Authoritative source for kick sequences
+
+**Don't guess the sequence from memory.** Use the Wikipedia knockout-stage page for the tournament — it encodes each shootout's kicks chronologically with standardised icons:
+
+- `2018 FIFA World Cup knockout stage` → `https://en.wikipedia.org/wiki/2018_FIFA_World_Cup_knockout_stage`
+- `2022 FIFA World Cup knockout stage` → `https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_knockout_stage`
+- For future years: `https://en.wikipedia.org/wiki/YYYY_FIFA_World_Cup_knockout_stage`
+
+On each shootout, Wikipedia shows a two-column list under the `Penalties` header:
+
+- **Left column** (`<td class="fhgoal">`): home team kicks, chronological top→bottom
+- **Right column** (`<td class="fagoal">`): away team kicks, chronological top→bottom
+- Each entry has a player name anchor and one of two standardised icons:
+  - `Soccerball_shad_check.svg` (`title="Penalty scored"`) → `"result": "SCORED"`
+  - `Soccerball_shade_cross.svg` (`title="Penalty missed"`) → `"result": "MISSED"`
+
+To reconstruct the real alternating kick order, interleave the two columns: `home[0]`, `away[0]`, `home[1]`, `away[1]`, … UNLESS the away team kicked first (rare — e.g. France in the 2022 Final) in which case swap. Check the match article's "Penalty shoot-out" prose section when it's ambiguous.
+
+**Verification rule**: after interleaving, the SCORED count per team must match the `HomeTeamPenaltyScore` / `AwayTeamPenaltyScore` you got from FIFA. If not, you mis-parsed — redo.
+
+---
+
 ## Step 4 — Extend `clubs.json`
 
 `clubs.json` is shared across all tournament years.

@@ -1,0 +1,127 @@
+{
+  "300331498": {
+    "description": "2018 R16 — Croatia 1-1 Denmark (3-2 pens)",
+    "kicks": [
+      { "idTeam": "43941", "playerName": "Christian Eriksen", "result": "MISSED" },
+      { "idTeam": "43938", "playerName": "Milan Badelj", "result": "MISSED" },
+      { "idTeam": "43941", "playerName": "Simon Kjaer", "result": "SCORED" },
+      { "idTeam": "43938", "playerName": "Andrej Kramaric", "result": "SCORED" },
+      { "idTeam": "43941", "playerName": "Michael Krohn-Dehli", "result": "SCORED" },
+      { "idTeam": "43938", "playerName": "Luka Modric", "result": "SCORED" },
+      { "idTeam": "43941", "playerName": "Lasse Schone", "result": "MISSED" },
+      { "idTeam": "43938", "playerName": "Josip Pivaric", "result": "MISSED" },
+      { "idTeam": "43941", "playerName": "Nicolai Jorgensen", "result": "MISSED" },
+      { "idTeam": "43938", "playerName": "Ivan Rakitic", "result": "SCORED" }
+    ]
+  },
+  "300331504": {
+    "description": "2018 QF — Russia 2-2 Croatia (3-4 pens)",
+    "kicks": [
+      { "idTeam": "43965", "playerName": "Fyodor Smolov", "result": "MISSED" },
+      { "idTeam": "43938", "playerName": "Marcelo Brozovic", "result": "SCORED" },
+      { "idTeam": "43965", "playerName": "Alan Dzagoev", "result": "SCORED" },
+      { "idTeam": "43938", "playerName": "Mateo Kovacic", "result": "MISSED" },
+      { "idTeam": "43965", "playerName": "Mario Fernandes", "result": "MISSED" },
+      { "idTeam": "43938", "playerName": "Luka Modric", "result": "SCORED" },
+      { "idTeam": "43965", "playerName": "Sergei Ignashevich", "result": "SCORED" },
+      { "idTeam": "43938", "playerName": "Domagoj Vida", "result": "SCORED" },
+      { "idTeam": "43965", "playerName": "Daler Kuzyayev", "result": "SCORED" },
+      { "idTeam": "43938", "playerName": "Ivan Rakitic", "result": "SCORED" }
+    ]
+  },
+  "300331517": {
+    "description": "2018 R16 — Spain 1-1 Russia (3-4 pens)",
+    "kicks": [
+      { "idTeam": "43969", "playerName": "Andres Iniesta", "result": "SCORED" },
+      { "idTeam": "43965", "playerName": "Fyodor Smolov", "result": "SCORED" },
+      { "idTeam": "43969", "playerName": "Gerard Pique", "result": "SCORED" },
+      { "idTeam": "43965", "playerName": "Sergei Ignashevich", "result": "SCORED" },
+      { "idTeam": "43969", "playerName": "Koke", "result": "MISSED" },
+      { "idTeam": "43965", "playerName": "Aleksandr Golovin", "result": "SCORED" },
+      { "idTeam": "43969", "playerName": "Sergio Ramos", "result": "SCORED" },
+      { "idTeam": "43965", "playerName": "Denis Cheryshev", "result": "SCORED" },
+      { "idTeam": "43969", "playerName": "Iago Aspas", "result": "MISSED" }
+    ]
+  },
+  "300331542": {
+    "description": "2018 R16 — Colombia 1-1 England (3-4 pens)",
+    "kicks": [
+      { "idTeam": "43926", "playerName": "Radamel Falcao", "result": "SCORED" },
+      { "idTeam": "43942", "playerName": "Harry Kane", "result": "SCORED" },
+      { "idTeam": "43926", "playerName": "Juan Cuadrado", "result": "SCORED" },
+      { "idTeam": "43942", "playerName": "Marcus Rashford", "result": "SCORED" },
+      { "idTeam": "43926", "playerName": "Luis Muriel", "result": "SCORED" },
+      { "idTeam": "43942", "playerName": "Jordan Henderson", "result": "MISSED" },
+      { "idTeam": "43926", "playerName": "Mateus Uribe", "result": "MISSED" },
+      { "idTeam": "43942", "playerName": "Kieran Trippier", "result": "SCORED" },
+      { "idTeam": "43926", "playerName": "Carlos Bacca", "result": "MISSED" },
+      { "idTeam": "43942", "playerName": "Eric Dier", "result": "SCORED" }
+    ]
+  },
+  "400128132": {
+    "description": "2022 R16 — Japan 1-1 Croatia (1-3 pens)",
+    "kicks": [
+      { "idTeam": "43819", "playerName": "Takumi Minamino", "result": "MISSED" },
+      { "idTeam": "43938", "playerName": "Nikola Vlasic", "result": "SCORED" },
+      { "idTeam": "43819", "playerName": "Kaoru Mitoma", "result": "MISSED" },
+      { "idTeam": "43938", "playerName": "Marcelo Brozovic", "result": "SCORED" },
+      { "idTeam": "43819", "playerName": "Takuma Asano", "result": "SCORED" },
+      { "idTeam": "43938", "playerName": "Marko Livaja", "result": "MISSED" },
+      { "idTeam": "43819", "playerName": "Maya Yoshida", "result": "MISSED" },
+      { "idTeam": "43938", "playerName": "Mario Pasalic", "result": "SCORED" }
+    ]
+  },
+  "400128137": {
+    "description": "2022 R16 — Morocco 0-0 Spain (3-0 pens)",
+    "kicks": [
+      { "idTeam": "43872", "playerName": "Abdelhamid Sabiri", "result": "SCORED" },
+      { "idTeam": "43969", "playerName": "Pablo Sarabia", "result": "MISSED" },
+      { "idTeam": "43872", "playerName": "Hakim Ziyech", "result": "SCORED" },
+      { "idTeam": "43969", "playerName": "Carlos Soler", "result": "MISSED" },
+      { "idTeam": "43872", "playerName": "Badr Benoun", "result": "MISSED" },
+      { "idTeam": "43969", "playerName": "Sergio Busquets", "result": "MISSED" },
+      { "idTeam": "43872", "playerName": "Achraf Hakimi", "result": "SCORED" }
+    ]
+  },
+  "400128139": {
+    "description": "2022 QF — Netherlands 2-2 Argentina (3-4 pens)",
+    "kicks": [
+      { "idTeam": "43960", "playerName": "Virgil van Dijk", "result": "MISSED" },
+      { "idTeam": "43922", "playerName": "Lionel Messi", "result": "SCORED" },
+      { "idTeam": "43960", "playerName": "Steven Berghuis", "result": "MISSED" },
+      { "idTeam": "43922", "playerName": "Leandro Paredes", "result": "SCORED" },
+      { "idTeam": "43960", "playerName": "Teun Koopmeiners", "result": "SCORED" },
+      { "idTeam": "43922", "playerName": "Gonzalo Montiel", "result": "SCORED" },
+      { "idTeam": "43960", "playerName": "Wout Weghorst", "result": "SCORED" },
+      { "idTeam": "43922", "playerName": "Enzo Fernandez", "result": "MISSED" },
+      { "idTeam": "43960", "playerName": "Luuk de Jong", "result": "SCORED" },
+      { "idTeam": "43922", "playerName": "Lautaro Martinez", "result": "SCORED" }
+    ]
+  },
+  "400128141": {
+    "description": "2022 QF — Croatia 1-1 Brazil (4-2 pens)",
+    "kicks": [
+      { "idTeam": "43924", "playerName": "Rodrygo", "result": "MISSED" },
+      { "idTeam": "43938", "playerName": "Nikola Vlasic", "result": "SCORED" },
+      { "idTeam": "43924", "playerName": "Casemiro", "result": "SCORED" },
+      { "idTeam": "43938", "playerName": "Lovro Majer", "result": "SCORED" },
+      { "idTeam": "43924", "playerName": "Pedro", "result": "SCORED" },
+      { "idTeam": "43938", "playerName": "Luka Modric", "result": "SCORED" },
+      { "idTeam": "43924", "playerName": "Marquinhos", "result": "MISSED" },
+      { "idTeam": "43938", "playerName": "Mislav Orsic", "result": "SCORED" }
+    ]
+  },
+  "400128145": {
+    "description": "2022 Final — Argentina 3-3 France (4-2 pens)",
+    "kicks": [
+      { "idTeam": "43946", "playerName": "Kylian Mbappe", "result": "SCORED" },
+      { "idTeam": "43922", "playerName": "Lionel Messi", "result": "SCORED" },
+      { "idTeam": "43946", "playerName": "Kingsley Coman", "result": "MISSED" },
+      { "idTeam": "43922", "playerName": "Paulo Dybala", "result": "SCORED" },
+      { "idTeam": "43946", "playerName": "Aurelien Tchouameni", "result": "MISSED" },
+      { "idTeam": "43922", "playerName": "Leandro Paredes", "result": "SCORED" },
+      { "idTeam": "43946", "playerName": "Randal Kolo Muani", "result": "SCORED" },
+      { "idTeam": "43922", "playerName": "Gonzalo Montiel", "result": "SCORED" }
+    ]
+  }
+}

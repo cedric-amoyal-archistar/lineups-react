@@ -1,8 +1,20 @@
 {
   "rewrites": [
     {
-      "source": "/uefa-api/v5/matches/:path*",
-      "destination": "https://match.uefa.com/v5/matches/:path*"
+      "source": "/uefa-api/:path*",
+      "destination": "https://match.uefa.com/:path*"
+    },
+    {
+      "source": "/fifa-api/:path*",
+      "destination": "https://api.fifa.com/:path*"
+    },
+    {
+      "source": "/ligue1-api/:path*",
+      "destination": "https://ma-api.ligue1.fr/:path*"
+    },
+    {
+      "source": "/pl-api/:path*",
+      "destination": "https://sdp-prem-prod.premier-league-prod.pulselive.com/:path*"
     },
     {
       "source": "/((?!assets/).*)",

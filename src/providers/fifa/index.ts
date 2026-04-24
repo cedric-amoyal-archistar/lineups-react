@@ -26,17 +26,38 @@ import { FIFA_COMPETITION_ID, FIFA_SEASON_IDS } from './seasons'
 import squads2018 from './squads/2018.json'
 import squads2022 from './squads/2022.json'
 import clubs from './clubs.json'
+import shootouts from './shootouts.json'
 
 const PROXY = '/fifa-api'
 
 type SquadMap = Record<string, Record<string, { clubName: string }>>
 type ClubMap = Record<string, { logoUrl?: string }>
 
+// FIFA only reports SCORED kicks in a shootout via Goals[Period=11]. Misses
+// are absent from the public feed, and even the order of SCORED kicks is only
+// loosely conveyed (by minute, which can tie). For accurate display we keep a
+// curated per-match `kicks[]` sequence — used as the sole source of truth when
+// present. See ADDING_WORLD_CUP_YEAR.md for the format.
+type ShootoutKick = {
+  idTeam: string
+  idPlayer?: string
+  playerName: string
+  result: 'SCORED' | 'MISSED'
+}
+type ShootoutMap = Record<
+  string,
+  {
+    description?: string
+    kicks: ShootoutKick[]
+  }
+>
+
 const squadsByYear: Record<number, SquadMap> = {
   2018: squads2018 as SquadMap,
   2022: squads2022 as SquadMap,
 }
 const clubsMap: ClubMap = clubs as ClubMap
+const shootoutSequences: ShootoutMap = shootouts as ShootoutMap
 
 async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   const res = await fetch(url, { signal })
@@ -156,14 +177,43 @@ function mapFifaMatchToCanonical(raw: FifaMatch): Match {
     (a, b) => parseMinute(a.Minute) - parseMinute(b.Minute),
   )
 
-  const scorers: MatchEvent[] = allGoals.map((g, i) => ({
-    id: `goal-${i}-${g.IdPlayer}`,
-    phase: g.Period === 3 ? 'REGULAR' : g.Period === 5 ? 'REGULAR' : 'EXTRA_TIME',
-    teamId: g.IdTeam,
-    time: { minute: parseMinute(g.Minute), second: 0 },
-    goalType: g.Type === 2 ? 'PENALTY' : 'REGULAR',
-    player: { clubShirtName: '', internationalName: '', countryCode: '' },
-  }))
+  // Build an IdPlayer → short player descriptor lookup from both rosters so
+  // goal / card / shootout events can render a name instead of a blank cell.
+  const playerById = new Map<
+    string,
+    { internationalName: string; clubShirtName: string; countryCode: string }
+  >()
+  for (const team of [homeTeam, awayTeam]) {
+    const teamCountry = team.IdCountry ?? ''
+    for (const p of team.Players ?? []) {
+      const fullName = getLocale(p.PlayerName)
+      const lastName = fullName.includes(' ') ? fullName.split(' ').slice(1).join(' ') : fullName
+      playerById.set(p.IdPlayer, {
+        internationalName: fullName,
+        clubShirtName: lastName,
+        countryCode: teamCountry,
+      })
+    }
+  }
+  const lookupPlayer = (id: string) =>
+    playerById.get(id) ?? { internationalName: '', clubShirtName: '', countryCode: '' }
+
+  // FIFA's `Type` field is unreliable as a penalty-kick flag: in some matches
+  // every Type=2 is a normal goal (e.g. Croatia 2-1 Morocco third-place match)
+  // while in others Type=2 is a spot kick (e.g. Qatar-Ecuador). We skip the
+  // Type=2 → PENALTY mapping entirely to avoid false positives; in-game
+  // penalty kicks just render as 'REGULAR' goals. Shootout kicks are still
+  // handled separately via the Period === 11 path below.
+  const scorers: MatchEvent[] = allGoals
+    .filter((g) => g.Period !== 11)
+    .map((g, i) => ({
+      id: `goal-${i}-${g.IdPlayer}`,
+      phase: g.Period === 3 ? 'REGULAR' : g.Period === 5 ? 'REGULAR' : 'EXTRA_TIME',
+      teamId: g.IdTeam,
+      time: { minute: parseMinute(g.Minute), second: 0 },
+      goalType: 'REGULAR',
+      player: lookupPlayer(g.IdPlayer),
+    }))
 
   const homeBookings = homeTeam.Bookings ?? []
   const awayBookings = awayTeam.Bookings ?? []
@@ -174,20 +224,53 @@ function mapFifaMatchToCanonical(raw: FifaMatch): Match {
       phase: 'REGULAR',
       teamId: b.IdTeam,
       time: { minute: parseMinute(b.Minute), second: 0 },
-      player: { clubShirtName: '', internationalName: '', countryCode: '' },
+      player: lookupPlayer(b.IdPlayer),
     }))
 
+  // FIFA returns 0-0 for matches that never went to a shootout, so "scores are
+  // present" isn't enough — treat the shootout as real only when at least one
+  // team actually scored a spot-kick.
+  const penaltyHome = raw.HomeTeamPenaltyScore ?? 0
+  const penaltyAway = raw.AwayTeamPenaltyScore ?? 0
+  const hadShootout = penaltyHome > 0 || penaltyAway > 0
+
   let penaltyScorers: PenaltyEvent[] | undefined
-  if (raw.HomeTeamPenaltyScore != null || raw.AwayTeamPenaltyScore != null) {
-    // Penalty goals are included in Goals with Type=2 during penalty period (Period=11)
-    const penGoals = allGoals.filter((g) => g.Period === 11)
-    penaltyScorers = penGoals.map((g, i) => ({
-      id: `pen-${i}-${g.IdPlayer}`,
-      penaltyType: 'SCORED' as const,
-      phase: 'PENALTY',
-      teamId: g.IdTeam,
-      player: { clubShirtName: '', internationalName: '' },
-    }))
+  if (hadShootout) {
+    const curated = shootoutSequences[raw.IdMatch]
+    if (curated?.kicks?.length) {
+      // Curated data is the source of truth: full alternating sequence with
+      // both SCORED and MISSED kicks in the real kick order.
+      penaltyScorers = curated.kicks.map((k, i) => {
+        const rosterHit = k.idPlayer
+          ? lookupPlayer(k.idPlayer)
+          : { internationalName: '', clubShirtName: '', countryCode: '' }
+        const fullName = rosterHit.internationalName || k.playerName
+        const shortName =
+          rosterHit.clubShirtName ||
+          (fullName.includes(' ') ? fullName.split(' ').slice(1).join(' ') : fullName)
+        return {
+          id: `pen-${i}-${k.idPlayer ?? k.playerName.replace(/\s+/g, '-').toLowerCase()}`,
+          penaltyType: k.result,
+          phase: 'PENALTY',
+          teamId: k.idTeam,
+          player: { internationalName: fullName, clubShirtName: shortName },
+        }
+      })
+    } else {
+      // Fallback for matches we haven't curated yet: emit scored kicks from
+      // FIFA Goals[Period=11]. Misses will be absent; UI will show gaps.
+      const penGoals = allGoals.filter((g) => g.Period === 11)
+      penaltyScorers = penGoals.map((g, i) => {
+        const p = lookupPlayer(g.IdPlayer)
+        return {
+          id: `pen-scored-${i}-${g.IdPlayer}`,
+          penaltyType: 'SCORED',
+          phase: 'PENALTY',
+          teamId: g.IdTeam,
+          player: { internationalName: p.internationalName, clubShirtName: p.clubShirtName },
+        }
+      })
+    }
   }
 
   return {
@@ -209,11 +292,11 @@ function mapFifaMatchToCanonical(raw: FifaMatch): Match {
             home: raw.HomeTeamScore ?? homeTeam.Score ?? 0,
             away: raw.AwayTeamScore ?? awayTeam.Score ?? 0,
           },
-          ...(raw.HomeTeamPenaltyScore != null && raw.AwayTeamPenaltyScore != null
+          ...(hadShootout
             ? {
                 penalty: {
-                  home: raw.HomeTeamPenaltyScore,
-                  away: raw.AwayTeamPenaltyScore,
+                  home: penaltyHome,
+                  away: penaltyAway,
                 },
               }
             : {}),

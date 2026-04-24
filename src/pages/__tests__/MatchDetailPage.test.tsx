@@ -295,8 +295,10 @@ describe('MatchDetailPage — FIFA World Cup', () => {
   it('renders lineup: some player name is visible on the pitch', async () => {
     renderFifaPage()
     // "Messi" is jersey 10 for Argentina; clubShirtName = 'Messi'
-    await waitFor(() => screen.getByText('Messi'), { timeout: 3000 })
-    expect(screen.getByText('Messi')).toBeInTheDocument()
+    // 'Messi' appears both on the pitch and in scorer/shootout event lists
+    // once names resolve — just assert that at least one instance renders.
+    await waitFor(() => screen.getAllByText('Messi'), { timeout: 3000 })
+    expect(screen.getAllByText('Messi').length).toBeGreaterThan(0)
   })
 
   it('HIT player renders a club logo img on the pitch', async () => {

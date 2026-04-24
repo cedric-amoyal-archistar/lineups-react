@@ -183,6 +183,33 @@ describe('fifaWorldCupProvider.fetchMatch', () => {
     expect(match.status).toBe('UPCOMING')
     expect(match.score).toBeUndefined()
   })
+
+  it('omits penalty score when neither team scored in a shootout (FIFA returns 0-0 for non-shootout matches)', async () => {
+    server.use(
+      http.get('/fifa-api/api/v3/live/football/:matchId', () =>
+        HttpResponse.json({
+          ...fifaMatchDetailFixture,
+          HomeTeamScore: 2,
+          AwayTeamScore: 0,
+          HomeTeamPenaltyScore: 0,
+          AwayTeamPenaltyScore: 0,
+          Goals: [],
+        }),
+      ),
+    )
+    const match = await fifaWorldCupProvider.fetchMatch(FIFA_MATCH_ID)
+    expect(match.score?.total.home).toBe(2)
+    expect(match.score?.total.away).toBe(0)
+    expect(match.score?.penalty).toBeUndefined()
+    expect(match.playerEvents?.penaltyScorers).toBeUndefined()
+  })
+
+  it('keeps penalty score when a real shootout occurred (non-zero penalty scores)', async () => {
+    // Default fixture is the 2022 Final Argentina 4-2 France on penalties.
+    const match = await fifaWorldCupProvider.fetchMatch(FIFA_MATCH_ID)
+    expect(match.score?.penalty?.home).toBe(4)
+    expect(match.score?.penalty?.away).toBe(2)
+  })
 })
 
 // ---------------------------------------------------------------------------
@@ -290,6 +317,57 @@ describe('fifaWorldCupProvider.fetchMatchLineups', () => {
     expect(match.playerEvents?.scorers?.length).toBeGreaterThan(0)
   })
 
+  it('regular-time goals are never flagged as PENALTY (FIFA Type field is unreliable)', async () => {
+    const match = await fifaWorldCupProvider.fetchMatch(FIFA_MATCH_ID)
+    for (const s of match.playerEvents?.scorers ?? []) {
+      expect(s.goalType).toBe('REGULAR')
+    }
+  })
+
+  it('shootout goals are excluded from scorers list (they live in penaltyScorers)', async () => {
+    const match = await fifaWorldCupProvider.fetchMatch(FIFA_MATCH_ID)
+    for (const s of match.playerEvents?.scorers ?? []) {
+      // Shootout kicks happen at 121'+ — none should leak into the main scorers list
+      expect(s.time.minute).toBeLessThan(121)
+    }
+  })
+
+  it('scorer events resolve player names from the roster', async () => {
+    const match = await fifaWorldCupProvider.fetchMatch(FIFA_MATCH_ID)
+    const scorers = match.playerEvents?.scorers ?? []
+    expect(scorers.length).toBeGreaterThan(0)
+    for (const s of scorers) {
+      expect(s.player.internationalName).not.toBe('')
+      expect(s.player.clubShirtName).not.toBe('')
+    }
+  })
+
+  it('penalty shootout takers resolve player names from the roster', async () => {
+    const match = await fifaWorldCupProvider.fetchMatch(FIFA_MATCH_ID)
+    const takers = match.playerEvents?.penaltyScorers ?? []
+    expect(takers.length).toBeGreaterThan(0)
+    for (const t of takers) {
+      expect(t.player.internationalName).not.toBe('')
+      expect(t.player.clubShirtName).not.toBe('')
+    }
+  })
+
+  it('curated shootouts.json carries both SCORED and MISSED kicks in order', async () => {
+    const match = await fifaWorldCupProvider.fetchMatch(FIFA_MATCH_ID)
+    const takers = match.playerEvents?.penaltyScorers ?? []
+    const missed = takers.filter((t) => t.penaltyType === 'MISSED')
+    const scored = takers.filter((t) => t.penaltyType === 'SCORED')
+    // 2022 Final: 4 ARG scored + 2 FRA scored + 2 FRA missed (Coman, Tchouaméni)
+    expect(scored).toHaveLength(6)
+    expect(missed).toHaveLength(2)
+    const missedNames = missed.map((m) => m.player.internationalName ?? '')
+    expect(missedNames.some((n) => /Coman/i.test(n))).toBe(true)
+    expect(missedNames.some((n) => /Tchouameni/i.test(n))).toBe(true)
+    // Coman was kick 3 (France's 2nd), Tchouameni kick 5 (France's 3rd)
+    expect(takers[2].penaltyType).toBe('MISSED')
+    expect(takers[4].penaltyType).toBe('MISSED')
+  })
+
   it('only Card=2 bookings appear as redCards — Card=1 (yellow) is excluded', async () => {
     // Fixture has Card=1 (yellow) for arg-mid-8 — should NOT appear in redCards
     const match = await fifaWorldCupProvider.fetchMatch(FIFA_MATCH_ID)
@@ -297,13 +375,27 @@ describe('fifaWorldCupProvider.fetchMatchLineups', () => {
     expect(match.playerEvents?.redCards).toHaveLength(0)
   })
 
-  it('penalty shootout: penaltyScorers populated from Period=11 Type=2 goals', async () => {
+  it('penalty shootout: penaltyScorers populated from curated kicks[] when present', async () => {
     const match = await fifaWorldCupProvider.fetchMatch(FIFA_MATCH_ID)
     expect(match.playerEvents?.penaltyScorers).toBeDefined()
-    // Fixture has 4 ARG + 2 FRA penalty goals in Period=11
-    expect(match.playerEvents!.penaltyScorers!.length).toBe(6)
+    // Curated 2022 Final kicks[]: 8 total (4 ARG scored + 2 FRA scored + 2 FRA missed)
+    expect(match.playerEvents!.penaltyScorers!.length).toBe(8)
     for (const ps of match.playerEvents!.penaltyScorers!) {
       expect(ps.phase).toBe('PENALTY')
+    }
+  })
+
+  it('penalty shootout kicks are in real shootout order (not FIFA-minute order)', async () => {
+    const match = await fifaWorldCupProvider.fetchMatch(FIFA_MATCH_ID)
+    const takers = match.playerEvents?.penaltyScorers ?? []
+    // Real 2022 Final order: FRA kicker, ARG kicker, FRA, ARG, FRA, ARG, FRA, ARG
+    // (France went first per coin toss.)
+    const teams = takers.map((t) => t.teamId)
+    expect(teams[0]).toBe('43946') // FRA first
+    expect(teams[1]).toBe('43922') // ARG second
+    // Teams alternate
+    for (let i = 1; i < teams.length; i++) {
+      expect(teams[i]).not.toBe(teams[i - 1])
     }
   })
 
