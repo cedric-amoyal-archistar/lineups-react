@@ -248,32 +248,33 @@ describe('fifaWorldCupProvider.fetchMatchLineups', () => {
     }
   })
 
-  it('home GK has y near 0 (bottom of pitch)', async () => {
+  it('home GK has y near the inset low edge (bottom of pitch)', async () => {
     const lineups = await fifaWorldCupProvider.fetchMatchLineups(FIFA_MATCH_ID)
-    // GK in fixture: rawX=10, rawY=1 → normalizeY: (1-1)/11*1000 = 0
+    // GK in fixture: rawX=10, rawY=1 → normalizeY: 90 + (1-1)/11*820 = 90
     const gk = lineups.homeTeam.field.find((p) => p.jerseyNumber === 23)
     expect(gk).toBeDefined()
-    expect(gk!.fieldCoordinate.y).toBe(0)
-    // x: (10-2)/16*1000 = 500
+    expect(gk!.fieldCoordinate.y).toBe(90)
+    // x: 90 + (10-2)/16*820 = 500
     expect(gk!.fieldCoordinate.x).toBe(500)
   })
 
-  it('away GK has y near 1000 (mirrored for away team)', async () => {
+  it('away GK has the same canonical Y as home GK (provider does not mirror Y)', async () => {
     const lineups = await fifaWorldCupProvider.fetchMatchLineups(FIFA_MATCH_ID)
-    // Away GK rawY=1 → normalizeY=0 → mirrored: 1000-0=1000
+    // Away GK rawY=1 → normalizeY=90. No Y mirror in the provider — TeamHalf's
+    // `inverted` prop flips Y at render time so the away GK visually sits at
+    // the bottom of the pitch.
     const gk = lineups.awayTeam.field.find((p) => p.jerseyNumber === 1)
     expect(gk).toBeDefined()
-    expect(gk!.fieldCoordinate.y).toBe(1000)
-    // x: (10-2)/16*1000=500 → mirrored: 1000-500=500
+    expect(gk!.fieldCoordinate.y).toBe(90)
+    // x: 90 + (10-2)/16*820=500 → mirrored: 1000-500=500
     expect(gk!.fieldCoordinate.x).toBe(500)
   })
 
-  it('home and away GK x coordinates differ when mirrored asymmetrically', async () => {
+  it('home and away GK have identical canonical Y — rendering flip happens in TeamHalf', async () => {
     const lineups = await fifaWorldCupProvider.fetchMatchLineups(FIFA_MATCH_ID)
     const homeGK = lineups.homeTeam.field.find((p) => p.jerseyNumber === 23)
     const awayGK = lineups.awayTeam.field.find((p) => p.jerseyNumber === 1)
-    // Both have rawX=10 → x=500, mirrored also 500 — but y values differ
-    expect(homeGK!.fieldCoordinate.y).not.toBe(awayGK!.fieldCoordinate.y)
+    expect(homeGK!.fieldCoordinate.y).toBe(awayGK!.fieldCoordinate.y)
   })
 
   it('formation string is passed through on TeamLineup', async () => {

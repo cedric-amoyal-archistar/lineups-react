@@ -147,10 +147,12 @@ describe('PlayerNode — clubLogo display mode', () => {
     expect(logoImg).toHaveAttribute('src', 'https://logos.example.com/psg.png')
   })
 
-  it('uses light grey background for clubLogo mode', () => {
+  it('renders club logo without grey circle wrapper (no background, no border, no rounded-full)', () => {
     const { container } = render(<PlayerNode {...clubLogoProps} />)
-    const circle = container.querySelector('a > div') as HTMLElement
-    expect(circle.style.backgroundColor).toBe('rgb(229, 231, 235)') // #e5e7eb
+    const wrapper = container.querySelector('a > div') as HTMLElement
+    expect(wrapper.style.backgroundColor).toBe('')
+    expect(wrapper.className).not.toMatch(/rounded-full/)
+    expect(wrapper.className).not.toMatch(/border-2/)
   })
 
   it('falls back to club initials when logo image errors', () => {

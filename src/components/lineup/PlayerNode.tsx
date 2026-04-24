@@ -59,11 +59,7 @@ export const PlayerNode = memo(function PlayerNode({
 
   const bgColor = showLight ? '#e5e7eb' : (shirtColor ?? '#1a2a4a')
   const needsDarkText = !showLight && isLightColor(bgColor)
-  const borderClass = isClubLogo
-    ? 'border-gray-300'
-    : showLight
-      ? 'border-white/80'
-      : 'border-white/60'
+  const borderClass = showLight ? 'border-white/80' : 'border-white/60'
 
   const clubLogoTitle = isClubLogo ? (clubName ? `${fullName} — ${clubName}` : fullName) : undefined
 
@@ -76,32 +72,6 @@ export const PlayerNode = memo(function PlayerNode({
   }
 
   function renderInner() {
-    if (isClubLogo) {
-      if (clubLogoUrl && !clubLogoError) {
-        return (
-          <img
-            src={clubLogoUrl}
-            alt={`${clubName || 'Club'} logo`}
-            className="h-full w-full object-contain p-0.5"
-            onError={() => setClubLogoErrorUrl(clubLogoUrl)}
-          />
-        )
-      }
-      if (clubName) {
-        return (
-          <div className="flex items-center justify-center h-full w-full">
-            <span className="text-[10px] font-bold tracking-wide text-gray-700">
-              {getClubInitials(clubName)}
-            </span>
-          </div>
-        )
-      }
-      if (countryCode && flagUrl) {
-        return <img src={flagUrl} alt={countryCode} className="h-full w-full object-cover" />
-      }
-      return <span>{jerseyNumber}</span>
-    }
-
     if (isFlag && flagUrl) {
       return <img src={flagUrl} alt={countryCode} className="h-full w-full object-cover" />
     }
@@ -123,6 +93,32 @@ export const PlayerNode = memo(function PlayerNode({
     return <span>{jerseyNumber}</span>
   }
 
+  function renderClubLogoInner() {
+    if (clubLogoUrl && !clubLogoError) {
+      return (
+        <img
+          src={clubLogoUrl}
+          alt={`${clubName || 'Club'} logo`}
+          className="h-full w-full object-contain"
+          onError={() => setClubLogoErrorUrl(clubLogoUrl)}
+        />
+      )
+    }
+    if (clubName) {
+      return (
+        <span className="text-xs font-bold tracking-wide text-gray-700">
+          {getClubInitials(clubName)}
+        </span>
+      )
+    }
+    if (countryCode && flagUrl) {
+      return (
+        <img src={flagUrl} alt={countryCode} className="h-full w-full object-cover rounded-sm" />
+      )
+    }
+    return <span className="text-xs font-bold text-gray-700">{jerseyNumber}</span>
+  }
+
   return (
     <a
       href={searchUrl}
@@ -130,13 +126,21 @@ export const PlayerNode = memo(function PlayerNode({
       rel="noopener noreferrer"
       className="flex flex-col items-center gap-0.5 w-14 cursor-pointer no-underline group/player"
     >
-      <div
-        title={clubLogoTitle}
-        className={`flex items-center justify-center rounded-full border-2 font-bold h-9 w-9 text-xs overflow-hidden shadow-sm transition-transform group-hover/player:scale-110 ${needsDarkText ? 'text-gray-900' : 'text-white'} ${borderClass}`}
-        style={{ backgroundColor: bgColor }}
-      >
-        {renderInner()}
-      </div>
+      {isClubLogo ? (
+        <div
+          title={clubLogoTitle}
+          className="flex items-center justify-center h-9 w-9 transition-transform group-hover/player:scale-110"
+        >
+          {renderClubLogoInner()}
+        </div>
+      ) : (
+        <div
+          className={`flex items-center justify-center rounded-full border-2 font-bold h-9 w-9 text-xs overflow-hidden shadow-sm transition-transform group-hover/player:scale-110 ${needsDarkText ? 'text-gray-900' : 'text-white'} ${borderClass}`}
+          style={{ backgroundColor: bgColor }}
+        >
+          {renderInner()}
+        </div>
+      )}
       <span className="text-center leading-tight truncate w-full text-[10px] font-medium text-gray-600">
         {name}
       </span>

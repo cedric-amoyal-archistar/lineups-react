@@ -1,12 +1,15 @@
 // FIFA API coordinate system (observed from 2022 WC Final Argentina vs France, matchId 400128145):
 // X range: 2–18 (center at 10, total width ~20 units)
-// Y range: 1–12 (GK at y=1, forwards at y=12, pitch runs bottom→top)
-// Both teams use the same coordinate system (home team attacks upward).
-// Away team Y is mirrored: normalized_y = 1000 - rawY_normalized
-// Away team X is mirrored: normalized_x = 1000 - rawX_normalized
-// Normalization formula: coord_0_1000 = (raw - min) / (max - min) * 1000
-//   X: (raw_x - 2) / 16 * 1000  (range 2–18)
-//   Y: (raw_y - 1) / 11 * 1000  (range 1–12)
+// Y range: 1–12 (GK at y=1, forwards at y=12)
+// Raw coords are team-relative: both teams' GKs are at rawY=1 / rawX≈10.
+// Canonical output: GK at Y=60 for both teams — TeamHalf renders the away team
+// with `inverted` (flipping Y at render time) so away GK appears at pitch-bottom.
+// X is pitch-absolute from home's perspective, so the provider mirrors X for the
+// away team (left/right flip) — TeamHalf does not flip X.
+// Normalization inset to [90, 910] so player nodes (centered on coord)
+// don't extend past the pitch edges. Formula: 90 + (raw - min) / (max - min) * 820
+//   X: 90 + (raw_x - 2) / 16 * 820  (range 2–18)
+//   Y: 90 + (raw_y - 1) / 11 * 820  (range 1–12)
 // Starters have non-null LineupX/Y; bench/subs have null (Position=4).
 
 import type { CompetitionProvider } from '../types'
@@ -91,11 +94,11 @@ export function normalizeName(name: string): string {
 }
 
 function normalizeX(rawX: number): number {
-  return Math.round(((rawX - 2) / 16) * 1000)
+  return Math.round(90 + ((rawX - 2) / 16) * 820)
 }
 
 function normalizeY(rawY: number): number {
-  return Math.round(((rawY - 1) / 11) * 1000)
+  return Math.round(90 + ((rawY - 1) / 11) * 820)
 }
 
 function mapMatchStatus(status: number): 'UPCOMING' | 'LIVE' | 'FINISHED' {
@@ -404,11 +407,10 @@ function mapTeamLineup(team: FifaTeam, isAway: boolean, seasonYear: number): Tea
     const rawX = p.LineupX!
     const rawY = p.LineupY!
     let nx = normalizeX(rawX)
-    let ny = normalizeY(rawY)
+    const ny = normalizeY(rawY)
 
     if (isAway) {
       nx = 1000 - nx
-      ny = 1000 - ny
     }
 
     const playerInfo = mapPlayerInfo(p, seasonYear, countryCode)
