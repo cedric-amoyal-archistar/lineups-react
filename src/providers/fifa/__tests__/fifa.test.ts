@@ -1,8 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { http, HttpResponse } from 'msw'
-import { fifaWorldCupProvider } from '../index'
+import { fifaWorldCupProvider, normalizeName } from '../index'
+import { FIFA_SEASON_IDS } from '../seasons'
 import { server } from '@/test/msw/server'
 import { FIFA_MATCH_ID, fifaCalendarFixture, fifaMatchDetailFixture } from '@/test/msw/fixtures'
+import type { Match } from '@/types/match'
 
 // MSW server is started globally via src/test/setup.ts
 
@@ -18,6 +20,14 @@ vi.mock('@/providers/fifa/squads/2022.json', () => ({
       // Julian Alvarez is in squad map but his club is NOT in the clubs mock
       'julian alvarez': { clubName: 'Manchester City' },
       // Angel Di Maria is intentionally absent (MISS player)
+    },
+  },
+}))
+
+vi.mock('@/providers/fifa/squads/2018.json', () => ({
+  default: {
+    FRA: {
+      'antoine griezmann': { clubName: 'Atletico Madrid 2018' },
     },
   },
 }))
@@ -370,5 +380,246 @@ describe('fifaMatchDetailFixture shape', () => {
     const awayGoals = fifaMatchDetailFixture.AwayTeam!.Goals ?? []
     const penGoals = [...homeGoals, ...awayGoals].filter((g) => g.Period === 11)
     expect(penGoals.length).toBeGreaterThan(0)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Multi-year support
+// ---------------------------------------------------------------------------
+
+describe('multi-year support', () => {
+  it('FIFA_SEASON_IDS[2018] equals "254645"', () => {
+    expect(FIFA_SEASON_IDS[2018]).toBe('254645')
+  })
+
+  it('getSeasons() equals [2022, 2018] — newest first', () => {
+    expect(fifaWorldCupProvider.getSeasons()).toEqual([2022, 2018])
+  })
+
+  it('getDefaultSeason() still returns 2022', () => {
+    expect(fifaWorldCupProvider.getDefaultSeason()).toBe(2022)
+  })
+
+  it('seasonLabel(2018) returns "Russia 2018"', () => {
+    expect(fifaWorldCupProvider.seasonLabel(2018)).toBe('Russia 2018')
+  })
+
+  it('seasonLabel(2022) still returns "Qatar 2022" — regression', () => {
+    expect(fifaWorldCupProvider.seasonLabel(2022)).toBe('Qatar 2022')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// fetchMatchLineups — year switching: 2018 squad map is consulted for 2018 match
+// ---------------------------------------------------------------------------
+
+const FIFA_2018_FINAL_ID = '300331552'
+
+const fifa2018Player = {
+  IdPlayer: 'griezmann-id',
+  PlayerName: [{ Locale: 'en-GB', Description: 'Antoine Griezmann' }],
+  ShirtNumber: 7,
+  Position: 2 as const,
+  LineupX: 10,
+  LineupY: 8,
+  IdTeam: 'fra-2018',
+  IdCountry: 'FRA',
+}
+
+const fifa2018MatchDetail = {
+  IdMatch: FIFA_2018_FINAL_ID,
+  IdCompetition: '17',
+  IdSeason: '254645',
+  IdStage: 'stage-final-2018',
+  IdGroup: null,
+  StageName: [{ Locale: 'en-GB', Description: 'Final' }],
+  MatchDay: '1',
+  MatchNumber: 64,
+  Date: '2018-07-15T15:00:00Z',
+  LocalDate: '2018-07-15T17:00:00+02:00',
+  MatchTime: '90',
+  MatchStatus: 0,
+  HomeTeamScore: 4,
+  AwayTeamScore: 2,
+  HomeTeamPenaltyScore: null,
+  AwayTeamPenaltyScore: null,
+  Winner: 'fra-2018',
+  ResultType: 1,
+  Stadium: null,
+  HomeTeam: {
+    IdTeam: 'fra-2018',
+    IdCountry: 'FRA',
+    TeamName: [{ Locale: 'en-GB', Description: 'France' }],
+    Tactics: '433',
+    Score: 4,
+    PictureUrl: 'https://img.fifa.com/teams/france.png',
+    Abbreviation: 'FRA',
+    Players: [fifa2018Player],
+    Goals: [],
+    Bookings: [],
+    Substitutions: [],
+  },
+  AwayTeam: {
+    IdTeam: 'cro-2018',
+    IdCountry: 'CRO',
+    TeamName: [{ Locale: 'en-GB', Description: 'Croatia' }],
+    Tactics: '433',
+    Score: 2,
+    PictureUrl: 'https://img.fifa.com/teams/croatia.png',
+    Abbreviation: 'CRO',
+    Players: [],
+    Goals: [],
+    Bookings: [],
+    Substitutions: [],
+  },
+}
+
+describe('fetchMatchLineups — year switching', () => {
+  beforeEach(() => {
+    server.use(
+      http.get('/fifa-api/api/v3/live/football/:matchId', ({ params }) => {
+        if (params['matchId'] === FIFA_2018_FINAL_ID) {
+          return HttpResponse.json(fifa2018MatchDetail)
+        }
+        return HttpResponse.json(fifaMatchDetailFixture)
+      }),
+    )
+  })
+
+  it('Griezmann club resolves from 2018 squad map, not 2022 map', async () => {
+    const lineups = await fifaWorldCupProvider.fetchMatchLineups(FIFA_2018_FINAL_ID)
+    const griezmann = lineups.homeTeam.field.find((p) => p.jerseyNumber === 7)
+    expect(griezmann).toBeDefined()
+    // 'Atletico Madrid 2018' only exists in the 2018 mock — proves year routing is correct
+    expect(griezmann!.player.clubName).toBe('Atletico Madrid 2018')
+  })
+
+  it('existing 2022 match is unaffected — Messi still resolves from 2022 map', async () => {
+    const lineups = await fifaWorldCupProvider.fetchMatchLineups(FIFA_MATCH_ID)
+    const messi = lineups.homeTeam.field.find((p) => p.jerseyNumber === 10)
+    expect(messi).toBeDefined()
+    expect(messi!.player.clubName).toBe('Inter Miami')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// getExternalUrl — year-aware: URL contains the correct season ID
+// ---------------------------------------------------------------------------
+
+function minimalMatch(date: string): Match {
+  const stub: Match['homeTeam'] = {
+    id: 'team-a',
+    internationalName: 'Team A',
+    logoUrl: '',
+    mediumLogoUrl: '',
+    bigLogoUrl: '',
+    countryCode: 'AAA',
+    teamCode: 'AAA',
+    translations: { displayName: {}, displayOfficialName: {} },
+  }
+  return {
+    id: 'match-stub',
+    homeTeam: stub,
+    awayTeam: {
+      ...stub,
+      id: 'team-b',
+      internationalName: 'Team B',
+      teamCode: 'BBB',
+      countryCode: 'BBB',
+    },
+    kickOffTime: { date, dateTime: `${date}T15:00:00Z`, utcOffsetInHours: 0 },
+    status: 'FINISHED',
+    round: { metaData: { name: 'Final', type: 'TOURNAMENT' }, phase: 'TOURNAMENT' },
+    matchday: { longName: 'Final', name: 'Final', dateFrom: date, dateTo: date },
+    competition: { id: '17', metaData: { name: 'FIFA World Cup' } },
+  }
+}
+
+describe('getExternalUrl — year-aware', () => {
+  it('2022 match URL contains season ID 255711', () => {
+    const url = fifaWorldCupProvider.getExternalUrl(minimalMatch('2022-12-18'))
+    expect(url).toContain('255711')
+  })
+
+  it('2018 match URL contains season ID 254645', () => {
+    const url = fifaWorldCupProvider.getExternalUrl(minimalMatch('2018-07-15'))
+    expect(url).toContain('254645')
+  })
+
+  it('unknown year falls back to 2022 season ID 255711', () => {
+    const url = fifaWorldCupProvider.getExternalUrl(minimalMatch('1990-07-08'))
+    expect(url).toContain('255711')
+  })
+
+  it('empty date string but populated dateTime still resolves the correct year', () => {
+    const match = minimalMatch('2018-07-15')
+    match.kickOffTime.date = ''
+    match.kickOffTime.dateTime = '2018-07-15T15:00:00Z'
+    expect(fifaWorldCupProvider.getExternalUrl(match)).toContain('254645')
+  })
+
+  it('both date and dateTime empty falls back to 2022 without throwing', () => {
+    const match = minimalMatch('2018-07-15')
+    match.kickOffTime.date = ''
+    match.kickOffTime.dateTime = ''
+    expect(() => fifaWorldCupProvider.getExternalUrl(match)).not.toThrow()
+    expect(fifaWorldCupProvider.getExternalUrl(match)).toContain('255711')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// normalizeName — the critical contract between FIFA API and squad JSON keys
+// ---------------------------------------------------------------------------
+
+describe('normalizeName', () => {
+  it('lowercases and strips combining marks', () => {
+    expect(normalizeName('Luka Modrić')).toBe('luka modric')
+    expect(normalizeName('Héctor Herrera')).toBe('hector herrera')
+  })
+
+  it('substitutes non-NFD-decomposable characters', () => {
+    expect(normalizeName('Kjær')).toBe('kjaer')
+    expect(normalizeName('Sigurðsson')).toBe('sigurdsson')
+    expect(normalizeName('Jørgensen')).toBe('jorgensen')
+    expect(normalizeName('Þórðarson')).toBe('thordarson')
+    expect(normalizeName('Błaszczykowski')).toBe('blaszczykowski')
+  })
+
+  it('strips trailing Wikipedia disambiguation suffixes', () => {
+    expect(normalizeName('Willian (footballer, born 1988)')).toBe('willian')
+    expect(normalizeName('Pepe (footballer, born 1983)')).toBe('pepe')
+    expect(normalizeName('Koke (footballer, born 1992)')).toBe('koke')
+  })
+
+  it('is idempotent — normalized names round-trip to themselves', () => {
+    for (const input of ['willian', 'luka modric', 'kjaer', 'sigurdsson']) {
+      expect(normalizeName(input)).toBe(input)
+    }
+  })
+})
+
+// Squad JSON files must round-trip: every key must equal normalizeName(key).
+// This guards against future scraper bugs where a raw Wikipedia wikilink
+// (with disambiguation suffix or non-ASCII chars) is written into the squad
+// map — the FIFA API would emit the plain name and miss the enrichment.
+describe('squad JSON files are pre-normalized', () => {
+  type SquadMap = Record<string, Record<string, { clubName: string }>>
+
+  async function loadRealSquad(year: '2018' | '2022'): Promise<SquadMap> {
+    const mod = await vi.importActual<{ default: SquadMap }>(`@/providers/fifa/squads/${year}.json`)
+    return mod.default
+  }
+
+  it.each(['2018', '2022'] as const)('%s keys are all self-normalized', async (year) => {
+    const data = await loadRealSquad(year)
+    const offenders: string[] = []
+    for (const [country, players] of Object.entries(data)) {
+      for (const name of Object.keys(players)) {
+        if (normalizeName(name) !== name) {
+          offenders.push(`${country}:${name}`)
+        }
+      }
+    }
+    expect(offenders).toEqual([])
   })
 })

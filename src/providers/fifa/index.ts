@@ -23,6 +23,7 @@ import type {
 } from '@/types/match'
 import type { FifaMatch, FifaCalendarResponse, FifaTeam, FifaPlayer } from './types'
 import { FIFA_COMPETITION_ID, FIFA_SEASON_IDS } from './seasons'
+import squads2018 from './squads/2018.json'
 import squads2022 from './squads/2022.json'
 import clubs from './clubs.json'
 
@@ -32,6 +33,7 @@ type SquadMap = Record<string, Record<string, { clubName: string }>>
 type ClubMap = Record<string, { logoUrl?: string }>
 
 const squadsByYear: Record<number, SquadMap> = {
+  2018: squads2018 as SquadMap,
   2022: squads2022 as SquadMap,
 }
 const clubsMap: ClubMap = clubs as ClubMap
@@ -48,8 +50,23 @@ function getLocale(arr: { Locale: string; Description: string }[]): string {
   return (en ?? arr[0]).Description
 }
 
-function normalizeName(name: string): string {
-  return name.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim()
+// Keep in sync with the scraper and the squad JSON key format.
+// - NFD + strip combining marks handles most diacritics (é → e, á → a, ć → c).
+// - Explicit substitutions cover chars that NFD can't decompose (æ, ð, ø, þ, ł).
+// - Trailing Wikipedia disambiguation suffixes like ` (footballer, born 1992)`
+//   are dropped so a key matches the plain FIFA-API name.
+export function normalizeName(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/æ/g, 'ae')
+    .replace(/ð/g, 'd')
+    .replace(/ø/g, 'o')
+    .replace(/þ/g, 'th')
+    .replace(/ł/g, 'l')
+    .replace(/\s*\([^)]*\)\s*$/, '')
+    .trim()
 }
 
 function normalizeX(rawX: number): number {
@@ -357,7 +374,7 @@ export const fifaWorldCupProvider: CompetitionProvider = {
   defaultDisplayMode: 'clubLogo',
 
   getSeasons() {
-    return [2022]
+    return [2022, 2018]
   },
 
   getDefaultSeason() {
@@ -366,6 +383,7 @@ export const fifaWorldCupProvider: CompetitionProvider = {
 
   seasonLabel(year) {
     if (year === 2022) return 'Qatar 2022'
+    if (year === 2018) return 'Russia 2018'
     return String(year)
   },
 
@@ -418,7 +436,9 @@ export const fifaWorldCupProvider: CompetitionProvider = {
   },
 
   getExternalUrl(match) {
-    const seasonId = FIFA_SEASON_IDS[2022] ?? ''
+    const dateStr = match.kickOffTime.date || match.kickOffTime.dateTime || ''
+    const year = Number(dateStr.slice(0, 4))
+    const seasonId = FIFA_SEASON_IDS[year] ?? FIFA_SEASON_IDS[2022] ?? ''
     return `https://www.fifa.com/en/match-centre/match/${FIFA_COMPETITION_ID}/${seasonId}/${match.id}`
   },
 }

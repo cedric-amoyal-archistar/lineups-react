@@ -53,7 +53,11 @@
       "WebFetch(domain:api.fifa.com)",
       "Bash(python3 *)",
       "Bash(node *)",
-      "Bash(git stash *)"
+      "Bash(git stash *)",
+      "Bash(chmod +x /tmp/wc2018/scrape.sh)",
+      "Bash(/tmp/wc2018/scrape.sh)",
+      "Bash(npx eslint *)",
+      "Bash(npx prettier *)"
     ]
   }
 }

@@ -1,0 +1,2274 @@
+{
+  "ARG": {
+    "angel di maria": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "cristian ansaldi": {
+      "clubName": "Torino"
+    },
+    "cristian pavon": {
+      "clubName": "Boca Juniors"
+    },
+    "eduardo salvio": {
+      "clubName": "Benfica"
+    },
+    "enzo perez": {
+      "clubName": "River Plate"
+    },
+    "ever banega": {
+      "clubName": "Sevilla"
+    },
+    "federico fazio": {
+      "clubName": "Roma"
+    },
+    "franco armani": {
+      "clubName": "River Plate"
+    },
+    "gabriel mercado": {
+      "clubName": "Sevilla"
+    },
+    "giovani lo celso": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "gonzalo higuain": {
+      "clubName": "Juventus"
+    },
+    "javier mascherano": {
+      "clubName": "Hebei China Fortune"
+    },
+    "lionel messi": {
+      "clubName": "Barcelona"
+    },
+    "lucas biglia": {
+      "clubName": "Milan"
+    },
+    "marcos acuna": {
+      "clubName": "Sporting CP"
+    },
+    "marcos rojo": {
+      "clubName": "Manchester United"
+    },
+    "maximiliano meza": {
+      "clubName": "Independiente"
+    },
+    "nahuel guzman": {
+      "clubName": "Tigres UANL"
+    },
+    "nicolas otamendi": {
+      "clubName": "Manchester City"
+    },
+    "nicolas tagliafico": {
+      "clubName": "Ajax"
+    },
+    "paulo dybala": {
+      "clubName": "Juventus"
+    },
+    "sergio aguero": {
+      "clubName": "Manchester City"
+    },
+    "willy caballero": {
+      "clubName": "Chelsea"
+    }
+  },
+  "AUS": {
+    "aaron mooy": {
+      "clubName": "Huddersfield Town"
+    },
+    "andrew nabbout": {
+      "clubName": "Urawa Red Diamonds"
+    },
+    "aziz behich": {
+      "clubName": "Bursaspor"
+    },
+    "brad jones": {
+      "clubName": "Feyenoord"
+    },
+    "daniel arzani": {
+      "clubName": "Melbourne City"
+    },
+    "danny vukovic": {
+      "clubName": "Genk"
+    },
+    "dimitri petratos": {
+      "clubName": "Newcastle Jets"
+    },
+    "jackson irvine": {
+      "clubName": "Hull City"
+    },
+    "james meredith": {
+      "clubName": "Millwall"
+    },
+    "jamie maclaren": {
+      "clubName": "Hibernian"
+    },
+    "josh risdon": {
+      "clubName": "Western Sydney Wanderers"
+    },
+    "mark milligan": {
+      "clubName": "Al-Ahli"
+    },
+    "massimo luongo": {
+      "clubName": "Queens Park Rangers"
+    },
+    "mathew leckie": {
+      "clubName": "Hertha BSC"
+    },
+    "mathew ryan": {
+      "clubName": "Brighton & Hove Albion"
+    },
+    "matthew jurman": {
+      "clubName": "Suwon Samsung Bluewings"
+    },
+    "mile jedinak": {
+      "clubName": "Aston Villa"
+    },
+    "milos degenek": {
+      "clubName": "Yokohama F. Marinos"
+    },
+    "robbie kruse": {
+      "clubName": "VfL Bochum"
+    },
+    "tim cahill": {
+      "clubName": "Millwall"
+    },
+    "tom rogic": {
+      "clubName": "Celtic"
+    },
+    "tomi juric": {
+      "clubName": "Luzern"
+    },
+    "trent sainsbury": {
+      "clubName": "Grasshopper"
+    }
+  },
+  "BEL": {
+    "adnan januzaj": {
+      "clubName": "Real Sociedad"
+    },
+    "axel witsel": {
+      "clubName": "Tianjin Quanjian"
+    },
+    "dedryck boyata": {
+      "clubName": "Celtic"
+    },
+    "dries mertens": {
+      "clubName": "Napoli"
+    },
+    "eden hazard": {
+      "clubName": "Chelsea"
+    },
+    "jan vertonghen": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "kevin de bruyne": {
+      "clubName": "Manchester City"
+    },
+    "koen casteels": {
+      "clubName": "VfL Wolfsburg"
+    },
+    "leander dendoncker": {
+      "clubName": "Anderlecht"
+    },
+    "marouane fellaini": {
+      "clubName": "Manchester United"
+    },
+    "michy batshuayi": {
+      "clubName": "Borussia Dortmund"
+    },
+    "mousa dembele": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "nacer chadli": {
+      "clubName": "West Bromwich Albion"
+    },
+    "romelu lukaku": {
+      "clubName": "Manchester United"
+    },
+    "simon mignolet": {
+      "clubName": "Liverpool"
+    },
+    "thibaut courtois": {
+      "clubName": "Chelsea"
+    },
+    "thomas meunier": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "thomas vermaelen": {
+      "clubName": "Barcelona"
+    },
+    "thorgan hazard": {
+      "clubName": "Borussia Mönchengladbach"
+    },
+    "toby alderweireld": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "vincent kompany": {
+      "clubName": "Manchester City"
+    },
+    "yannick carrasco": {
+      "clubName": "Dalian Yifang"
+    },
+    "youri tielemans": {
+      "clubName": "Monaco"
+    }
+  },
+  "BRA": {
+    "alisson": {
+      "clubName": "Roma"
+    },
+    "casemiro": {
+      "clubName": "Real Madrid"
+    },
+    "cassio ramos": {
+      "clubName": "Corinthians"
+    },
+    "danilo": {
+      "clubName": "Manchester City"
+    },
+    "douglas costa": {
+      "clubName": "Juventus"
+    },
+    "ederson": {
+      "clubName": "Manchester City"
+    },
+    "fagner conserva lemos": {
+      "clubName": "Corinthians"
+    },
+    "fernandinho": {
+      "clubName": "Manchester City"
+    },
+    "filipe luis": {
+      "clubName": "Atlético Madrid"
+    },
+    "fred": {
+      "clubName": "Shakhtar Donetsk"
+    },
+    "gabriel jesus": {
+      "clubName": "Manchester City"
+    },
+    "marcelo": {
+      "clubName": "Real Madrid"
+    },
+    "marquinhos": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "miranda": {
+      "clubName": "Inter Milan"
+    },
+    "neymar": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "paulinho": {
+      "clubName": "Barcelona"
+    },
+    "pedro geromel": {
+      "clubName": "Grêmio"
+    },
+    "philippe coutinho": {
+      "clubName": "Barcelona"
+    },
+    "renato augusto": {
+      "clubName": "Beijing Sinobo Guoan"
+    },
+    "roberto firmino": {
+      "clubName": "Liverpool"
+    },
+    "taison": {
+      "clubName": "Shakhtar Donetsk"
+    },
+    "thiago silva": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "willian": {
+      "clubName": "Chelsea"
+    }
+  },
+  "COL": {
+    "abel aguilar": {
+      "clubName": "Deportivo Cali"
+    },
+    "camilo vargas": {
+      "clubName": "Deportivo Cali"
+    },
+    "carlos bacca": {
+      "clubName": "Villarreal"
+    },
+    "carlos sanchez": {
+      "clubName": "Espanyol"
+    },
+    "cristian zapata": {
+      "clubName": "Milan"
+    },
+    "david ospina": {
+      "clubName": "Arsenal"
+    },
+    "davinson sanchez": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "farid diaz": {
+      "clubName": "Olimpia"
+    },
+    "james rodriguez": {
+      "clubName": "Bayern Munich"
+    },
+    "jefferson lerma": {
+      "clubName": "Levante"
+    },
+    "johan mojica": {
+      "clubName": "Girona"
+    },
+    "jose fernando cuadrado": {
+      "clubName": "Once Caldas"
+    },
+    "jose izquierdo": {
+      "clubName": "Brighton & Hove Albion"
+    },
+    "juan cuadrado": {
+      "clubName": "Juventus"
+    },
+    "juan fernando quintero": {
+      "clubName": "River Plate"
+    },
+    "luis muriel": {
+      "clubName": "Sevilla"
+    },
+    "mateus uribe": {
+      "clubName": "América"
+    },
+    "miguel borja": {
+      "clubName": "Palmeiras"
+    },
+    "oscar murillo": {
+      "clubName": "Pachuca"
+    },
+    "radamel falcao": {
+      "clubName": "Monaco"
+    },
+    "santiago arias": {
+      "clubName": "PSV Eindhoven"
+    },
+    "wilmar barrios": {
+      "clubName": "Boca Juniors"
+    },
+    "yerry mina": {
+      "clubName": "Barcelona"
+    }
+  },
+  "CRC": {
+    "bryan oviedo": {
+      "clubName": "Sunderland"
+    },
+    "bryan ruiz": {
+      "clubName": "Sporting CP"
+    },
+    "celso borges": {
+      "clubName": "Deportivo La Coruña"
+    },
+    "christian bolanos": {
+      "clubName": "Saprissa"
+    },
+    "cristian gamboa": {
+      "clubName": "Celtic"
+    },
+    "daniel colindres": {
+      "clubName": "Saprissa"
+    },
+    "david guzman": {
+      "clubName": "Portland Timbers"
+    },
+    "francisco calvo": {
+      "clubName": "Minnesota United FC"
+    },
+    "giancarlo gonzalez": {
+      "clubName": "Bologna"
+    },
+    "ian smith": {
+      "clubName": "Norrköping"
+    },
+    "jhonny acosta": {
+      "clubName": "Águilas Doradas"
+    },
+    "joel campbell": {
+      "clubName": "Real Betis"
+    },
+    "johan venegas": {
+      "clubName": "Saprissa"
+    },
+    "kendall waston": {
+      "clubName": "Vancouver Whitecaps FC"
+    },
+    "kenner gutierrez": {
+      "clubName": "Alajuelense"
+    },
+    "keylor navas": {
+      "clubName": "Real Madrid"
+    },
+    "leonel moreira": {
+      "clubName": "Herediano"
+    },
+    "marco urena": {
+      "clubName": "Los Angeles FC"
+    },
+    "oscar duarte": {
+      "clubName": "Espanyol"
+    },
+    "patrick pemberton": {
+      "clubName": "Alajuelense"
+    },
+    "randall azofeifa": {
+      "clubName": "Herediano"
+    },
+    "rodney wallace": {
+      "clubName": "New York City FC"
+    },
+    "yeltsin tejeda": {
+      "clubName": "Lausanne"
+    }
+  },
+  "CRO": {
+    "andrej kramaric": {
+      "clubName": "1899 Hoffenheim"
+    },
+    "ante rebic": {
+      "clubName": "Eintracht Frankfurt"
+    },
+    "danijel subasic": {
+      "clubName": "Monaco"
+    },
+    "dejan lovren": {
+      "clubName": "Liverpool"
+    },
+    "domagoj vida": {
+      "clubName": "Beşiktaş"
+    },
+    "dominik livakovic": {
+      "clubName": "Dinamo Zagreb"
+    },
+    "duje caleta-car": {
+      "clubName": "Red Bull Salzburg"
+    },
+    "filip bradaric": {
+      "clubName": "Rijeka"
+    },
+    "ivan perisic": {
+      "clubName": "Inter Milan"
+    },
+    "ivan rakitic": {
+      "clubName": "Barcelona"
+    },
+    "ivan strinic": {
+      "clubName": "Sampdoria"
+    },
+    "josip pivaric": {
+      "clubName": "Dynamo Kyiv"
+    },
+    "lovre kalinic": {
+      "clubName": "Gent"
+    },
+    "luka modric": {
+      "clubName": "Real Madrid"
+    },
+    "marcelo brozovic": {
+      "clubName": "Inter Milan"
+    },
+    "mario mandzukic": {
+      "clubName": "Juventus"
+    },
+    "marko pjaca": {
+      "clubName": "Schalke 04"
+    },
+    "mateo kovacic": {
+      "clubName": "Real Madrid"
+    },
+    "milan badelj": {
+      "clubName": "Fiorentina"
+    },
+    "nikola kalinic": {
+      "clubName": "Milan"
+    },
+    "sime vrsaljko": {
+      "clubName": "Atlético Madrid"
+    },
+    "tin jedvaj": {
+      "clubName": "Bayer Leverkusen"
+    },
+    "vedran corluka": {
+      "clubName": "Lokomotiv Moscow"
+    }
+  },
+  "DEN": {
+    "andreas christensen": {
+      "clubName": "Chelsea"
+    },
+    "andreas cornelius": {
+      "clubName": "Atalanta"
+    },
+    "christian eriksen": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "frederik ronnow": {
+      "clubName": "Brøndby"
+    },
+    "henrik dalsgaard": {
+      "clubName": "Brentford"
+    },
+    "jannik vestergaard": {
+      "clubName": "Borussia Mönchengladbach"
+    },
+    "jens stryger larsen": {
+      "clubName": "Udinese"
+    },
+    "jonas knudsen": {
+      "clubName": "Ipswich Town"
+    },
+    "jonas lossl": {
+      "clubName": "Huddersfield Town"
+    },
+    "kasper dolberg": {
+      "clubName": "Ajax"
+    },
+    "kasper schmeichel": {
+      "clubName": "Leicester City"
+    },
+    "lasse schone": {
+      "clubName": "Ajax"
+    },
+    "lukas lerager": {
+      "clubName": "Bordeaux"
+    },
+    "martin braithwaite": {
+      "clubName": "Bordeaux"
+    },
+    "mathias jorgensen": {
+      "clubName": "Huddersfield Town"
+    },
+    "michael krohn-dehli": {
+      "clubName": "Deportivo La Coruña"
+    },
+    "nicolai jorgensen": {
+      "clubName": "Feyenoord"
+    },
+    "pione sisto": {
+      "clubName": "Celta Vigo"
+    },
+    "simon kjaer": {
+      "clubName": "Sevilla"
+    },
+    "thomas delaney": {
+      "clubName": "Werder Bremen"
+    },
+    "viktor fischer": {
+      "clubName": "Copenhagen"
+    },
+    "william kvist": {
+      "clubName": "Copenhagen"
+    },
+    "yussuf poulsen": {
+      "clubName": "RB Leipzig"
+    }
+  },
+  "EGY": {
+    "abdallah el said": {
+      "clubName": "KuPS"
+    },
+    "ahmed elmohamady": {
+      "clubName": "Aston Villa"
+    },
+    "ahmed fathy": {
+      "clubName": "Al Ahly"
+    },
+    "ahmed hegazi": {
+      "clubName": "West Bromwich Albion"
+    },
+    "ali gabr": {
+      "clubName": "West Bromwich Albion"
+    },
+    "amr warda": {
+      "clubName": "Atromitos"
+    },
+    "ayman ashraf": {
+      "clubName": "Al Ahly"
+    },
+    "essam el hadary": {
+      "clubName": "Al Taawoun"
+    },
+    "kahraba": {
+      "clubName": "Al-Ittihad"
+    },
+    "mahmoud hamdy": {
+      "clubName": "Zamalek"
+    },
+    "marwan mohsen": {
+      "clubName": "Al Ahly"
+    },
+    "mohamed abdel shafy": {
+      "clubName": "Al-Fateh"
+    },
+    "mohamed el shenawy": {
+      "clubName": "Al Ahly"
+    },
+    "mohamed elneny": {
+      "clubName": "Arsenal"
+    },
+    "mohamed salah": {
+      "clubName": "Liverpool"
+    },
+    "omar gaber": {
+      "clubName": "Los Angeles FC"
+    },
+    "ramadan sobhi": {
+      "clubName": "Stoke City"
+    },
+    "saad samir": {
+      "clubName": "Al Ahly"
+    },
+    "sam morsy": {
+      "clubName": "Wigan Athletic"
+    },
+    "sherif ekramy": {
+      "clubName": "Al Ahly"
+    },
+    "shikabala": {
+      "clubName": "Al Raed"
+    },
+    "tarek hamed": {
+      "clubName": "Zamalek"
+    },
+    "trezeguet": {
+      "clubName": "Kasımpaşa"
+    }
+  },
+  "ENG": {
+    "ashley young": {
+      "clubName": "Manchester United"
+    },
+    "danny rose": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "danny welbeck": {
+      "clubName": "Arsenal"
+    },
+    "dele alli": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "eric dier": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "fabian delph": {
+      "clubName": "Manchester City"
+    },
+    "gary cahill": {
+      "clubName": "Chelsea"
+    },
+    "harry kane": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "harry maguire": {
+      "clubName": "Leicester City"
+    },
+    "jack butland": {
+      "clubName": "Stoke City"
+    },
+    "jamie vardy": {
+      "clubName": "Leicester City"
+    },
+    "jesse lingard": {
+      "clubName": "Manchester United"
+    },
+    "john stones": {
+      "clubName": "Manchester City"
+    },
+    "jordan henderson": {
+      "clubName": "Liverpool"
+    },
+    "jordan pickford": {
+      "clubName": "Everton"
+    },
+    "kieran trippier": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "kyle walker": {
+      "clubName": "Manchester City"
+    },
+    "marcus rashford": {
+      "clubName": "Manchester United"
+    },
+    "nick pope": {
+      "clubName": "Burnley"
+    },
+    "phil jones": {
+      "clubName": "Manchester United"
+    },
+    "raheem sterling": {
+      "clubName": "Manchester City"
+    },
+    "ruben loftus-cheek": {
+      "clubName": "Crystal Palace"
+    },
+    "trent alexander-arnold": {
+      "clubName": "Liverpool"
+    }
+  },
+  "ESP": {
+    "alvaro odriozola": {
+      "clubName": "Real Sociedad"
+    },
+    "andres iniesta": {
+      "clubName": "Barcelona"
+    },
+    "cesar azpilicueta": {
+      "clubName": "Chelsea"
+    },
+    "dani carvajal": {
+      "clubName": "Real Madrid"
+    },
+    "david de gea": {
+      "clubName": "Manchester United"
+    },
+    "david silva": {
+      "clubName": "Manchester City"
+    },
+    "diego costa": {
+      "clubName": "Atlético Madrid"
+    },
+    "gerard pique": {
+      "clubName": "Barcelona"
+    },
+    "iago aspas": {
+      "clubName": "Celta Vigo"
+    },
+    "isco": {
+      "clubName": "Real Madrid"
+    },
+    "jordi alba": {
+      "clubName": "Barcelona"
+    },
+    "kepa arrizabalaga": {
+      "clubName": "Athletic Bilbao"
+    },
+    "koke": {
+      "clubName": "Atlético Madrid"
+    },
+    "lucas vazquez": {
+      "clubName": "Real Madrid"
+    },
+    "marco asensio": {
+      "clubName": "Real Madrid"
+    },
+    "nacho": {
+      "clubName": "Real Madrid"
+    },
+    "nacho monreal": {
+      "clubName": "Arsenal"
+    },
+    "pepe reina": {
+      "clubName": "Napoli"
+    },
+    "rodrigo": {
+      "clubName": "Valencia"
+    },
+    "saul": {
+      "clubName": "Atlético Madrid"
+    },
+    "sergio busquets": {
+      "clubName": "Barcelona"
+    },
+    "sergio ramos": {
+      "clubName": "Real Madrid"
+    },
+    "thiago alcantara": {
+      "clubName": "Bayern Munich"
+    }
+  },
+  "FRA": {
+    "adil rami": {
+      "clubName": "Marseille"
+    },
+    "alphonse areola": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "antoine griezmann": {
+      "clubName": "Atlético Madrid"
+    },
+    "benjamin mendy": {
+      "clubName": "Manchester City"
+    },
+    "benjamin pavard": {
+      "clubName": "VfB Stuttgart"
+    },
+    "blaise matuidi": {
+      "clubName": "Juventus"
+    },
+    "corentin tolisso": {
+      "clubName": "Bayern Munich"
+    },
+    "djibril sidibe": {
+      "clubName": "Monaco"
+    },
+    "florian thauvin": {
+      "clubName": "Marseille"
+    },
+    "hugo lloris": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "kylian mbappe": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "lucas hernandez": {
+      "clubName": "Atlético Madrid"
+    },
+    "n'golo kante": {
+      "clubName": "Chelsea"
+    },
+    "nabil fekir": {
+      "clubName": "Lyon"
+    },
+    "olivier giroud": {
+      "clubName": "Chelsea"
+    },
+    "ousmane dembele": {
+      "clubName": "Barcelona"
+    },
+    "paul pogba": {
+      "clubName": "Manchester United"
+    },
+    "presnel kimpembe": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "raphael varane": {
+      "clubName": "Real Madrid"
+    },
+    "samuel umtiti": {
+      "clubName": "Barcelona"
+    },
+    "steve mandanda": {
+      "clubName": "Marseille"
+    },
+    "steven nzonzi": {
+      "clubName": "Sevilla"
+    },
+    "thomas lemar": {
+      "clubName": "Monaco"
+    }
+  },
+  "GER": {
+    "antonio rudiger": {
+      "clubName": "Chelsea"
+    },
+    "ilkay gundogan": {
+      "clubName": "Manchester City"
+    },
+    "jerome boateng": {
+      "clubName": "Bayern Munich"
+    },
+    "jonas hector": {
+      "clubName": "1. FC Köln"
+    },
+    "joshua kimmich": {
+      "clubName": "Bayern Munich"
+    },
+    "julian brandt": {
+      "clubName": "Bayer Leverkusen"
+    },
+    "julian draxler": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "kevin trapp": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "leon goretzka": {
+      "clubName": "Schalke 04"
+    },
+    "manuel neuer": {
+      "clubName": "Bayern Munich"
+    },
+    "marc-andre ter stegen": {
+      "clubName": "Barcelona"
+    },
+    "marco reus": {
+      "clubName": "Borussia Dortmund"
+    },
+    "mario gomez": {
+      "clubName": "VfB Stuttgart"
+    },
+    "marvin plattenhardt": {
+      "clubName": "Hertha BSC"
+    },
+    "mats hummels": {
+      "clubName": "Bayern Munich"
+    },
+    "matthias ginter": {
+      "clubName": "Borussia Mönchengladbach"
+    },
+    "mesut ozil": {
+      "clubName": "Arsenal"
+    },
+    "niklas sule": {
+      "clubName": "Bayern Munich"
+    },
+    "sami khedira": {
+      "clubName": "Juventus"
+    },
+    "sebastian rudy": {
+      "clubName": "Bayern Munich"
+    },
+    "thomas muller": {
+      "clubName": "Bayern Munich"
+    },
+    "timo werner": {
+      "clubName": "RB Leipzig"
+    },
+    "toni kroos": {
+      "clubName": "Real Madrid"
+    }
+  },
+  "IRN": {
+    "alireza beiranvand": {
+      "clubName": "Persepolis"
+    },
+    "alireza jahanbakhsh": {
+      "clubName": "AZ Alkmaar"
+    },
+    "amir abedzadeh": {
+      "clubName": "Marítimo"
+    },
+    "ashkan dejagah": {
+      "clubName": "Nottingham Forest"
+    },
+    "ehsan hajsafi": {
+      "clubName": "Olympiacos"
+    },
+    "karim ansarifard": {
+      "clubName": "Olympiacos"
+    },
+    "majid hosseini": {
+      "clubName": "Esteghlal"
+    },
+    "masoud shojaei": {
+      "clubName": "AEK Athens"
+    },
+    "mehdi taremi": {
+      "clubName": "Al-Gharafa"
+    },
+    "mehdi torabi": {
+      "clubName": "Saipa"
+    },
+    "milad mohammadi": {
+      "clubName": "Akhmat Grozny"
+    },
+    "mohammad rashid mazaheri": {
+      "clubName": "Zob Ahan"
+    },
+    "mohammad reza khanzadeh": {
+      "clubName": "Padideh"
+    },
+    "morteza pouraliganji": {
+      "clubName": "Al Sadd"
+    },
+    "omid ebrahimi": {
+      "clubName": "Esteghlal"
+    },
+    "pejman montazeri": {
+      "clubName": "Esteghlal"
+    },
+    "ramin rezaeian": {
+      "clubName": "Oostende"
+    },
+    "reza ghoochannejhad": {
+      "clubName": "Heerenveen"
+    },
+    "rouzbeh cheshmi": {
+      "clubName": "Esteghlal"
+    },
+    "saeid ezatolahi": {
+      "clubName": "Amkar Perm"
+    },
+    "saman ghoddos": {
+      "clubName": "Östersund"
+    },
+    "sardar azmoun": {
+      "clubName": "Rubin Kazan"
+    },
+    "vahid amiri": {
+      "clubName": "Persepolis"
+    }
+  },
+  "ISL": {
+    "albert gudmundsson": {
+      "clubName": "PSV Eindhoven"
+    },
+    "alfred finnbogason": {
+      "clubName": "FC Augsburg"
+    },
+    "ari freyr skulason": {
+      "clubName": "Lokeren"
+    },
+    "arnor ingvi traustason": {
+      "clubName": "Malmö FF"
+    },
+    "aron gunnarsson": {
+      "clubName": "Cardiff City"
+    },
+    "birkir bjarnason": {
+      "clubName": "Aston Villa"
+    },
+    "birkir mar saevarsson": {
+      "clubName": "Valur"
+    },
+    "bjorn bergmann sigurdarson": {
+      "clubName": "Rostov"
+    },
+    "emil hallfredsson": {
+      "clubName": "Udinese"
+    },
+    "frederik schram": {
+      "clubName": "Roskilde"
+    },
+    "gylfi sigurdsson": {
+      "clubName": "Everton"
+    },
+    "hannes thor halldorsson": {
+      "clubName": "Randers"
+    },
+    "holmar orn eyjolfsson": {
+      "clubName": "Levski Sofia"
+    },
+    "hordur bjorgvin magnusson": {
+      "clubName": "Bristol City"
+    },
+    "johann berg gudmundsson": {
+      "clubName": "Burnley"
+    },
+    "jon dadi bodvarsson": {
+      "clubName": "Reading"
+    },
+    "kari arnason": {
+      "clubName": "Aberdeen"
+    },
+    "olafur ingi skulason": {
+      "clubName": "Kardemir Karabükspor"
+    },
+    "ragnar sigurdsson": {
+      "clubName": "Rostov"
+    },
+    "runar alex runarsson": {
+      "clubName": "Nordsjælland"
+    },
+    "rurik gislason": {
+      "clubName": "SV Sandhausen"
+    },
+    "samuel fridjonsson": {
+      "clubName": "Vålerenga"
+    },
+    "sverrir ingi ingason": {
+      "clubName": "Rostov"
+    }
+  },
+  "JPN": {
+    "eiji kawashima": {
+      "clubName": "Metz"
+    },
+    "gaku shibasaki": {
+      "clubName": "Getafe"
+    },
+    "gen shoji": {
+      "clubName": "Kashima Antlers"
+    },
+    "genki haraguchi": {
+      "clubName": "Fortuna Düsseldorf"
+    },
+    "gotoku sakai": {
+      "clubName": "Hamburger SV"
+    },
+    "hiroki sakai": {
+      "clubName": "Marseille"
+    },
+    "hotaru yamaguchi": {
+      "clubName": "Cerezo Osaka"
+    },
+    "keisuke honda": {
+      "clubName": "Pachuca"
+    },
+    "kosuke nakamura": {
+      "clubName": "Kashiwa Reysol"
+    },
+    "makoto hasebe": {
+      "clubName": "Eintracht Frankfurt"
+    },
+    "masaaki higashiguchi": {
+      "clubName": "Gamba Osaka"
+    },
+    "maya yoshida": {
+      "clubName": "Southampton"
+    },
+    "naomichi ueda": {
+      "clubName": "Kashima Antlers"
+    },
+    "ryota oshima": {
+      "clubName": "Kawasaki Frontale"
+    },
+    "shinji kagawa": {
+      "clubName": "Borussia Dortmund"
+    },
+    "shinji okazaki": {
+      "clubName": "Leicester City"
+    },
+    "takashi inui": {
+      "clubName": "Eibar"
+    },
+    "takashi usami": {
+      "clubName": "Fortuna Düsseldorf"
+    },
+    "tomoaki makino": {
+      "clubName": "Urawa Red Diamonds"
+    },
+    "wataru endo": {
+      "clubName": "Urawa Red Diamonds"
+    },
+    "yoshinori muto": {
+      "clubName": "Mainz 05"
+    },
+    "yuto nagatomo": {
+      "clubName": "Galatasaray"
+    },
+    "yuya osako": {
+      "clubName": "1. FC Köln"
+    }
+  },
+  "KOR": {
+    "go yo-han": {
+      "clubName": "FC Seoul"
+    },
+    "hong chul": {
+      "clubName": "Sangju Sangmu"
+    },
+    "hwang hee-chan": {
+      "clubName": "Red Bull Salzburg"
+    },
+    "jang hyun-soo": {
+      "clubName": "FC Tokyo"
+    },
+    "jo hyeon-woo": {
+      "clubName": "Daegu FC"
+    },
+    "ju se-jong": {
+      "clubName": "Asan Mugunghwa"
+    },
+    "jung seung-hyun": {
+      "clubName": "Sagan Tosu"
+    },
+    "jung woo-young": {
+      "clubName": "Vissel Kobe"
+    },
+    "ki sung-yueng": {
+      "clubName": "Swansea City"
+    },
+    "kim jin-hyeon": {
+      "clubName": "Cerezo Osaka"
+    },
+    "kim min-woo": {
+      "clubName": "Sangju Sangmu"
+    },
+    "kim seung-gyu": {
+      "clubName": "Vissel Kobe"
+    },
+    "kim shin-wook": {
+      "clubName": "Jeonbuk Hyundai Motors"
+    },
+    "kim young-gwon": {
+      "clubName": "Guangzhou Evergrande"
+    },
+    "koo ja-cheol": {
+      "clubName": "FC Augsburg"
+    },
+    "lee jae-sung": {
+      "clubName": "Jeonbuk Hyundai Motors"
+    },
+    "lee seung-woo": {
+      "clubName": "Hellas Verona"
+    },
+    "lee yong": {
+      "clubName": "Jeonbuk Hyundai Motors"
+    },
+    "moon seon-min": {
+      "clubName": "Incheon United"
+    },
+    "oh ban-suk": {
+      "clubName": "Jeju United"
+    },
+    "park joo-ho": {
+      "clubName": "Ulsan Hyundai"
+    },
+    "son heung-min": {
+      "clubName": "Tottenham Hotspur"
+    },
+    "yun young-sun": {
+      "clubName": "Seongnam FC"
+    }
+  },
+  "KSA": {
+    "abdullah al-khaibari": {
+      "clubName": "Al-Shabab"
+    },
+    "abdullah al-mayouf": {
+      "clubName": "Al-Hilal"
+    },
+    "abdullah otayf": {
+      "clubName": "Al-Hilal"
+    },
+    "abdulmalek al-khaibri": {
+      "clubName": "Al-Hilal"
+    },
+    "ali al-bulaihi": {
+      "clubName": "Al-Hilal"
+    },
+    "fahad al-muwallad": {
+      "clubName": "Levante"
+    },
+    "hattan bahebri": {
+      "clubName": "Al-Shabab"
+    },
+    "housain al-mogahwi": {
+      "clubName": "Al-Ahli"
+    },
+    "mansoor al-harbi": {
+      "clubName": "Al-Ahli"
+    },
+    "mohamed kanno": {
+      "clubName": "Al-Hilal"
+    },
+    "mohammad al-sahlawi": {
+      "clubName": "Al-Nassr"
+    },
+    "mohammed al-breik": {
+      "clubName": "Al-Hilal"
+    },
+    "mohammed al-owais": {
+      "clubName": "Al-Ahli"
+    },
+    "motaz hawsawi": {
+      "clubName": "Al-Ahli"
+    },
+    "muhannad assiri": {
+      "clubName": "Al-Ahli"
+    },
+    "omar hawsawi": {
+      "clubName": "Al-Nassr"
+    },
+    "osama hawsawi": {
+      "clubName": "Al-Hilal"
+    },
+    "salem al-dawsari": {
+      "clubName": "Villarreal"
+    },
+    "salman al-faraj": {
+      "clubName": "Al-Hilal"
+    },
+    "taisir al-jassim": {
+      "clubName": "Al-Ahli"
+    },
+    "yahya al-shehri": {
+      "clubName": "Leganés"
+    },
+    "yasser al-mosailem": {
+      "clubName": "Al-Ahli"
+    },
+    "yasser al-shahrani": {
+      "clubName": "Al-Hilal"
+    }
+  },
+  "MAR": {
+    "achraf hakimi": {
+      "clubName": "Real Madrid"
+    },
+    "ahmed reda tagnaouti": {
+      "clubName": "IR Tanger"
+    },
+    "amine harit": {
+      "clubName": "Schalke 04"
+    },
+    "ayoub el kaabi": {
+      "clubName": "RS Berkane"
+    },
+    "aziz bouhaddouz": {
+      "clubName": "FC St. Pauli"
+    },
+    "faycal fajr": {
+      "clubName": "Getafe"
+    },
+    "hakim ziyech": {
+      "clubName": "Ajax"
+    },
+    "hamza mendyl": {
+      "clubName": "Lille"
+    },
+    "karim el ahmadi": {
+      "clubName": "Feyenoord"
+    },
+    "khalid boutaib": {
+      "clubName": "Yeni Malatyaspor"
+    },
+    "manuel da costa": {
+      "clubName": "İstanbul Başakşehir"
+    },
+    "mbark boussoufa": {
+      "clubName": "Al Jazira"
+    },
+    "medhi benatia": {
+      "clubName": "Juventus"
+    },
+    "mehdi carcela": {
+      "clubName": "Standard Liège"
+    },
+    "munir mohand mohamedi": {
+      "clubName": "Numancia"
+    },
+    "nabil dirar": {
+      "clubName": "Fenerbahçe"
+    },
+    "nordin amrabat": {
+      "clubName": "Leganés"
+    },
+    "romain saiss": {
+      "clubName": "Wolverhampton Wanderers"
+    },
+    "sofyan amrabat": {
+      "clubName": "Feyenoord"
+    },
+    "yassine bounou": {
+      "clubName": "Girona"
+    },
+    "younes belhanda": {
+      "clubName": "Galatasaray"
+    },
+    "youssef ait bennasser": {
+      "clubName": "Caen"
+    },
+    "youssef en-nesyri": {
+      "clubName": "Málaga"
+    }
+  },
+  "MEX": {
+    "alfredo talavera": {
+      "clubName": "Toluca"
+    },
+    "andres guardado": {
+      "clubName": "Real Betis"
+    },
+    "carlos salcedo": {
+      "clubName": "Eintracht Frankfurt"
+    },
+    "carlos vela": {
+      "clubName": "Los Angeles FC"
+    },
+    "edson alvarez": {
+      "clubName": "América"
+    },
+    "erick gutierrez": {
+      "clubName": "Pachuca"
+    },
+    "giovani dos santos": {
+      "clubName": "LA Galaxy"
+    },
+    "guillermo ochoa": {
+      "clubName": "Standard Liège"
+    },
+    "hector herrera": {
+      "clubName": "Porto"
+    },
+    "hector moreno": {
+      "clubName": "Real Sociedad"
+    },
+    "hirving lozano": {
+      "clubName": "PSV Eindhoven"
+    },
+    "hugo ayala": {
+      "clubName": "Tigres UANL"
+    },
+    "javier aquino": {
+      "clubName": "Tigres UANL"
+    },
+    "javier hernandez": {
+      "clubName": "West Ham United"
+    },
+    "jesus gallardo": {
+      "clubName": "Pumas UNAM"
+    },
+    "jesus manuel corona": {
+      "clubName": "Porto"
+    },
+    "jonathan dos santos": {
+      "clubName": "LA Galaxy"
+    },
+    "jose de jesus corona": {
+      "clubName": "Cruz Azul"
+    },
+    "marco fabian": {
+      "clubName": "Eintracht Frankfurt"
+    },
+    "miguel layun": {
+      "clubName": "Sevilla"
+    },
+    "oribe peralta": {
+      "clubName": "América"
+    },
+    "rafael marquez": {
+      "clubName": "Atlas"
+    },
+    "raul jimenez": {
+      "clubName": "Benfica"
+    }
+  },
+  "NGA": {
+    "ahmed musa": {
+      "clubName": "CSKA Moscow"
+    },
+    "alex iwobi": {
+      "clubName": "Arsenal"
+    },
+    "brian idowu": {
+      "clubName": "Amkar Perm"
+    },
+    "chidozie awaziem": {
+      "clubName": "Nantes"
+    },
+    "daniel akpeyi": {
+      "clubName": "Chippa United"
+    },
+    "elderson echiejile": {
+      "clubName": "Cercle Brugge"
+    },
+    "francis uzoho": {
+      "clubName": "Deportivo La Coruña"
+    },
+    "ikechukwu ezenwa": {
+      "clubName": "Enyimba"
+    },
+    "joel obi": {
+      "clubName": "Torino"
+    },
+    "john obi mikel": {
+      "clubName": "Tianjin TEDA"
+    },
+    "john ogu": {
+      "clubName": "Hapoel Be'er Sheva"
+    },
+    "kelechi iheanacho": {
+      "clubName": "Leicester City"
+    },
+    "kenneth omeruo": {
+      "clubName": "Kasımpaşa"
+    },
+    "leon balogun": {
+      "clubName": "Mainz 05"
+    },
+    "odion ighalo": {
+      "clubName": "Changchun Yatai"
+    },
+    "ogenyi onazi": {
+      "clubName": "Trabzonspor"
+    },
+    "peter etebo": {
+      "clubName": "Las Palmas"
+    },
+    "shehu abdullahi": {
+      "clubName": "Bursaspor"
+    },
+    "simeon nwankwo": {
+      "clubName": "Crotone"
+    },
+    "tyronne ebuehi": {
+      "clubName": "ADO Den Haag"
+    },
+    "victor moses": {
+      "clubName": "Chelsea"
+    },
+    "wilfred ndidi": {
+      "clubName": "Leicester City"
+    },
+    "william troost-ekong": {
+      "clubName": "Bursaspor"
+    }
+  },
+  "PAN": {
+    "abdiel arroyo": {
+      "clubName": "Alajuelense"
+    },
+    "adolfo machado": {
+      "clubName": "Houston Dynamo FC"
+    },
+    "alex rodriguez": {
+      "clubName": "San Francisco"
+    },
+    "anibal godoy": {
+      "clubName": "San Jose Earthquakes"
+    },
+    "armando cooper": {
+      "clubName": "Universidad de Chile"
+    },
+    "blas perez": {
+      "clubName": "Municipal"
+    },
+    "eric davis": {
+      "clubName": "Dunajská Streda"
+    },
+    "felipe baloy": {
+      "clubName": "Municipal"
+    },
+    "fidel escobar": {
+      "clubName": "New York Red Bulls"
+    },
+    "gabriel enrique gomez": {
+      "clubName": "Atlético Bucaramanga"
+    },
+    "gabriel torres": {
+      "clubName": "Huachipato"
+    },
+    "harold cummings": {
+      "clubName": "San Jose Earthquakes"
+    },
+    "ismael diaz": {
+      "clubName": "Deportivo Fabril"
+    },
+    "jaime penedo": {
+      "clubName": "Dinamo București"
+    },
+    "jose calderon": {
+      "clubName": "Chorrillo"
+    },
+    "jose luis rodriguez": {
+      "clubName": "Gent"
+    },
+    "luis ovalle": {
+      "clubName": "CD Olimpia"
+    },
+    "luis tejada": {
+      "clubName": "Sport Boys"
+    },
+    "michael amir murillo": {
+      "clubName": "New York Red Bulls"
+    },
+    "ricardo avila": {
+      "clubName": "Gent"
+    },
+    "roman torres": {
+      "clubName": "Seattle Sounders FC"
+    },
+    "valentin pimentel": {
+      "clubName": "Plaza Amador"
+    },
+    "yoel barcenas": {
+      "clubName": "Tapachula"
+    }
+  },
+  "PER": {
+    "alberto junior rodriguez": {
+      "clubName": "Atlético Junior"
+    },
+    "aldo corzo": {
+      "clubName": "Universitario"
+    },
+    "anderson santamaria": {
+      "clubName": "Puebla"
+    },
+    "andre carrillo": {
+      "clubName": "Watford"
+    },
+    "andy polo": {
+      "clubName": "Portland Timbers"
+    },
+    "carlos caceda": {
+      "clubName": "Deportivo Municipal"
+    },
+    "christian cueva": {
+      "clubName": "São Paulo"
+    },
+    "christian ramos": {
+      "clubName": "Veracruz"
+    },
+    "edison flores": {
+      "clubName": "AaB"
+    },
+    "jefferson farfan": {
+      "clubName": "Lokomotiv Moscow"
+    },
+    "jose carvallo": {
+      "clubName": "Universidad Técnica de Cajamarca"
+    },
+    "luis advincula": {
+      "clubName": "Lobos BUAP"
+    },
+    "miguel araujo": {
+      "clubName": "Alianza Lima"
+    },
+    "miguel trauco": {
+      "clubName": "Flamengo"
+    },
+    "nilson loyola": {
+      "clubName": "Melgar"
+    },
+    "paolo guerrero": {
+      "clubName": "Flamengo"
+    },
+    "paolo hurtado": {
+      "clubName": "Vitória de Guimarães"
+    },
+    "pedro aquino": {
+      "clubName": "Lobos BUAP"
+    },
+    "pedro gallese": {
+      "clubName": "Veracruz"
+    },
+    "raul ruidiaz": {
+      "clubName": "Morelia"
+    },
+    "renato tapia": {
+      "clubName": "Feyenoord"
+    },
+    "wilder cartagena": {
+      "clubName": "Veracruz"
+    },
+    "yoshimar yotun": {
+      "clubName": "Orlando City SC"
+    }
+  },
+  "POL": {
+    "arkadiusz milik": {
+      "clubName": "Napoli"
+    },
+    "artur jedrzejczyk": {
+      "clubName": "Legia Warsaw"
+    },
+    "bartosz bereszynski": {
+      "clubName": "Sampdoria"
+    },
+    "bartosz bialkowski": {
+      "clubName": "Ipswich Town"
+    },
+    "dawid kownacki": {
+      "clubName": "Sampdoria"
+    },
+    "grzegorz krychowiak": {
+      "clubName": "West Bromwich Albion"
+    },
+    "jacek goralski": {
+      "clubName": "Ludogorets Razgrad"
+    },
+    "jakub blaszczykowski": {
+      "clubName": "VfL Wolfsburg"
+    },
+    "jan bednarek": {
+      "clubName": "Southampton"
+    },
+    "kamil glik": {
+      "clubName": "Monaco"
+    },
+    "kamil grosicki": {
+      "clubName": "Hull City"
+    },
+    "karol linetty": {
+      "clubName": "Sampdoria"
+    },
+    "maciej rybus": {
+      "clubName": "Lokomotiv Moscow"
+    },
+    "michal pazdan": {
+      "clubName": "Legia Warsaw"
+    },
+    "piotr zielinski": {
+      "clubName": "Napoli"
+    },
+    "rafal kurzawa": {
+      "clubName": "Górnik Zabrze"
+    },
+    "robert lewandowski": {
+      "clubName": "Bayern Munich"
+    },
+    "slawomir peszko": {
+      "clubName": "Lechia Gdańsk"
+    },
+    "thiago cionek": {
+      "clubName": "SPAL"
+    },
+    "wojciech szczesny": {
+      "clubName": "Juventus"
+    },
+    "lukasz fabianski": {
+      "clubName": "Swansea City"
+    },
+    "lukasz piszczek": {
+      "clubName": "Borussia Dortmund"
+    },
+    "lukasz teodorczyk": {
+      "clubName": "Anderlecht"
+    }
+  },
+  "POR": {
+    "adrien silva": {
+      "clubName": "Leicester City"
+    },
+    "andre silva": {
+      "clubName": "Milan"
+    },
+    "anthony lopes": {
+      "clubName": "Lyon"
+    },
+    "bernardo silva": {
+      "clubName": "Manchester City"
+    },
+    "beto": {
+      "clubName": "Göztepe"
+    },
+    "bruno alves": {
+      "clubName": "Rangers"
+    },
+    "bruno fernandes": {
+      "clubName": "Sporting CP"
+    },
+    "cedric soares": {
+      "clubName": "Southampton"
+    },
+    "cristiano ronaldo": {
+      "clubName": "Real Madrid"
+    },
+    "gelson martins": {
+      "clubName": "Sporting CP"
+    },
+    "goncalo guedes": {
+      "clubName": "Valencia"
+    },
+    "joao mario": {
+      "clubName": "West Ham United"
+    },
+    "joao moutinho": {
+      "clubName": "Monaco"
+    },
+    "jose fonte": {
+      "clubName": "Dalian Yifang"
+    },
+    "manuel fernandes": {
+      "clubName": "Lokomotiv Moscow"
+    },
+    "mario rui": {
+      "clubName": "Napoli"
+    },
+    "pepe": {
+      "clubName": "Beşiktaş"
+    },
+    "raphael guerreiro": {
+      "clubName": "Borussia Dortmund"
+    },
+    "ricardo pereira": {
+      "clubName": "Porto"
+    },
+    "ricardo quaresma": {
+      "clubName": "Beşiktaş"
+    },
+    "ruben dias": {
+      "clubName": "Benfica"
+    },
+    "rui patricio": {
+      "clubName": "Sporting CP"
+    },
+    "william carvalho": {
+      "clubName": "Sporting CP"
+    }
+  },
+  "RUS": {
+    "alan dzagoev": {
+      "clubName": "CSKA Moscow"
+    },
+    "aleksandr golovin": {
+      "clubName": "CSKA Moscow"
+    },
+    "aleksandr samedov": {
+      "clubName": "Spartak Moscow"
+    },
+    "aleksandr yerokhin": {
+      "clubName": "Zenit Saint Petersburg"
+    },
+    "aleksei miranchuk": {
+      "clubName": "Lokomotiv Moscow"
+    },
+    "andrei sergeyevich semyonov": {
+      "clubName": "Akhmat Grozny"
+    },
+    "andrey lunyov": {
+      "clubName": "Zenit Saint Petersburg"
+    },
+    "anton miranchuk": {
+      "clubName": "Lokomotiv Moscow"
+    },
+    "artem dzyuba": {
+      "clubName": "Arsenal Tula"
+    },
+    "daler kuzyayev": {
+      "clubName": "Zenit Saint Petersburg"
+    },
+    "denis cheryshev": {
+      "clubName": "Villarreal"
+    },
+    "fyodor kudryashov": {
+      "clubName": "Rubin Kazan"
+    },
+    "fyodor smolov": {
+      "clubName": "Krasnodar"
+    },
+    "igor akinfeev": {
+      "clubName": "CSKA Moscow"
+    },
+    "igor smolnikov": {
+      "clubName": "Zenit Saint Petersburg"
+    },
+    "ilya kutepov": {
+      "clubName": "Spartak Moscow"
+    },
+    "mario fernandes": {
+      "clubName": "CSKA Moscow"
+    },
+    "roman zobnin": {
+      "clubName": "Spartak Moscow"
+    },
+    "sergei ignashevich": {
+      "clubName": "CSKA Moscow"
+    },
+    "vladimir gabulov": {
+      "clubName": "Club Brugge"
+    },
+    "vladimir granat": {
+      "clubName": "Rubin Kazan"
+    },
+    "yuri zhirkov": {
+      "clubName": "Zenit Saint Petersburg"
+    },
+    "yury gazinsky": {
+      "clubName": "Krasnodar"
+    }
+  },
+  "SEN": {
+    "abdoulaye diallo": {
+      "clubName": "Rennes"
+    },
+    "adama mbengue": {
+      "clubName": "Caen"
+    },
+    "alfred gomis": {
+      "clubName": "SPAL"
+    },
+    "alfred n'diaye": {
+      "clubName": "Wolverhampton Wanderers"
+    },
+    "badou ndiaye": {
+      "clubName": "Stoke City"
+    },
+    "cheikh n'doye": {
+      "clubName": "Birmingham City"
+    },
+    "cheikhou kouyate": {
+      "clubName": "West Ham United"
+    },
+    "diafra sakho": {
+      "clubName": "Rennes"
+    },
+    "idrissa gueye": {
+      "clubName": "Everton"
+    },
+    "ismaila sarr": {
+      "clubName": "Rennes"
+    },
+    "kalidou koulibaly": {
+      "clubName": "Napoli"
+    },
+    "kara mbodji": {
+      "clubName": "Anderlecht"
+    },
+    "keita balde": {
+      "clubName": "Monaco"
+    },
+    "khadim n'diaye": {
+      "clubName": "Horoya"
+    },
+    "lamine gassama": {
+      "clubName": "Alanyaspor"
+    },
+    "m'baye niang": {
+      "clubName": "Torino"
+    },
+    "mame biram diouf": {
+      "clubName": "Stoke City"
+    },
+    "moussa konate": {
+      "clubName": "Amiens"
+    },
+    "moussa sow": {
+      "clubName": "Bursaspor"
+    },
+    "moussa wague": {
+      "clubName": "Eupen"
+    },
+    "sadio mane": {
+      "clubName": "Liverpool"
+    },
+    "salif sane": {
+      "clubName": "Hannover 96"
+    },
+    "youssouf sabaly": {
+      "clubName": "Bordeaux"
+    }
+  },
+  "SRB": {
+    "adem ljajic": {
+      "clubName": "Torino"
+    },
+    "aleksandar kolarov": {
+      "clubName": "Roma"
+    },
+    "aleksandar mitrovic": {
+      "clubName": "Fulham"
+    },
+    "aleksandar prijovic": {
+      "clubName": "PAOK"
+    },
+    "andrija zivkovic": {
+      "clubName": "Benfica"
+    },
+    "antonio rukavina": {
+      "clubName": "Villarreal"
+    },
+    "branislav ivanovic": {
+      "clubName": "Zenit Saint Petersburg"
+    },
+    "dusan tadic": {
+      "clubName": "Southampton"
+    },
+    "dusko tosic": {
+      "clubName": "Beşiktaş"
+    },
+    "filip kostic": {
+      "clubName": "Hamburger SV"
+    },
+    "luka jovic": {
+      "clubName": "Eintracht Frankfurt"
+    },
+    "luka milivojevic": {
+      "clubName": "Crystal Palace"
+    },
+    "marko dmitrovic": {
+      "clubName": "Eibar"
+    },
+    "marko grujic": {
+      "clubName": "Cardiff City"
+    },
+    "milan rodic": {
+      "clubName": "Red Star Belgrade"
+    },
+    "milos veljkovic": {
+      "clubName": "Werder Bremen"
+    },
+    "nemanja matic": {
+      "clubName": "Manchester United"
+    },
+    "nemanja radonjic": {
+      "clubName": "Red Star Belgrade"
+    },
+    "nikola milenkovic": {
+      "clubName": "Fiorentina"
+    },
+    "predrag rajkovic": {
+      "clubName": "Maccabi Tel Aviv"
+    },
+    "sergej milinkovic-savic": {
+      "clubName": "Lazio"
+    },
+    "uros spajic": {
+      "clubName": "Anderlecht"
+    },
+    "vladimir stojkovic": {
+      "clubName": "Partizan"
+    }
+  },
+  "SUI": {
+    "blerim dzemaili": {
+      "clubName": "Bologna"
+    },
+    "breel embolo": {
+      "clubName": "Schalke 04"
+    },
+    "denis zakaria": {
+      "clubName": "Borussia Mönchengladbach"
+    },
+    "fabian schar": {
+      "clubName": "Deportivo La Coruña"
+    },
+    "francois moubandje": {
+      "clubName": "Toulouse"
+    },
+    "gelson fernandes": {
+      "clubName": "Eintracht Frankfurt"
+    },
+    "granit xhaka": {
+      "clubName": "Arsenal"
+    },
+    "haris seferovic": {
+      "clubName": "Benfica"
+    },
+    "johan djourou": {
+      "clubName": "Antalyaspor"
+    },
+    "josip drmic": {
+      "clubName": "Borussia Mönchengladbach"
+    },
+    "manuel akanji": {
+      "clubName": "Borussia Dortmund"
+    },
+    "mario gavranovic": {
+      "clubName": "Dinamo Zagreb"
+    },
+    "michael lang": {
+      "clubName": "Basel"
+    },
+    "nico elvedi": {
+      "clubName": "Borussia Mönchengladbach"
+    },
+    "remo freuler": {
+      "clubName": "Atalanta"
+    },
+    "ricardo rodriguez": {
+      "clubName": "Milan"
+    },
+    "roman burki": {
+      "clubName": "Borussia Dortmund"
+    },
+    "stephan lichtsteiner": {
+      "clubName": "Juventus"
+    },
+    "steven zuber": {
+      "clubName": "1899 Hoffenheim"
+    },
+    "valon behrami": {
+      "clubName": "Udinese"
+    },
+    "xherdan shaqiri": {
+      "clubName": "Stoke City"
+    },
+    "yann sommer": {
+      "clubName": "Borussia Mönchengladbach"
+    },
+    "yvon mvogo": {
+      "clubName": "RB Leipzig"
+    }
+  },
+  "SWE": {
+    "albin ekdal": {
+      "clubName": "Hamburger SV"
+    },
+    "andreas granqvist": {
+      "clubName": "Krasnodar"
+    },
+    "emil forsberg": {
+      "clubName": "RB Leipzig"
+    },
+    "emil krafth": {
+      "clubName": "Bologna"
+    },
+    "filip helander": {
+      "clubName": "Bologna"
+    },
+    "gustav svensson": {
+      "clubName": "Seattle Sounders FC"
+    },
+    "isaac kiese thelin": {
+      "clubName": "Waasland-Beveren"
+    },
+    "jimmy durmaz": {
+      "clubName": "Toulouse"
+    },
+    "john guidetti": {
+      "clubName": "Alavés"
+    },
+    "karl-johan johnsson": {
+      "clubName": "Guingamp"
+    },
+    "kristoffer nordfeldt": {
+      "clubName": "Swansea City"
+    },
+    "ludwig augustinsson": {
+      "clubName": "Werder Bremen"
+    },
+    "marcus berg": {
+      "clubName": "Al Ain"
+    },
+    "marcus rohden": {
+      "clubName": "Crotone"
+    },
+    "martin olsson": {
+      "clubName": "Swansea City"
+    },
+    "mikael lustig": {
+      "clubName": "Celtic"
+    },
+    "ola toivonen": {
+      "clubName": "Toulouse"
+    },
+    "oscar hiljemark": {
+      "clubName": "Genoa"
+    },
+    "pontus jansson": {
+      "clubName": "Leeds United"
+    },
+    "robin olsen": {
+      "clubName": "Copenhagen"
+    },
+    "sebastian larsson": {
+      "clubName": "Hull City"
+    },
+    "victor lindelof": {
+      "clubName": "Manchester United"
+    },
+    "viktor claesson": {
+      "clubName": "Krasnodar"
+    }
+  },
+  "TUN": {
+    "ahmed khalil": {
+      "clubName": "Club Africain"
+    },
+    "ali maaloul": {
+      "clubName": "Al Ahly"
+    },
+    "anice badri": {
+      "clubName": "Espérance de Tunis"
+    },
+    "aymen mathlouthi": {
+      "clubName": "Al Batin"
+    },
+    "bassem srarfi": {
+      "clubName": "Nice"
+    },
+    "dylan bronn": {
+      "clubName": "Gent"
+    },
+    "ellyes skhiri": {
+      "clubName": "Montpellier"
+    },
+    "fakhreddine ben youssef": {
+      "clubName": "Al-Ettifaq"
+    },
+    "farouk ben mustapha": {
+      "clubName": "Al-Shabab"
+    },
+    "ferjani sassi": {
+      "clubName": "Al-Nassr"
+    },
+    "ghailene chaalali": {
+      "clubName": "Espérance de Tunis"
+    },
+    "hamdi nagguez": {
+      "clubName": "Zamalek"
+    },
+    "mohamed amine ben amor": {
+      "clubName": "Al-Ahli"
+    },
+    "mouez hassen": {
+      "clubName": "Châteauroux"
+    },
+    "naim sliti": {
+      "clubName": "Dijon"
+    },
+    "oussama haddadi": {
+      "clubName": "Dijon"
+    },
+    "rami bedoui": {
+      "clubName": "Étoile du Sahel"
+    },
+    "saber khalifa": {
+      "clubName": "Club Africain"
+    },
+    "saif-eddine khaoui": {
+      "clubName": "Troyes"
+    },
+    "syam ben youssef": {
+      "clubName": "Kasımpaşa"
+    },
+    "wahbi khazri": {
+      "clubName": "Rennes"
+    },
+    "yassine meriah": {
+      "clubName": "CS Sfaxien"
+    },
+    "yohan benalouane": {
+      "clubName": "Leicester City"
+    }
+  },
+  "URU": {
+    "carlos sanchez": {
+      "clubName": "Monterrey"
+    },
+    "cristhian stuani": {
+      "clubName": "Girona"
+    },
+    "cristian rodriguez": {
+      "clubName": "Peñarol"
+    },
+    "diego godin": {
+      "clubName": "Atlético Madrid"
+    },
+    "diego laxalt": {
+      "clubName": "Genoa"
+    },
+    "edinson cavani": {
+      "clubName": "Paris Saint-Germain"
+    },
+    "fernando muslera": {
+      "clubName": "Galatasaray"
+    },
+    "gaston silva": {
+      "clubName": "Independiente"
+    },
+    "giorgian de arrascaeta": {
+      "clubName": "Cruzeiro"
+    },
+    "guillermo varela": {
+      "clubName": "Peñarol"
+    },
+    "jonathan urretaviscaya": {
+      "clubName": "Monterrey"
+    },
+    "jose maria gimenez": {
+      "clubName": "Atlético Madrid"
+    },
+    "lucas torreira": {
+      "clubName": "Sampdoria"
+    },
+    "luis suarez": {
+      "clubName": "Barcelona"
+    },
+    "martin caceres": {
+      "clubName": "Lazio"
+    },
+    "martin campana": {
+      "clubName": "Independiente"
+    },
+    "martin silva": {
+      "clubName": "Vasco da Gama"
+    },
+    "matias vecino": {
+      "clubName": "Inter Milan"
+    },
+    "maxi gomez": {
+      "clubName": "Celta Vigo"
+    },
+    "maxi pereira": {
+      "clubName": "Porto"
+    },
+    "nahitan nandez": {
+      "clubName": "Boca Juniors"
+    },
+    "rodrigo bentancur": {
+      "clubName": "Juventus"
+    },
+    "sebastian coates": {
+      "clubName": "Sporting CP"
+    }
+  }
+}

@@ -5,11 +5,23 @@
   "1899 Hoffenheim": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Logo_TSG_Hoffenheim.svg"
   },
+  "ADO Den Haag": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/ad/ADO_Den_Haag_logo.svg"
+  },
   "AEK Athens": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/04/AEK_Athens_FC_logo.svg"
   },
   "AFC Wimbledon": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/1/1b/AFC_Wimbledon_%282020%29_logo.svg"
+  },
+  "AZ Alkmaar": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/AZ_Alkmaar.svg"
+  },
+  "AaB": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Aalborg_Boldspilklub_%28logo%29.svg"
+  },
+  "Aberdeen": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/fb/Aberdeen_FC_stars_crest.svg"
   },
   "Abha": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/7/76/Abha_Club_Logo.svg"
@@ -20,8 +32,29 @@
   "Ajax": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Logo_AFC_Ajax_%281928-1991%2C_2025-%29.png"
   },
+  "Akhmat Grozny": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/36/Akhmat_Grozny_logo.png"
+  },
   "Al Ahly": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/7/70/Al_Ahly_SC_logo.svg"
+  },
+  "Al Ain": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/62/Al_Ain_FC_logo_2024.png"
+  },
+  "Al Batin": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/87/Al-Batin_F.C_logo.png"
+  },
+  "Al Jazira": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/ff/Al_Jazira_Club_logo_en_%282021%29.svg"
+  },
+  "Al Raed": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f3/Al_Raed_FC.svg"
+  },
+  "Al Sadd": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/c1/Al_Sadd_SC_logo.svg"
+  },
+  "Al Taawoun": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/08/Al_Taawoun_FC_Logo.svg"
   },
   "Al-Ahli": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/45/Al_Ahli_Saudi_FC_logo.svg"
@@ -77,14 +110,23 @@
   "Alanyaspor": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/40/Alanyaspor_logo.svg"
   },
+  "Alavés": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f8/Deportivo_Alaves_logo_%282020%29.svg"
+  },
   "Albirex Niigata": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/cd/Albirex_Niigata_logo.svg"
+  },
+  "Alianza Lima": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Escudo_Alianza_Lima.svg"
   },
   "Almería": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/4a/UD_Almeria_logo.svg"
   },
   "Amiens": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/25/Amiens_SC_logo.svg"
+  },
+  "Amkar Perm": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/05/FC_Amkar_Perm_logo.svg"
   },
   "América": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/c1/Club_Am%C3%A9rica_crest.svg"
@@ -107,6 +149,12 @@
   "Arsenal": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg"
   },
+  "Arsenal Tula": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/5c/FC_Arsenal_Tula_logo.svg"
+  },
+  "Asan Mugunghwa": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/82/Asan_Mugunghwa_FC.png"
+  },
   "Asante Kotoko": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/fd/Asante_Kotoko_SC_%28logo%29.png"
   },
@@ -124,6 +172,15 @@
   },
   "Atlanta United FC": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/bb/Atlanta_MLS.svg"
+  },
+  "Atlas": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/F%C3%BAtbol_Club_Atlas.svg"
+  },
+  "Atlético Bucaramanga": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Atl%C3%A9ticoBucaramanga.png"
+  },
+  "Atlético Junior": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/ESCUDO_JUNIOR.svg"
   },
   "Atlético Madrid": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f9/Atletico_Madrid_Logo_2024.svg"
@@ -152,6 +209,9 @@
   "Bayern Munich": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg"
   },
+  "Beijing Sinobo Guoan": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a8/Beijing_Guoan_F.C.svg"
+  },
   "Benevento": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/61/Benevento_Calcio_logo.svg"
   },
@@ -164,8 +224,14 @@
   "Birmingham City": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/68/Birmingham_City_FC_logo.svg"
   },
+  "Boca Juniors": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Boca_Juniors_logo18.svg"
+  },
   "Bologna": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Bologna_F.C._1909_logo.svg"
+  },
+  "Bordeaux": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/1/11/FC_Girondins_de_Bordeaux_logo.svg"
   },
   "Borussia Dortmund": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/6/67/Borussia_Dortmund_logo.svg"
@@ -200,11 +266,20 @@
   "Burnley": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/6d/Burnley_FC_Logo.svg"
   },
+  "Bursaspor": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/3c/Bursaspor_logo.svg"
+  },
+  "CD Olimpia": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/28/Club_Olimpia_Deportivo_logo.svg"
+  },
   "CF Montréal": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Logo_of_CF_Montreal_2023.svg"
   },
   "CS Sfaxien": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/1/17/CS_Sfaxien_logo.svg"
+  },
+  "CSKA Moscow": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/26/PFK_CSKA_Logo.svg"
   },
   "Caen": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/aa/SM_Caen_2016_logo.svg"
@@ -227,6 +302,12 @@
   "Cercle Brugge": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Logo_Cercle_Brugge_2022.png"
   },
+  "Cerezo Osaka": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/85/Cerezo_Osaka_logo.svg"
+  },
+  "Changchun Yatai": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/92/Changchun_Yatai.svg"
+  },
   "Charleroi": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/e1/Royal_Charleroi_Sporting_Club_logo.svg"
   },
@@ -241,6 +322,12 @@
   },
   "Chicago Fire FC": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/03/Chicago_Fire_logo%2C_2021.svg"
+  },
+  "Chippa United": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/0c/Chippa_United_FC_logo.png"
+  },
+  "Châteauroux": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a6/LB_Chateauroux_logo.svg"
   },
   "Clermont": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/52/Clermont_Foot_logo.svg"
@@ -260,14 +347,23 @@
   "Copenhagen": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/26/FC_Copenhagen_logo.svg"
   },
+  "Corinthians": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/5a/Sport_Club_Corinthians_Paulista_crest.svg"
+  },
   "Coton Sport": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/3c/Cotonsport.png"
   },
   "Cremonese": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/e1/US_Cremonese_logo.svg"
   },
+  "Crotone": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/d/db/FC_Crotone_logo.svg"
+  },
   "Cruz Azul": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/Cruz_Azul_2026.png"
+  },
+  "Cruzeiro": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/90/Cruzeiro_Esporte_Clube_%28logo%29.svg"
   },
   "Crystal Palace": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a2/Crystal_Palace_FC_logo_%282022%29.svg"
@@ -281,20 +377,53 @@
   "Daejeon Hana Citizen": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/40/Daejeon_Hana_Citizen.svg"
   },
+  "Dalian Yifang": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/69/Dalian_Professional_F.C.svg"
+  },
   "Deinze": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/24/K.M.S.K._Deinze.svg"
+  },
+  "Deportivo Cali": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Deportivo_Cali.svg"
+  },
+  "Deportivo Fabril": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/4e/RC_Deportivo_La_Coru%C3%B1a_logo.svg"
+  },
+  "Deportivo La Coruña": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/4e/RC_Deportivo_La_Coru%C3%B1a_logo.svg"
+  },
+  "Deportivo Municipal": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Deportivo_Municipal.svg"
+  },
+  "Dijon": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f7/Dijon_FCO_logo.svg"
+  },
+  "Dinamo București": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/c0/FC_Dinamo_Bucuresti_logo.svg"
   },
   "Dinamo Zagreb": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/56/Logo_GNK_Dinamo_Zagreb_%282019%29.svg"
   },
+  "Dunajská Streda": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/2/29/FC_DAC_1904_Dunajsk%C3%A1_Streda_svg_logo.svg"
+  },
   "Dundee United": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/bf/Dundee_United_FC_crest.svg"
+  },
+  "Dynamo Kyiv": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Dynamo_logo.svg"
   },
   "Dynamo Moscow": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/51/MGO_Dynamo_logo.png"
   },
+  "Eibar": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/3b/SD_Eibar_logo_2016.svg"
+  },
   "Eintracht Frankfurt": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/7/7e/Eintracht_Frankfurt_crest.svg"
+  },
+  "Enyimba": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/d/dd/Enyimba_International_F.C._logo.png"
   },
   "Espanyol": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/92/RCD_Espanyol_crest.svg"
@@ -362,6 +491,9 @@
   "Genk": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Logo_KRC_Genk.png"
   },
+  "Genoa": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/2c/Genoa_CFC_crest.svg"
+  },
   "Gent": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f4/KAA_Gent_logo.svg"
   },
@@ -371,17 +503,44 @@
   "Gimcheon Sangmu": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/1/19/Gimcheon_Sangmu_FC.svg"
   },
+  "Girona": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f7/Girona_FC_Logo.svg"
+  },
+  "Grasshopper": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/GC_Z%C3%BCrich_Logo.svg"
+  },
+  "Grêmio": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Gremio_logo.svg"
+  },
   "Guadalajara": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f0/Guadalajara_CD.svg"
   },
   "Guanacasteca": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/5b/A.D._Guanacasteca.svg"
   },
+  "Guangzhou Evergrande": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/98/Guangzhou_Evergrande_Taobao_logo.svg"
+  },
+  "Guingamp": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/56/En_Avant_Guingamp_logo.svg"
+  },
+  "Górnik Zabrze": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/58/G%C3%B3rnik_Zabrze_crest.svg"
+  },
+  "Göztepe": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/0f/G%C3%B6ztepe_S.K._logo.png"
+  },
   "Hajduk Split": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/HNK_Hajduk_Split_logo.svg"
   },
+  "Hamburger SV": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg"
+  },
   "Hannover 96": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Hannover_96_Logo.svg"
+  },
+  "Hapoel Be'er Sheva": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/85/Logo-hapoel-positive.svg"
   },
   "Hatayspor": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/fe/Hatayspor_crest.png"
@@ -391,6 +550,9 @@
   },
   "Hearts of Oak": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/01/Accra_hearts_of_oak_sc.png"
+  },
+  "Hebei China Fortune": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/fa/Hebei_F.C.svg"
   },
   "Heerenveen": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/e1/SC_Heerenveen_logo.svg"
@@ -404,14 +566,32 @@
   "Hertha BSC": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Hertha_BSC_Logo_2012.svg"
   },
+  "Hibernian": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/37/Hibernian_FC_logo.svg"
+  },
+  "Horoya": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/2e/HoroyaLogo.png"
+  },
   "Houston Dynamo FC": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/6/66/Houston_Dynamo_FC_logo.svg"
+  },
+  "Huachipato": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/LogoHFC.png"
   },
   "Huddersfield Town": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/43/Huddersfield_Town_AFC_crest.svg"
   },
+  "Hull City": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/54/Hull_City_A.F.C._logo.svg"
+  },
+  "IR Tanger": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/d/d1/IR_tanger_logo.png"
+  },
   "Imbabura": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/7/78/Imbabura.png"
+  },
+  "Incheon United": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/66/Emblem_of_Incheon_United.svg"
   },
   "Independiente": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Escudo_del_Club_Atl%C3%A9tico_Independiente.svg"
@@ -425,6 +605,12 @@
   "Inter Milan": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/FC_Internazionale_Milano_2021.svg"
   },
+  "Ipswich Town": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/43/Ipswich_Town.svg"
+  },
+  "Jeju United": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/47/Jeju_SK_FC.svg"
+  },
   "Jeonbuk Hyundai Motors": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/23/Jeonbuk_Hyundai_Motors.svg"
   },
@@ -433,6 +619,18 @@
   },
   "Juárez": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/9d/FC_Ju%C3%A1rez_logo.svg"
+  },
+  "Kardemir Karabükspor": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/51/Karabukspor.png"
+  },
+  "Kashima Antlers": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/37/Kashima_Antlers.svg"
+  },
+  "Kashiwa Reysol": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/99/Kashiwa_Reysol_logo.svg"
+  },
+  "Kasımpaşa": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/1/18/Kasimpasa_logo.svg"
   },
   "Kawasaki Frontale": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/9d/Kawasaki_Frontale_logo.svg"
@@ -443,6 +641,12 @@
   "Konyaspor": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/d/d1/Konyaspor_logo.svg"
   },
+  "Krasnodar": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/30/FC_Krasnodar_logo.svg"
+  },
+  "KuPS": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/bd/KuPS_logo.svg"
+  },
   "Kuwait SC": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/4a/Kuwait_Sporting_Club_logo.png"
   },
@@ -452,11 +656,20 @@
   "LDU Quito": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Liga_de_Quito_deportiva.png"
   },
+  "Las Palmas": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/20/UD_Las_Palmas_logo.svg"
+  },
+  "Lausanne": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/FC_Lausanne-Sport_logo.svg"
+  },
   "Lazio": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/ce/S.S._Lazio_badge.svg"
   },
   "Lech Poznań": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/b0/KKS_Lech_Pozna%C5%84.svg"
+  },
+  "Lechia Gdańsk": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/b7/Lechia_Gda%C5%84sk_logo.svg"
   },
   "Leeds United": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/54/Leeds_United_F.C._logo.svg"
@@ -473,6 +686,12 @@
   "Lens": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/cc/RC_Lens_logo.svg"
   },
+  "Levante": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/7/7b/Levante_Uni%C3%B3n_Deportiva%2C_S.A.D._logo.svg"
+  },
+  "Levski Sofia": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/51/PFC_Levski_Sofia.svg"
+  },
   "León": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/8f/Club_Leon_Logo.svg"
   },
@@ -482,11 +701,20 @@
   "Liverpool": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg"
   },
+  "Lobos BUAP": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/01/Lobos_BUAP_logo.png"
+  },
+  "Lokomotiv Moscow": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/93/FC_Lokomotiv_Moscow_logo.svg"
+  },
   "Lorient": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/4c/FC_Lorient_logo.svg"
   },
   "Los Angeles FC": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/8/86/Los_Angeles_Football_Club.svg"
+  },
+  "Ludogorets Razgrad": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/eb/PFC_Ludogorets_Razgrad_logo.png"
   },
   "Lugano": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Logo_FC_Lugano_2025.svg"
@@ -503,11 +731,17 @@
   "Lyon": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/1/1c/Olympique_Lyonnais_logo.svg"
   },
+  "Maccabi Tel Aviv": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/e9/Maccabi_Tel_Aviv.png"
+  },
   "Mainz 05": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/1._FSV_Mainz_05_logo.svg"
   },
   "Mallorca": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/e0/Rcd_mallorca.svg"
+  },
+  "Malmö FF": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Malmo_FF_logo.svg"
   },
   "Manchester City": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg"
@@ -518,11 +752,20 @@
   "Marseille": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Olympique_de_Marseille_2026_logo.svg"
   },
+  "Marítimo": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/30/C.S._Mar%C3%ADtimo_logo.svg"
+  },
   "Mechelen": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/28/KV_Mechelen_logo.svg"
   },
   "Melbourne City": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/0f/Melbourne_City_FC.svg"
+  },
+  "Melgar": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/ff/FBC_Melgar.png"
+  },
+  "Metz": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/FC_Metz_2021_Logo.svg"
   },
   "Middlesbrough": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/2c/Middlesbrough_FC_crest.svg"
@@ -532,6 +775,9 @@
   },
   "Millonarios": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Millonarios_F%C3%BAtbol_Club_logo.svg"
+  },
+  "Millwall": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/98/Millwall_FC_crest.svg"
   },
   "Milton Keynes Dons": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/e5/Milton_Keynes_Dons_FC_2025_crest.svg"
@@ -548,8 +794,17 @@
   "Montpellier": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a8/Montpellier_HSC_logo.svg"
   },
+  "Morelia": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/e1/Atl%C3%A9tico_Morelia_logo.svg"
+  },
+  "Municipal": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/4b/CSD_Municipal.svg"
+  },
   "Municipal Grecia": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/1/1c/Municipal_Grecia_-_Team_Badge.png"
+  },
+  "Málaga": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/6d/M%C3%A1laga_CF.svg"
   },
   "Nacional": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Club_Nacional_de_Football.png"
@@ -572,6 +827,9 @@
   "New York Red Bulls": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/51/New_York_Red_Bulls_logo.svg"
   },
+  "Newcastle Jets": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/d/d5/Newcastle_United_Jets_Logo.svg"
+  },
   "Newcastle United": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/56/Newcastle_United_Logo.svg"
   },
@@ -581,20 +839,38 @@
   "Nice": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/2e/OGC_Nice_logo.svg"
   },
+  "Nordsjælland": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/23/FC_Nordsj%C3%A6lland_logo.svg"
+  },
+  "Norrköping": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0f/IFK_Norrkoping_logo.svg"
+  },
   "Norwich City": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/1/17/Norwich_City_FC_logo.svg"
   },
   "Nottingham Forest": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/e5/Nottingham_Forest_F.C._logo.svg"
   },
+  "Numancia": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/07/CD_Numancia_logo.svg"
+  },
   "OB": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Odense_Boldklub.svg"
+  },
+  "Olimpia": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/45/Club_Olimpia_logo.svg"
   },
   "Olympiacos": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a2/Olympiacos_FC_crest.svg"
   },
   "Omonia": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/3d/AC_Omonia_logo.svg"
+  },
+  "Once Caldas": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_Once_Caldas.png"
+  },
+  "Oostende": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/87/KV_Oostende_logo.svg"
   },
   "Orlando City SC": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/6a/Orlando_City_2014.svg"
@@ -614,6 +890,9 @@
   "Pachuca": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/93/Pachuca_Tuzos_logo.svg"
   },
+  "Padideh": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/%D8%A7%D8%B3%D8%AA%D9%82%D9%84%D8%A7%D9%84_%D8%AE%D9%88%D8%B2%D8%B3%D8%AA%D8%A7%D9%86.jpg"
+  },
   "Pafos": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/9b/Pafos_FC_crest.svg"
   },
@@ -626,11 +905,20 @@
   "Paris Saint-Germain": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a7/Paris_Saint-Germain_F.C..svg"
   },
+  "Partizan": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/ed/FK_Partizan.svg"
+  },
   "Persepolis": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/05/FC_Persepolis_Official_Logo.svg"
   },
+  "Peñarol": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Escudo_del_Club_Atl%C3%A9tico_Pe%C3%B1arol.svg"
+  },
   "Philadelphia Union": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/46/Philadelphia_Union_2018_logo.svg"
+  },
+  "Plaza Amador": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/20/Cd_plaza_amador_logo.png"
   },
   "Pogoń Szczecin": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/55/Pogon_Szczecin_logo.svg"
@@ -638,11 +926,20 @@
   "Ponferradina": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/38/SD_Ponferradina_emblem.svg"
   },
+  "Portland Timbers": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Portland_Timbers_logo.svg"
+  },
   "Porto": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f1/FC_Porto.svg"
   },
   "Portsmouth": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/38/Portsmouth_FC_logo.svg"
+  },
+  "Puebla": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/5d/Club_Puebla_logo.svg"
+  },
+  "Pumas UNAM": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/b7/Club_Universidad_Nacional_logo.svg"
   },
   "Puntarenas": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/b1/Puntarenas_F.C.svg"
@@ -655,6 +952,12 @@
   },
   "RB Leipzig": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/04/RB_Leipzig_2014_logo.svg"
+  },
+  "RS Berkane": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/d/de/RS_Berkane_%28logo%29.png"
+  },
+  "Randers": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/b7/Randers_FC_logo.svg"
   },
   "Rangers": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/43/Rangers_FC.svg"
@@ -689,14 +992,38 @@
   "Rennes": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/9e/Stade_Rennais_FC.svg"
   },
+  "Rijeka": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ad/HNK_Rijeka.svg"
+  },
   "River Plate": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Club_Atl%C3%A9tico_River_Plate_logo.svg"
   },
   "Roma": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f7/AS_Roma_logo_%282017%29.svg"
   },
+  "Roskilde": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/fc/FC_Roskilde_logo.png"
+  },
+  "Rostov": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a2/FC_Rostov_logo.svg"
+  },
+  "Rubin Kazan": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/32/FC_Rubin_Kazan_logo.svg"
+  },
   "SC Freiburg": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/6d/SC_Freiburg_logo.svg"
+  },
+  "SPAL": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/d/d5/Ars_et_Labor_Ferrara_Calcio_crest.svg"
+  },
+  "SV Sandhausen": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/SV_Sandhausen.svg"
+  },
+  "Sagan Tosu": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/c1/Sagan_Tosu_logo.svg"
+  },
+  "Saipa": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Saipa_Football_Club_de_Tehran.svg"
   },
   "Salernitana": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/85/US_Salernitana_1919_logo.svg"
@@ -706,6 +1033,15 @@
   },
   "San Carlos": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/7/79/A.D._San_Carlos.svg"
+  },
+  "San Francisco": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/53/San_Francisco_FC_%28Panama%29.svg"
+  },
+  "San Jose Earthquakes": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/98/San_Jose_Earthquakes_2014.svg"
+  },
+  "Sangju Sangmu": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/1/19/Gimcheon_Sangmu_FC.svg"
   },
   "Santos Laguna": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/96/Santos_Laguna_logo.svg"
@@ -722,6 +1058,9 @@
   "Seattle Sounders FC": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/84/Seattle_Sounders_logo.svg"
   },
+  "Seongnam FC": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/ce/Seongnam_FC_logo.svg"
+  },
   "Sepahan": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/80/Sepahan_New_Logo.svg"
   },
@@ -730,6 +1069,9 @@
   },
   "Shabab Al-Ahli": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/02/Shabab_Al_Ahli_logo.svg"
+  },
+  "Shakhtar Donetsk": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a1/FC_Shakhtar_Donetsk.svg"
   },
   "Shandong Taishan": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/88/Shandong_Taishan_Football_Club.svg"
@@ -752,8 +1094,14 @@
   "Southampton": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/c9/FC_Southampton.svg"
   },
+  "Spartak Moscow": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/93/FC_Spartak_Moscow_crest.svg"
+  },
   "Spezia": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/6f/Spezia_Calcio_crest.svg"
+  },
+  "Sport Boys": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Sport_Boys_As.svg"
   },
   "Sporting CP": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/9/95/Sporting_CP_crest.svg"
@@ -779,6 +1127,9 @@
   "Sunderland": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/7/77/Logo_Sunderland.svg"
   },
+  "Suwon Samsung Bluewings": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/7/7b/Suwon_Samsung_Bluewings.svg"
+  },
   "Swansea City": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f9/Swansea_City_AFC_logo.svg"
   },
@@ -793,6 +1144,21 @@
   },
   "Talleres": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Escudo_Talleres_2015.svg"
+  },
+  "Tapachula": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/c7/Logo_Cafetaleros_Chiapas.png"
+  },
+  "Tianjin Quanjian": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/8c/Tianjin_Tianhai_logo.svg"
+  },
+  "Tianjin TEDA": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/f2/Tianjin_Jinmen_Tiger_F.C.svg"
+  },
+  "Tigres UANL": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/82/Tigres_UANL_logo_%28crest%29.svg"
+  },
+  "Toluca": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Club_Toluca_Logo.svg"
   },
   "Torino": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/2e/Torino_FC_Logo.svg"
@@ -827,6 +1193,15 @@
   "Union Berlin": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/1._FC_Union_Berlin_Logo.svg"
   },
+  "Universidad Técnica de Cajamarca": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/UTC_Cajamarca.svg"
+  },
+  "Universidad de Chile": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Emblema_del_Club_Universidad_de_Chile.png"
+  },
+  "Universitario": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Logo_oficial_de_Universitario.svg"
+  },
   "Urawa Red Diamonds": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Urawa_Red_Diamonds_logo.svg"
   },
@@ -836,11 +1211,20 @@
   "Valladolid": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a9/Real_Valladolid_CF_crest.svg"
   },
+  "Valur": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/59/Valur_%28men%27s_football%29_logo.png"
+  },
   "Vancouver Whitecaps FC": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Vancouver_Whitecaps_logo.svg"
   },
+  "Vasco da Gama": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a5/Club_de_Regatas_Vasco_da_Gama_logo_%282021%29.svg"
+  },
   "Vejle": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a3/Vejle_Boldklub.png"
+  },
+  "Veracruz": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/eb/CD_Veracruz_logo.svg"
   },
   "VfB Stuttgart": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/VfB_Stuttgart_1893_Logo.svg"
@@ -854,8 +1238,20 @@
   "Villarreal": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/b9/Villarreal_CF_logo-en.svg"
   },
+  "Vissel Kobe": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Vissel_Kobe_logo.svg"
+  },
+  "Vitória de Guimarães": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/d/d5/Vit%C3%B3ria_Guimar%C3%A3es.svg"
+  },
+  "Vålerenga": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/V%C3%A5lerenga_Oslo_logo.svg"
+  },
   "Vélez Sarsfield": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/2/21/Escudo_del_Club_Atl%C3%A9tico_V%C3%A9lez_Sarsfield.svg"
+  },
+  "Waasland-Beveren": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/fb/S.K._Beveren.png"
   },
   "Watford": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/e2/Watford.svg"
@@ -863,14 +1259,29 @@
   "Werder Bremen": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/b/be/SV-Werder-Bremen-Logo.svg"
   },
+  "West Bromwich Albion": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/8/8b/West_Bromwich_Albion.svg"
+  },
   "West Ham United": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/c2/West_Ham_United_FC_logo.svg"
+  },
+  "Western Sydney Wanderers": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Western_Sydney_Wanderers_FC.svg"
+  },
+  "Wigan Athletic": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/4/43/Wigan_Athletic.svg"
   },
   "Wolverhampton Wanderers": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/c/c9/Wolverhampton_Wanderers_FC_crest.svg"
   },
   "Wydad AC": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/1/18/Wydad_AC_crest_%282022%29.svg"
+  },
+  "Yeni Malatyaspor": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/5/5e/Yeni_Malatyaspor_logo.svg"
+  },
+  "Yokohama F. Marinos": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/65/Yokohama_F_Marinos_logo.svg"
   },
   "Young Boys": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/BSC_Young_Boys.svg"
@@ -881,7 +1292,19 @@
   "Zenit Saint Petersburg": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/eb/FC_Zenit_Saint_Petersburg_crest.svg"
   },
+  "Zob Ahan": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/f/fe/Zob_Ahan_Esfahan_F.C._Logo.svg"
+  },
+  "Águilas Doradas": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/aa/LogoAguilasPereira.png"
+  },
   "Étoile du Sahel": {
     "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/eb/Logo_Etoile_du_Sahel.svg"
+  },
+  "Östersund": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/b5/Ostersunds_FK_logo.svg"
+  },
+  "İstanbul Başakşehir": {
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/e/e1/%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_logo.svg"
   }
 }
